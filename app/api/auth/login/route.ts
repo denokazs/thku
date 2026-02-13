@@ -43,6 +43,7 @@ export const POST = apiWrapper(async (request: Request) => {
     const users = db.users || [];
 
     const normalizedInput = username.trim().toLowerCase();
+    console.log('[LOGIN DEBUG] Input:', normalizedInput);
 
     const user = users.find((u: any) =>
         (u.username && u.username.toLowerCase() === normalizedInput) ||
@@ -51,14 +52,19 @@ export const POST = apiWrapper(async (request: Request) => {
     );
 
     if (!user) {
-        return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 });
+        console.log('[LOGIN DEBUG] User NOT found. Available users:', users.length);
+        return NextResponse.json({ success: false, message: 'DEBUG: User not found in DB' }, { status: 401 });
     }
+
+    console.log('[LOGIN DEBUG] User found:', user.email);
 
     // 5. Password Check
     const passwordMatch = await bcrypt.compare(password, user.password);
+    console.log('[LOGIN DEBUG] Password match result:', passwordMatch);
 
     if (!passwordMatch) {
-        return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 });
+        console.log('[LOGIN DEBUG] Password mismatch.');
+        return NextResponse.json({ success: false, message: 'DEBUG: Password mismatch' }, { status: 401 });
     }
 
     // 6. Success - Generate Token
@@ -83,6 +89,7 @@ export const POST = apiWrapper(async (request: Request) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
+        path: '/',
         maxAge: 60 * 60 * 24 // 1 day
     });
 

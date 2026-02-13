@@ -18,7 +18,7 @@ interface User {
 interface AuthContextType {
     user: User | null;
     isLoading: boolean;
-    login: (username: string, password: string) => Promise<boolean>;
+    login: (username: string, password: string) => Promise<{ success: boolean; message?: string }>;
     logout: () => Promise<void>;
 }
 
@@ -62,13 +62,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             if (res.ok) {
                 const data = await res.json();
                 setUser(data.user);
-                return true;
+                return { success: true };
             }
-            console.error('Login failed with status:', res.status);
-            return false;
-        } catch (error) {
+            const errorData = await res.json();
+            console.error('Login failed:', errorData); // Log for debugging
+            return {
+                success: false,
+                message: errorData.message || `Login failed with status: ${res.status}`
+            };
+        } catch (error: any) {
             console.error('Login error:', error);
-            return false;
+            return { success: false, message: error.message || 'Network error' };
         }
     };
 

@@ -17,12 +17,12 @@ export default function LoginPage() {
         e.preventDefault();
         setError('');
 
-        const success = await login(identifier, password);
+        const result = await login(identifier, password);
 
-        if (success) {
+        if (result.success) {
             router.push('/kulupler');
         } else {
-            setError('Giriş bilgileri hatalı veya kullanıcı bulunamadı.');
+            setError(result.message || 'Giriş yapılamadı.');
         }
     };
 
