@@ -76,7 +76,7 @@ export default function KuluplerClient({ clubs, events }: { clubs: any[], events
                         <span className="text-red-400 font-black text-sm tracking-widest">KAMPÜS KULÜPLER</span>
                     </div>
 
-                    <h1 className="text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400 mb-4 animate-gradient">
+                    <h1 className="text-4xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400 mb-4 animate-gradient">
                         Kulüpler ve Topluluklar
                     </h1>
                     <p className="text-slate-300 text-lg font-medium max-w-2xl mx-auto">
@@ -84,7 +84,7 @@ export default function KuluplerClient({ clubs, events }: { clubs: any[], events
                     </p>
 
                     {/* Stats */}
-                    <div className="grid grid-cols-3 gap-4 max-w-3xl mx-auto mt-8">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto mt-8">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}

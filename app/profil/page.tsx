@@ -115,7 +115,7 @@ export default function ProfilePage() {
     ];
 
     return (
-        <div className="min-h-screen bg-slate-950 pt-32 pb-12 relative overflow-hidden">
+        <div className="min-h-screen bg-slate-950 pt-24 md:pt-32 pb-12 relative overflow-hidden">
             {/* Background Effects */}
             <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-red-900/20 to-transparent pointer-events-none"></div>
             <div className="absolute top-20 right-20 w-72 h-72 bg-red-600/10 rounded-full blur-3xl animate-pulse pointer-events-none"></div>
