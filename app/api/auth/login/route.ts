@@ -42,8 +42,7 @@ export const POST = apiWrapper(async (request: Request) => {
     const db: any = await readDb();
     const users = db.users || [];
 
-    const normalizedInput = username.toLowerCase();
-    console.log('[LOGIN DEBUG] Attempting login for:', normalizedInput);
+    const normalizedInput = username.trim().toLowerCase();
 
     const user = users.find((u: any) =>
         (u.username && u.username.toLowerCase() === normalizedInput) ||
@@ -52,16 +51,13 @@ export const POST = apiWrapper(async (request: Request) => {
     );
 
     if (!user) {
-        console.log('[LOGIN DEBUG] User not found in DB');
         return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 });
     }
 
     // 5. Password Check
     const passwordMatch = await bcrypt.compare(password, user.password);
-    console.log('[LOGIN DEBUG] User found. Password match:', passwordMatch);
 
     if (!passwordMatch) {
-        console.log('[LOGIN DEBUG] Password mismatch');
         return NextResponse.json({ success: false, message: 'Invalid credentials' }, { status: 401 });
     }
 
@@ -86,7 +82,7 @@ export const POST = apiWrapper(async (request: Request) => {
     cookieStore.set('auth_session', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax',
         maxAge: 60 * 60 * 24 // 1 day
     });
 
