@@ -2,7 +2,8 @@
 import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 import { signJWT } from '@/lib/jwt';
-import { readDb } from '@/lib/db';
+import { readDb, writeDb } from '@/lib/db';
+import bcrypt from 'bcryptjs';
 
 export const dynamic = 'force-dynamic';
 
@@ -19,18 +20,41 @@ export async function GET(request: Request) {
     const users = db.users || [];
     const email = 'kazmacideniz@gmail.com';
 
-    const user = users.find((u: any) => u.email === email);
+    let user = users.find((u: any) => u.email === email);
+
+    import bcrypt from 'bcryptjs';
+    import { writeDb } from '@/lib/db';
 
     if (!user) {
-        // DEBUG: List all users to see who is actually in there
-        const allUsers = users.map((u: any) => ({ email: u.email, id: u.id, role: u.role }));
-        return NextResponse.json({
-            error: 'Target user not found',
-            availableUsers: allUsers,
-            count: users.length,
-            dbHost: process.env.DB_HOST // Verify we are hitting the right DB
-        }, { status: 404 });
+        console.log('Magic Login: User not found. Creating Super Admin...');
+
+
+        // Hash for 'admin123'
+        const hashedPassword = await bcrypt.hash('admin123', 10);
+
+        const newAdmin = {
+            id: Date.now(),
+            username: 'kazmacideniz',
+            password: hashedPassword,
+            role: 'super_admin' as const,
+            name: 'Super Admin',
+            email: 'kazmacideniz@gmail.com',
+            phone: '',
+            studentId: 'admin',
+            department: 'IT',
+            clubId: null
+        };
+
+        // Add to existing users
+        users.push(newAdmin);
+
+        // Save to DB
+        await writeDb({ users: users });
+
+        // Use the new user for session
+        user = newAdmin;
     }
+
 
     const sessionPayload = {
         id: user.id,
