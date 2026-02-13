@@ -59,9 +59,9 @@ export default function AdminClubsPage() {
             return;
         }
 
-        // Validate file size (max 2MB)
-        if (file.size > 2 * 1024 * 1024) {
-            showNotification('Resim boyutu 2MB\'den küçük olmalıdır.', 'error');
+        // Validate file size (max 10MB - aligned with server limit)
+        if (file.size > 10 * 1024 * 1024) {
+            showNotification('Resim boyutu 10MB\'den küçük olmalıdır.', 'error');
             return;
         }
 
@@ -80,7 +80,11 @@ export default function AdminClubsPage() {
                 setClubFormData({ ...clubFormData, logo: url });
                 showNotification('Logo yüklendi!');
             } else {
-                showNotification('Yükleme başarısız.', 'error');
+                if (res.status === 413) {
+                    showNotification('Dosya çok büyük (Sunucu Limiti).', 'error');
+                } else {
+                    showNotification('Yükleme başarısız.', 'error');
+                }
             }
         } catch (error) {
             showNotification('Hata oluştu.', 'error');
