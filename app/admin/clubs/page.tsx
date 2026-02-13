@@ -48,7 +48,7 @@ export default function AdminClubsPage() {
         }
     };
 
-    // Logo Upload Handler
+    // Logo Upload Handler - Direct to Cloudinary (Bypassing Server Limit)
     const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
@@ -59,7 +59,7 @@ export default function AdminClubsPage() {
             return;
         }
 
-        // Validate file size (max 10MB - aligned with server limit)
+        // Validate file size (max 10MB)
         if (file.size > 10 * 1024 * 1024) {
             showNotification('Resim boyutu 10MB\'den küçük olmalıdır.', 'error');
             return;
@@ -67,26 +67,47 @@ export default function AdminClubsPage() {
 
         setIsUploadingLogo(true);
         try {
+            // 1. Get Signature & Config from our server
+            const timestamp = Math.round((new Date).getTime() / 1000);
+            const signRes = await fetch('/api/upload/sign', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    paramsToSign: {
+                        timestamp,
+                        folder: 'thku_uploads',
+                    }
+                })
+            });
+
+            if (!signRes.ok) throw new Error('İmza alınamadı');
+
+            const { signature, cloudName, apiKey } = await signRes.json();
+
+            // 2. Upload directly to Cloudinary
             const formData = new FormData();
             formData.append('file', file);
+            formData.append('api_key', apiKey);
+            formData.append('timestamp', timestamp.toString());
+            formData.append('signature', signature);
+            formData.append('folder', 'thku_uploads');
 
-            const res = await fetch('/api/upload', {
+            const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
                 method: 'POST',
                 body: formData
             });
 
-            if (res.ok) {
-                const { url } = await res.json();
-                setClubFormData({ ...clubFormData, logo: url });
-                showNotification('Logo yüklendi!');
+            if (uploadRes.ok) {
+                const data = await uploadRes.json();
+                setClubFormData({ ...clubFormData, logo: data.secure_url });
+                showNotification('Logo başarıyla yüklendi!');
             } else {
-                if (res.status === 413) {
-                    showNotification('Dosya çok büyük (Sunucu Limiti).', 'error');
-                } else {
-                    showNotification('Yükleme başarısız.', 'error');
-                }
+                const err = await uploadRes.json();
+                console.error('Cloudinary Upload Error:', err);
+                showNotification('Yükleme başarısız oldu.', 'error');
             }
         } catch (error) {
+            console.error(error);
             showNotification('Hata oluştu.', 'error');
         } finally {
             setIsUploadingLogo(false);
