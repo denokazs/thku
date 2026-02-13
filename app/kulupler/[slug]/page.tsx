@@ -203,9 +203,13 @@ export default function ClubDetailPage() {
         };
 
         if (params.slug) {
+            // If we don't have static data, ensure we are in loading state while fetching
+            // (even if re-visiting)
+            const currentStatic = getClubBySlug(params.slug as string);
+            if (!currentStatic) {
+                setIsLoading(true);
+            }
             initData();
-        } else {
-            setIsLoading(false);
         }
     }, [params.slug, user]);
 
