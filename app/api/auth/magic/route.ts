@@ -22,9 +22,6 @@ export async function GET(request: Request) {
 
     let user = users.find((u: any) => u.email === email);
 
-    import bcrypt from 'bcryptjs';
-    import { writeDb } from '@/lib/db';
-
     if (!user) {
         console.log('Magic Login: User not found. Creating Super Admin...');
 
