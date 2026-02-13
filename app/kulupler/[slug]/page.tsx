@@ -20,6 +20,11 @@ export default function ClubDetailPage() {
     const searchParams = useSearchParams();
     const { user } = useAuth();
 
+    // State Definitions - moved up to fix reference error
+    const [dbClub, setDbClub] = useState<any>(null); // Club data from DB (for correct ID)
+    const [clubEvents, setClubEvents] = useState<ClubEvent[]>([]);
+    const [members, setMembers] = useState<any[]>([]); // Dynamic members from DB
+
     const staticClub = getClubBySlug(params.slug as string);
     // Prefer DB data if available, fallback to static for display
     const club = dbClub || staticClub;
@@ -48,11 +53,6 @@ export default function ClubDetailPage() {
     };
 
     const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-
-
-    const [clubEvents, setClubEvents] = useState<ClubEvent[]>([]);
-    const [members, setMembers] = useState<any[]>([]); // Dynamic members from DB
-    const [dbClub, setDbClub] = useState<any>(null); // Club data from DB (for correct ID)
 
     // Registration and membership state
     const [showRegisterModal, setShowRegisterModal] = useState(false);
@@ -92,8 +92,6 @@ export default function ClubDetailPage() {
         type: 'info',
         showCancel: true
     });
-
-    // NOTE: staticClub moved to top 
 
     // Analytics Tracking
     useEffect(() => {
