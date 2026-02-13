@@ -606,27 +606,30 @@ export default function ClubDetailPage() {
                 </div>
 
                 {/* Tabs */}
-                <div id="tabs-container" className="max-w-7xl mx-auto px-4 md:px-8 -mt-4 relative z-20 overflow-x-auto pb-4 scrollbar-hide">
-                    <div className="glass-dark border border-slate-700/50 rounded-2xl p-2 inline-flex gap-2 shadow-xl whitespace-nowrap min-w-full md:min-w-0">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id as typeof activeTab)}
-                                className={`px-4 md:px-6 py-3 rounded-xl font-black text-sm transition-all duration-300 flex items-center gap-2 flex-shrink-0 ${activeTab === tab.id
-                                    ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg shadow-red-500/50'
-                                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
-                                    }`}
-                            >
-                                <span>{tab.icon}</span>
-                                <span>{tab.label}</span>
-                                {tab.count !== undefined && (
-                                    <span className={`text-xs px-2 py-0.5 rounded-full ${activeTab === tab.id ? 'bg-white/20' : 'bg-slate-700'
-                                        }`}>
-                                        {tab.count}
-                                    </span>
-                                )}
-                            </button>
-                        ))}
+                {/* Tabs */}
+                <div id="tabs-container" className="max-w-7xl mx-auto px-4 md:px-8 -mt-6 relative z-20">
+                    <div className="overflow-x-auto pb-4 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
+                        <div className="glass-dark border border-slate-700/50 rounded-2xl p-1.5 inline-flex gap-2 shadow-xl whitespace-nowrap min-w-full md:min-w-0 bg-slate-900/80 backdrop-blur-xl">
+                            {tabs.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                                    className={`px-4 md:px-6 py-3 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 flex-shrink-0 ${activeTab === tab.id
+                                        ? 'bg-gradient-to-r from-red-600 to-orange-600 text-white shadow-lg shadow-red-500/30 ring-1 ring-white/20'
+                                        : 'text-slate-400 hover:text-white hover:bg-white/5'
+                                        }`}
+                                >
+                                    <span className="text-lg">{tab.icon}</span>
+                                    <span>{tab.label}</span>
+                                    {tab.count !== undefined && (
+                                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-black ${activeTab === tab.id ? 'bg-white/20 text-white' : 'bg-slate-800 text-slate-400'
+                                            }`}>
+                                            {tab.count}
+                                        </span>
+                                    )}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
 

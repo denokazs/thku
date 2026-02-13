@@ -84,14 +84,18 @@ export default function Footer() {
                 const res = await fetch('/api/settings/footer');
                 if (res.ok) {
                     const data = await res.json();
-                    // Update settings if data exists (removed strict column check)
-                    if (data) {
-                        setSettings(data);
+                    if (data && Object.keys(data).length > 0) {
+                        setSettings((prev: any) => ({
+                            ...prev,
+                            ...data,
+                            // Ensure columns exist, if not use default
+                            columns: (data.columns && data.columns.length > 0) ? data.columns : prev.columns,
+                            socials: { ...prev.socials, ...data.socials }
+                        }));
                     }
                 }
             } catch (error) {
                 console.error('Failed to fetch footer settings', error);
-                // Keep default settings
             }
         };
         fetchSettings();
