@@ -13,6 +13,53 @@ import {
     ChevronRight, Upload, Loader2, MessageSquare, Send, Filter, Lock, History, BarChart3, FileDown
 } from 'lucide-react';
 
+// --- CLOUDINARY UPLOAD HELPER (Direct Client-Side) ---
+const uploadToCloudinary = async (file: File): Promise<string> => {
+    try {
+        // 1. Get Signature & Config
+        const timestamp = Math.round((new Date).getTime() / 1000);
+        const signRes = await fetch('/api/upload/sign', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                paramsToSign: {
+                    timestamp,
+                    folder: 'thku_uploads',
+                }
+            })
+        });
+
+        if (!signRes.ok) throw new Error('Yükleme imzası alınamadı');
+
+        const { signature, cloudName, apiKey } = await signRes.json();
+        if (!cloudName || !apiKey) throw new Error('Cloudinary yapılandırması eksik');
+
+        // 2. Upload directly to Cloudinary
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('api_key', apiKey);
+        formData.append('timestamp', timestamp.toString());
+        formData.append('signature', signature);
+        formData.append('folder', 'thku_uploads');
+
+        const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: 'POST',
+            body: formData
+        });
+
+        if (!uploadRes.ok) {
+            const err = await uploadRes.json();
+            throw new Error(err.error?.message || 'Yükleme başarısız');
+        }
+
+        const data = await uploadRes.json();
+        return data.secure_url;
+    } catch (error) {
+        console.error('Upload Helper Error:', error);
+        throw error;
+    }
+};
+
 const ClubSettingsTab = ({ club, setClub, showNotification }: { club: any, setClub: (c: any) => void, showNotification: (m: string, t?: 'success' | 'error') => void }) => {
     const [formData, setFormData] = useState(club);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -74,13 +121,11 @@ const ClubSettingsTab = ({ club, setClub, showNotification }: { club: any, setCl
                                                     setIsSubmitting(true);
                                                     try {
                                                         const file = e.target.files[0];
-                                                        const uploadData = new FormData();
-                                                        uploadData.append('file', file);
-                                                        const res = await fetch('/api/upload', { method: 'POST', body: uploadData });
-                                                        if (res.ok) {
-                                                            const { url } = await res.json();
-                                                            setFormData((prev: any) => ({ ...prev, logo: url }));
-                                                        }
+                                                        // Direct Upload
+                                                        const url = await uploadToCloudinary(file);
+                                                        setFormData((prev: any) => ({ ...prev, logo: url }));
+                                                    } catch (err) {
+                                                        showNotification('Logo yüklenemedi!', 'error');
                                                     } finally {
                                                         setIsSubmitting(false);
                                                     }
@@ -154,13 +199,10 @@ const ClubSettingsTab = ({ club, setClub, showNotification }: { club: any, setCl
                                             setIsSubmitting(true);
                                             try {
                                                 const file = e.target.files[0];
-                                                const uploadData = new FormData();
-                                                uploadData.append('file', file);
-                                                const res = await fetch('/api/upload', { method: 'POST', body: uploadData });
-                                                if (res.ok) {
-                                                    const { url } = await res.json();
-                                                    setFormData((prev: any) => ({ ...prev, coverImage: url }));
-                                                }
+                                                const url = await uploadToCloudinary(file);
+                                                setFormData((prev: any) => ({ ...prev, coverImage: url }));
+                                            } catch (err) {
+                                                showNotification('Kapak fotoğrafı yüklenemedi!', 'error');
                                             } finally {
                                                 setIsSubmitting(false);
                                             }
@@ -240,29 +282,18 @@ const ClubSettingsTab = ({ club, setClub, showNotification }: { club: any, setCl
                                                         setIsSubmitting(true);
                                                         try {
                                                             const file = e.target.files[0];
-                                                            const uploadData = new FormData();
-                                                            uploadData.append('file', file);
+                                                            const url = await uploadToCloudinary(file);
 
-                                                            const res = await fetch('/api/upload', {
-                                                                method: 'POST',
-                                                                body: uploadData
-                                                            });
-
-                                                            if (res.ok) {
-                                                                const data = await res.json();
-                                                                setFormData((p: any) => ({
-                                                                    ...p,
-                                                                    president: {
-                                                                        ...p.president,
-                                                                        avatar: data.url
-                                                                    }
-                                                                }));
-                                                                showNotification('Fotoğraf yüklendi!');
-                                                            } else {
-                                                                showNotification('Yükleme başarısız!', 'error');
-                                                            }
+                                                            setFormData((p: any) => ({
+                                                                ...p,
+                                                                president: {
+                                                                    ...p.president,
+                                                                    avatar: url
+                                                                }
+                                                            }));
+                                                            showNotification('Fotoğraf yüklendi!');
                                                         } catch (err) {
-                                                            showNotification('Hata oluştu.', 'error');
+                                                            showNotification('Yükleme başarısız!', 'error');
                                                         } finally {
                                                             setIsSubmitting(false);
                                                         }
@@ -1242,22 +1273,10 @@ export default function ClubAdminPage() {
                                                                             setIsUploading(true);
                                                                             try {
                                                                                 const file = e.target.files[0];
-                                                                                const uploadData = new FormData();
-                                                                                uploadData.append('file', file);
-
-                                                                                const res = await fetch('/api/upload', {
-                                                                                    method: 'POST',
-                                                                                    body: uploadData
-                                                                                });
-
-                                                                                if (res.ok) {
-                                                                                    const data = await res.json();
-                                                                                    setFormData({ ...formData, customImage: data.url });
-                                                                                } else {
-                                                                                    showNotification('Yükleme başarısız!', 'error');
-                                                                                }
+                                                                                const url = await uploadToCloudinary(file);
+                                                                                setFormData({ ...formData, customImage: url });
                                                                             } catch (err) {
-                                                                                showNotification('Hata oluştu.', 'error');
+                                                                                showNotification('Yükleme başarısız!', 'error');
                                                                             } finally {
                                                                                 setIsUploading(false);
                                                                             }
@@ -1489,16 +1508,14 @@ export default function ClubAdminPage() {
                                             <Upload className="w-4 h-4" /> Fotoğraf Yükle
                                             <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
                                                 if (e.target.files?.[0]) {
-                                                    const formData = new FormData();
-                                                    formData.append('file', e.target.files[0]);
-                                                    const res = await fetch('/api/upload', { method: 'POST', body: formData });
-                                                    if (res.ok) {
-                                                        const data = await res.json();
-                                                        if (data.url) {
-                                                            setEventData({ ...eventData, coverImage: data.url });
+                                                    try {
+                                                        const url = await uploadToCloudinary(e.target.files[0]);
+                                                        if (url) {
+                                                            setEventData({ ...eventData, coverImage: url });
                                                         }
+                                                    } catch (err) {
+                                                        showNotification('Kapak fotoğrafı yüklenemedi', 'error');
                                                     }
-
                                                 }
                                             }} />
                                         </label>
@@ -1539,14 +1556,15 @@ export default function ClubAdminPage() {
                                                 <Upload className="w-3 h-3" /> Yükle
                                                 <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
                                                     if (e.target.files?.[0]) {
-                                                        const formData = new FormData();
-                                                        formData.append('file', e.target.files[0]);
-                                                        const res = await fetch('/api/upload', { method: 'POST', body: formData });
-                                                        if (res.ok) {
-                                                            const { url } = await res.json();
-                                                            const newImages = [...eventData.images];
-                                                            newImages[idx] = url;
-                                                            setEventData({ ...eventData, images: newImages });
+                                                        try {
+                                                            const url = await uploadToCloudinary(e.target.files[0]);
+                                                            if (url) {
+                                                                const newImages = [...eventData.images];
+                                                                newImages[idx] = url;
+                                                                setEventData({ ...eventData, images: newImages });
+                                                            }
+                                                        } catch (err) {
+                                                            showNotification('Görsel yüklenemedi', 'error');
                                                         }
                                                     }
                                                 }} />
@@ -1628,14 +1646,15 @@ export default function ClubAdminPage() {
                                                 <Upload className="w-6 h-6 text-white" />
                                                 <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
                                                     if (e.target.files?.[0]) {
-                                                        const formData = new FormData();
-                                                        formData.append('file', e.target.files[0]);
-                                                        const res = await fetch('/api/upload', { method: 'POST', body: formData });
-                                                        if (res.ok) {
-                                                            const { url } = await res.json();
-                                                            const newSpeakers = [...eventData.speakers];
-                                                            newSpeakers[idx].image = url;
-                                                            setEventData({ ...eventData, speakers: newSpeakers });
+                                                        try {
+                                                            const url = await uploadToCloudinary(e.target.files[0]);
+                                                            if (url) {
+                                                                const newSpeakers = [...eventData.speakers];
+                                                                newSpeakers[idx].image = url;
+                                                                setEventData({ ...eventData, speakers: newSpeakers });
+                                                            }
+                                                        } catch (err) {
+                                                            showNotification('Konuşmacı fotoğrafı yüklenemedi', 'error');
                                                         }
                                                     }
                                                 }} />
@@ -1827,21 +1846,16 @@ export default function ClubAdminPage() {
                     formData.append('file', file);
 
                     try {
-                        const res = await fetch('/api/upload', { method: 'POST', body: formData });
-                        if (res.ok) {
-                            const { url } = await res.json();
-                            // Use timestamp + index for unique ID
-                            uploadedPhotos.push({
-                                id: timestamp + i,
-                                url,
-                                caption: file.name
-                            });
-                            console.log(`✅ Uploaded: ${file.name} -> ${url}`);
-                        } else {
-                            const error = await res.json();
-                            console.error('❌ Upload failed for', file.name, error);
-                            showNotification(`${file.name} yüklenemedi: ${error.error || 'Bilinmeyen hata'}`, 'error');
-                        }
+                        // Direct Cloudinary Upload
+                        const url = await uploadToCloudinary(file);
+
+                        // Use timestamp + index for unique ID
+                        uploadedPhotos.push({
+                            id: timestamp + i,
+                            url,
+                            caption: file.name
+                        });
+                        console.log(`✅ Uploaded: ${file.name} -> ${url}`);
 
                         // Small delay between uploads to prevent rate limiting
                         if (i < files.length - 1) {
