@@ -1,0 +1,77 @@
+[
+  {
+    "id": 1770708772150,
+    "confessionId": 1770708515232,
+    "parentCommentId": 1770708743979,
+    "text": "@wemdkfmewrm kralsın",
+    "user": "frwedovgfkrdmwse",
+    "likes": 0,
+    "status": "approved",
+    "timestamp": 1770708772150
+  },
+  {
+    "id": 1770708743979,
+    "confessionId": 1770708515232,
+    "text": "Sitenin çıkmış sınavlar kısmında mevcut",
+    "user": "wemdkfmewrm",
+    "likes": 1,
+    "status": "approved",
+    "timestamp": 1770708743979
+  },
+  {
+    "id": 1770708708006,
+    "confessionId": 1770708515232,
+    "text": "Sitenin çıkmış sınavlar kısmında mevcut",
+    "user": "hayaletadam54",
+    "likes": 0,
+    "status": "rejected",
+    "timestamp": 1770708708006
+  },
+  {
+    "id": 1770411645407,
+    "confessionId": 1770411593793,
+    "text": "instagramım: @jrfwhgf",
+    "user": "pilot2",
+    "likes": 2,
+    "status": "approved",
+    "timestamp": 1770411645407
+  },
+  {
+    "id": 1770206101120,
+    "confessionId": 1770199203203,
+    "parentCommentId": 1770204271824,
+    "text": "@asadasass aaa bn mii",
+    "user": "çağla",
+    "likes": 1,
+    "status": "approved",
+    "timestamp": 1770206101120
+  },
+  {
+    "id": 1770999999999,
+    "confessionId": 1770199203203,
+    "parentCommentId": 1770204271824,
+    "text": "@asadasass aynen öyle",
+    "user": "PilotAli",
+    "likes": 2,
+    "status": "approved",
+    "timestamp": 1770999999999
+  },
+  {
+    "id": 1770205259262,
+    "confessionId": 1770199203203,
+    "text": "eveet",
+    "user": "fnwejfjwer",
+    "likes": 2,
+    "status": "approved",
+    "timestamp": 1770205259262
+  },
+  {
+    "id": 1770204271824,
+    "confessionId": 1770199203203,
+    "text": "adı çağla mı",
+    "user": "asadasass",
+    "likes": 4,
+    "status": "approved",
+    "timestamp": 1770204271824
+  }
+]

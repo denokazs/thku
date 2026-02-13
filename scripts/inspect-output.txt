@@ -1,0 +1,12 @@
+--- CLUBS COLUMNS ---
+id, name, description, slug, category, logo, coverImage, leader, email, instagram, twitter, linkedin, members, foundedYear, longDescription, meetingDay, meetingLocation, president, gallery, createdAt
+
+--- USERS ---
+1: admin (super_admin)
+2: robotics (club_admin)
+3: siber (club_admin)
+1770405154516: deniz (super_admin)
+1770408827052: ies (club_admin)
+null: denosbir (club_admin)
+verify-1770742182216: verify_user_1770742182216 (student)
+verify-1770742199144: verify_user_1770742199144 (student)

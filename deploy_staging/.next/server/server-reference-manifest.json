@@ -1,0 +1,2310 @@
+{
+  "node": {
+    "7086b487069271ef8061b19ec6b5bb075d68b7e272": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/confessions.ts",
+      "exportedName": "addConfessionAction"
+    },
+    "60f028cfb3d1bb0763fb3d0082c871cb20f4bf69d8": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/confessions.ts",
+      "exportedName": "updateConfessionStatusAction"
+    },
+    "7057f357649cb246204c9b4ffbae7053876ebfe94d": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/confessions.ts",
+      "exportedName": "updateConfessionVotesAction"
+    },
+    "780ee099162eb2d058b9cbd436970058cf7224d12b": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/comments.ts",
+      "exportedName": "addCommentAction"
+    },
+    "60fa2190b9a618fed2bbb9025dfe94767bde8a11f6": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/comments.ts",
+      "exportedName": "updateCommentStatusAction"
+    },
+    "602b806037e766993bc6842033a67637cada092f9a": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/comments.ts",
+      "exportedName": "toggleCommentLikeAction"
+    },
+    "0039a463ebb594c113ed52fb98b09994d88e7e16cd": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/confessions.ts",
+      "exportedName": "getConfessionsAction"
+    },
+    "4034c1876a42b0826f9b870007b9b3e0df6c91c34f": {
+      "workers": {
+        "app/_not-found/page": {
+          "moduleId": 3778,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/academic-calendar/page": {
+          "moduleId": 26760,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/analytics/page": {
+          "moduleId": 30170,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/clubs/page": {
+          "moduleId": 98253,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/comments/page": {
+          "moduleId": 12761,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/clubs/page": {
+          "moduleId": 36337,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/events/page": {
+          "moduleId": 6281,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/exams/page": {
+          "moduleId": 28003,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/moderation/page": {
+          "moduleId": 69205,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/community/teachers/page": {
+          "moduleId": 13154,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/confessions/page": {
+          "moduleId": 58493,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/content/page": {
+          "moduleId": 60535,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/news/page": {
+          "moduleId": 26047,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/page": {
+          "moduleId": 73491,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/banner/page": {
+          "moduleId": 47386,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/footer/page": {
+          "moduleId": 77347,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/settings/popup/page": {
+          "moduleId": 33631,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/campus/page": {
+          "moduleId": 51254,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/cikmis-sorular/page": {
+          "moduleId": 91607,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/ders-notlari/page": {
+          "moduleId": 80743,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/etkinlikler/page": {
+          "moduleId": 38296,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/faculties/[id]/page": {
+          "moduleId": 8926,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/forum/page": {
+          "moduleId": 98561,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/giris/page": {
+          "moduleId": 763,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/haberler/page": {
+          "moduleId": 51445,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/hocalar/page": {
+          "moduleId": 24340,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kara-kutu/page": {
+          "moduleId": 40724,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kayit/page": {
+          "moduleId": 1397,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/etkinlik/[id]/page": {
+          "moduleId": 8102,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/page": {
+          "moduleId": 10837,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/[slug]/yonetim/page": {
+          "moduleId": 97490,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/giris/page": {
+          "moduleId": 93493,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/kulupler/page": {
+          "moduleId": 97339,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/maintenance/page": {
+          "moduleId": 33111,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/page": {
+          "moduleId": 23341,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/profil/page": {
+          "moduleId": 234,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-unuttum/page": {
+          "moduleId": 69159,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/sifremi-yenile/page": {
+          "moduleId": 30502,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        },
+        "app/yemekhane/page": {
+          "moduleId": 69623,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/_not-found/page": "action-browser",
+        "app/academic-calendar/page": "action-browser",
+        "app/admin/analytics/page": "action-browser",
+        "app/admin/clubs/page": "action-browser",
+        "app/admin/comments/page": "action-browser",
+        "app/admin/community/clubs/page": "action-browser",
+        "app/admin/community/events/page": "action-browser",
+        "app/admin/community/exams/page": "action-browser",
+        "app/admin/community/moderation/page": "action-browser",
+        "app/admin/community/teachers/page": "action-browser",
+        "app/admin/confessions/page": "action-browser",
+        "app/admin/content/page": "action-browser",
+        "app/admin/news/page": "action-browser",
+        "app/admin/page": "action-browser",
+        "app/admin/settings/banner/page": "action-browser",
+        "app/admin/settings/footer/page": "action-browser",
+        "app/admin/settings/popup/page": "action-browser",
+        "app/admin/users/page": "action-browser",
+        "app/campus/page": "action-browser",
+        "app/cikmis-sorular/page": "action-browser",
+        "app/ders-notlari/page": "action-browser",
+        "app/etkinlikler/page": "action-browser",
+        "app/faculties/[id]/page": "action-browser",
+        "app/forum/page": "action-browser",
+        "app/giris/page": "action-browser",
+        "app/haberler/page": "action-browser",
+        "app/hocalar/page": "action-browser",
+        "app/kara-kutu/page": "action-browser",
+        "app/kayit/page": "action-browser",
+        "app/kulupler/[slug]/etkinlik/[id]/page": "action-browser",
+        "app/kulupler/[slug]/page": "action-browser",
+        "app/kulupler/[slug]/yonetim/page": "action-browser",
+        "app/kulupler/giris/page": "action-browser",
+        "app/kulupler/page": "action-browser",
+        "app/maintenance/page": "action-browser",
+        "app/page": "action-browser",
+        "app/profil/page": "action-browser",
+        "app/sifremi-unuttum/page": "action-browser",
+        "app/sifremi-yenile/page": "action-browser",
+        "app/yemekhane/page": "action-browser"
+      },
+      "filename": "app/actions/comments.ts",
+      "exportedName": "getCommentsAction"
+    }
+  },
+  "edge": {},
+  "encryptionKey": "9T1yPRSZgmDPH4yUcw241O0Hj+TrQTEt9EuUzF72NVs="
+}

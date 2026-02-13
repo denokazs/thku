@@ -1,0 +1,97 @@
+﻿
+> thku.com.tr@0.1.0 build
+> next build
+
+Ôû▓ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+node.exe : ÔÜá The "m
+iddleware" file conve
+ntion is deprecated. 
+Please use "proxy" in
+stead. Learn more: ht
+tps://nextjs.org/docs
+/messages/middleware-
+to-proxy
+At C:\Program Files\n
+odejs\npm.ps1:29 char
+:3
++   & $NODE_EXE $NPM_
+CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (ÔÜá The   
+  "middle...lewar    
+e-to-proxy:Strin    g
+) [], RemoteExc    ep
+tion
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+  Creating an optimized production build ...
+Ô£ô Compiled successfully in 3.6s
+  Running TypeScript ...
+Failed to compile.
+
+./app/haberler/page.t
+sx:312:56
+Type error: Element i
+mplicitly has an 'any
+' type because expres
+sion of type 'any' ca
+n't be used to index 
+type '{ low: { label:
+ string; color: strin
+g; bgColor: string; }
+; medium: { label: st
+ring; color: string; 
+bgColor: string; }; h
+igh: { label: string;
+ color: string; bgCol
+or: string; }; urgent
+: { label: string; co
+lor: string; bgColor:
+ string; }; }'.
+
+[0m [90m 310 |[39m
+                     
+    [33m>[39m
+ [90m 311 |[39m    
+                     
+    {(() [33m=>[39m
+ {
+[31m[1m>[22m[39m
+[90m 312 |[39m      
+                     
+      [36mconst[39m
+ priorityConfig [33m
+=[39m [33mPRIORITY_
+CONFIG[39m[selectedA
+nnouncement[33m.[39
+mpriority [33m||[39
+m [32m'medium'[39m]
+[33m;[39m
+ [90m     |[39m    
+                     
+                     
+          [31m[1m^
+[22m[39m
+ [90m 313 |[39m    
+                     
+        [36mconst[3
+9m [33mIconComponent
+[39m [33m=[39m get
+IconComponent(selecte
+dAnnouncement[33m.[
+39micon)[33m;[39m
+ [90m 314 |[39m
+ [90m 315 |[39m    
+                     
+        [36mreturn[
+39m ([0m
+Next.js build worker 
+exited with code: 1 a
+nd signal: null

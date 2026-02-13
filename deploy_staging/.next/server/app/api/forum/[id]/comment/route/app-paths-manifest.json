@@ -1,0 +1,3 @@
+{
+  "/api/forum/[id]/comment/route": "app/api/forum/[id]/comment/route.js"
+}

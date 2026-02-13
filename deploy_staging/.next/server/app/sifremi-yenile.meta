@@ -1,0 +1,15 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/sifremi-yenile/layout,_N_T_/sifremi-yenile/page,_N_T_/sifremi-yenile"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/sifremi-yenile/__PAGE__",
+    "/sifremi-yenile",
+    "/_index",
+    "/_head"
+  ]
+}

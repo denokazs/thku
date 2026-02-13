@@ -1,0 +1,3 @@
+module.exports=[86687,e=>{"use strict";var t=e.i(27957),r=e.i(9939);let n=process.env.JWT_SECRET||"super-secret-key-change-this-in-prod-please",s=new TextEncoder().encode(n);async function i(e,r="24h"){return await new t.SignJWT(e).setProtectedHeader({alg:"HS256"}).setIssuedAt().setExpirationTime(r).sign(s)}async function a(e){try{let{payload:t}=await (0,r.jwtVerify)(e,s);return t}catch(e){return null}}e.s(["signJWT",()=>i,"verifyJWT",()=>a])}];
+
+//# sourceMappingURL=lib_jwt_ts_869fbdc4._.js.map

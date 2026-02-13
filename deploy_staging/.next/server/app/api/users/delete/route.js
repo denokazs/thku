@@ -1,0 +1,12 @@
+var R=require("../../../../chunks/[turbopack]_runtime.js")("server/app/api/users/delete/route.js")
+R.c("server/chunks/[root-of-the-server]__b101282b._.js")
+R.c("server/chunks/node_modules_jose_dist_webapi_jwt_sign_399c59bb.js")
+R.c("server/chunks/node_modules_next_f2da0d3e._.js")
+R.c("server/chunks/node_modules_next_f5199d09._.js")
+R.c("server/chunks/node_modules_86fcaeba._.js")
+R.c("server/chunks/[root-of-the-server]__497a5f41._.js")
+R.c("server/chunks/[root-of-the-server]__09c3bdaf._.js")
+R.c("server/chunks/node_modules_next_dist_79f1aee4._.js")
+R.c("server/chunks/_next-internal_server_app_api_users_delete_route_actions_8abcd02e.js")
+R.m(91192)
+module.exports=R.m(91192).exports

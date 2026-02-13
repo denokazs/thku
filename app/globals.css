@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F3F4F6;
+  --foreground: #00205B;
+
+  /* Brand Colors */
+  --primary: #00205B;
+  --action: #E31E24;
+  --bg-light: #F3F4F6;
+  --bg-dark: #0F172A;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-action: var(--action);
+  --color-bg-light: var(--bg-light);
+  --color-bg-dark: var(--bg-dark);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0F172A;
+    --foreground: #F3F4F6;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utilities */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wing-shape {
+  border-top-left-radius: 1.5rem;
+  /* 24px */
+  border-bottom-right-radius: 1.5rem;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* --- ACCESSIBILITY OVERRIDES (A11Y) --- */
+/* Fix low contrast text on light backgrounds */
+@media (prefers-color-scheme: light) {
+
+  /* Slate-500 is too light on white (3.6:1). Force Slate-600 (5.7:1). */
+  .text-slate-500 {
+    color: #475569 !important;
+  }
+
+  /* Slate-400 is too light on white (2.1:1). Force Slate-500 (3.6:1) or darker. */
+  .text-slate-400 {
+    color: #64748B !important;
+  }
+
+  /* Gray-500 fix */
+  .text-gray-500 {
+    color: #4B5563 !important;
+  }
+}

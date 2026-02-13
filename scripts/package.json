@@ -1,0 +1,12 @@
+{
+    "name": "thku-news-updater",
+    "version": "1.0.0",
+    "description": "Auto-update service for THK University news",
+    "main": "news-scheduler.js",
+    "scripts": {
+        "start": "node news-scheduler.js"
+    },
+    "dependencies": {
+        "node-cron": "^3.0.3"
+    }
+}

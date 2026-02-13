@@ -1,0 +1,7 @@
+Contact: mailto:kazmacideniz@gmail.com
+Preferred-Languages: tr, en
+Policy: https://thku.com.tr/security-policy
+Encryption: https://thku.com.tr/pgp-key.txt
+Canonical: https://thku.com.tr/.well-known/security.txt
+Expires: 2027-01-01T00:00:00.000Z
+Acknowledgments: https://thku.com.tr/hall-of-fame

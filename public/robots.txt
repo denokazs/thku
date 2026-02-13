@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://thku.com.tr/sitemap.xml
+
+# Disallow admin and API routes
+Disallow: /admin
+Disallow: /api

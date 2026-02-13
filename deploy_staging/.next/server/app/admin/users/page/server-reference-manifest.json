@@ -1,0 +1,125 @@
+{
+  "node": {
+    "7086b487069271ef8061b19ec6b5bb075d68b7e272": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "addConfessionAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "addConfessionAction",
+      "filename": "app/actions/confessions.ts"
+    },
+    "60f028cfb3d1bb0763fb3d0082c871cb20f4bf69d8": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "updateConfessionStatusAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "updateConfessionStatusAction",
+      "filename": "app/actions/confessions.ts"
+    },
+    "7057f357649cb246204c9b4ffbae7053876ebfe94d": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "updateConfessionVotesAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "updateConfessionVotesAction",
+      "filename": "app/actions/confessions.ts"
+    },
+    "780ee099162eb2d058b9cbd436970058cf7224d12b": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "addCommentAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "addCommentAction",
+      "filename": "app/actions/comments.ts"
+    },
+    "60fa2190b9a618fed2bbb9025dfe94767bde8a11f6": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "updateCommentStatusAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "updateCommentStatusAction",
+      "filename": "app/actions/comments.ts"
+    },
+    "602b806037e766993bc6842033a67637cada092f9a": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "toggleCommentLikeAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "toggleCommentLikeAction",
+      "filename": "app/actions/comments.ts"
+    },
+    "0039a463ebb594c113ed52fb98b09994d88e7e16cd": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "getConfessionsAction",
+          "filename": "app/actions/confessions.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "getConfessionsAction",
+      "filename": "app/actions/confessions.ts"
+    },
+    "4034c1876a42b0826f9b870007b9b3e0df6c91c34f": {
+      "workers": {
+        "app/admin/users/page": {
+          "moduleId": 17641,
+          "async": false,
+          "exportedName": "getCommentsAction",
+          "filename": "app/actions/comments.ts"
+        }
+      },
+      "layer": {
+        "app/admin/users/page": "action-browser"
+      },
+      "exportedName": "getCommentsAction",
+      "filename": "app/actions/comments.ts"
+    }
+  },
+  "edge": {}
+}

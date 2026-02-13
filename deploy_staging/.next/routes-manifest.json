@@ -1,0 +1,571 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "X-DNS-Prefetch-Control",
+          "value": "on"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+        }
+      ],
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    }
+  ],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/forum/[id]/comment",
+      "regex": "^/api/forum/([^/]+?)/comment(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/forum/(?<nxtPid>[^/]+?)/comment(?:/)?$"
+    },
+    {
+      "page": "/api/forum/[id]/like",
+      "regex": "^/api/forum/([^/]+?)/like(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/forum/(?<nxtPid>[^/]+?)/like(?:/)?$"
+    },
+    {
+      "page": "/api/users/[id]/events",
+      "regex": "^/api/users/([^/]+?)/events(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/users/(?<nxtPid>[^/]+?)/events(?:/)?$"
+    },
+    {
+      "page": "/faculties/[id]",
+      "regex": "^/faculties/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/faculties/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/kulupler/[slug]",
+      "regex": "^/kulupler/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/kulupler/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/kulupler/[slug]/etkinlik/[id]",
+      "regex": "^/kulupler/([^/]+?)/etkinlik/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug",
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/kulupler/(?<nxtPslug>[^/]+?)/etkinlik/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/kulupler/[slug]/yonetim",
+      "regex": "^/kulupler/([^/]+?)/yonetim(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/kulupler/(?<nxtPslug>[^/]+?)/yonetim(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/academic-calendar",
+      "regex": "^/academic\\-calendar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/academic\\-calendar(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/analytics",
+      "regex": "^/admin/analytics(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/analytics(?:/)?$"
+    },
+    {
+      "page": "/admin/clubs",
+      "regex": "^/admin/clubs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/clubs(?:/)?$"
+    },
+    {
+      "page": "/admin/comments",
+      "regex": "^/admin/comments(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/comments(?:/)?$"
+    },
+    {
+      "page": "/admin/community/clubs",
+      "regex": "^/admin/community/clubs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/community/clubs(?:/)?$"
+    },
+    {
+      "page": "/admin/community/events",
+      "regex": "^/admin/community/events(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/community/events(?:/)?$"
+    },
+    {
+      "page": "/admin/community/exams",
+      "regex": "^/admin/community/exams(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/community/exams(?:/)?$"
+    },
+    {
+      "page": "/admin/community/moderation",
+      "regex": "^/admin/community/moderation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/community/moderation(?:/)?$"
+    },
+    {
+      "page": "/admin/community/teachers",
+      "regex": "^/admin/community/teachers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/community/teachers(?:/)?$"
+    },
+    {
+      "page": "/admin/confessions",
+      "regex": "^/admin/confessions(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/confessions(?:/)?$"
+    },
+    {
+      "page": "/admin/content",
+      "regex": "^/admin/content(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/content(?:/)?$"
+    },
+    {
+      "page": "/admin/news",
+      "regex": "^/admin/news(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/news(?:/)?$"
+    },
+    {
+      "page": "/admin/settings/banner",
+      "regex": "^/admin/settings/banner(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/settings/banner(?:/)?$"
+    },
+    {
+      "page": "/admin/settings/footer",
+      "regex": "^/admin/settings/footer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/settings/footer(?:/)?$"
+    },
+    {
+      "page": "/admin/settings/popup",
+      "regex": "^/admin/settings/popup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/settings/popup(?:/)?$"
+    },
+    {
+      "page": "/admin/users",
+      "regex": "^/admin/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/users(?:/)?$"
+    },
+    {
+      "page": "/api/admin/moderation",
+      "regex": "^/api/admin/moderation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/moderation(?:/)?$"
+    },
+    {
+      "page": "/api/analytics/stats",
+      "regex": "^/api/analytics/stats(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/analytics/stats(?:/)?$"
+    },
+    {
+      "page": "/api/analytics/track",
+      "regex": "^/api/analytics/track(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/analytics/track(?:/)?$"
+    },
+    {
+      "page": "/api/auth/admin/login",
+      "regex": "^/api/auth/admin/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/admin/login(?:/)?$"
+    },
+    {
+      "page": "/api/auth/admin/logout",
+      "regex": "^/api/auth/admin/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/admin/logout(?:/)?$"
+    },
+    {
+      "page": "/api/auth/admin/verify",
+      "regex": "^/api/auth/admin/verify(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/admin/verify(?:/)?$"
+    },
+    {
+      "page": "/api/auth/forgot-password",
+      "regex": "^/api/auth/forgot\\-password(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/forgot\\-password(?:/)?$"
+    },
+    {
+      "page": "/api/auth/login",
+      "regex": "^/api/auth/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/login(?:/)?$"
+    },
+    {
+      "page": "/api/auth/logout",
+      "regex": "^/api/auth/logout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/logout(?:/)?$"
+    },
+    {
+      "page": "/api/auth/me",
+      "regex": "^/api/auth/me(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/me(?:/)?$"
+    },
+    {
+      "page": "/api/auth/register",
+      "regex": "^/api/auth/register(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/register(?:/)?$"
+    },
+    {
+      "page": "/api/auth/reset-password",
+      "regex": "^/api/auth/reset\\-password(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/auth/reset\\-password(?:/)?$"
+    },
+    {
+      "page": "/api/chat",
+      "regex": "^/api/chat(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/chat(?:/)?$"
+    },
+    {
+      "page": "/api/clubs",
+      "regex": "^/api/clubs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/clubs(?:/)?$"
+    },
+    {
+      "page": "/api/dining",
+      "regex": "^/api/dining(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/dining(?:/)?$"
+    },
+    {
+      "page": "/api/dining/bulk",
+      "regex": "^/api/dining/bulk(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/dining/bulk(?:/)?$"
+    },
+    {
+      "page": "/api/events",
+      "regex": "^/api/events(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/events(?:/)?$"
+    },
+    {
+      "page": "/api/events/attend",
+      "regex": "^/api/events/attend(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/events/attend(?:/)?$"
+    },
+    {
+      "page": "/api/events/attendees",
+      "regex": "^/api/events/attendees(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/events/attendees(?:/)?$"
+    },
+    {
+      "page": "/api/exams",
+      "regex": "^/api/exams(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/exams(?:/)?$"
+    },
+    {
+      "page": "/api/forum",
+      "regex": "^/api/forum(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/forum(?:/)?$"
+    },
+    {
+      "page": "/api/members",
+      "regex": "^/api/members(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/members(?:/)?$"
+    },
+    {
+      "page": "/api/messages",
+      "regex": "^/api/messages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/messages(?:/)?$"
+    },
+    {
+      "page": "/api/migrate",
+      "regex": "^/api/migrate(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/migrate(?:/)?$"
+    },
+    {
+      "page": "/api/news",
+      "regex": "^/api/news(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/news(?:/)?$"
+    },
+    {
+      "page": "/api/notes",
+      "regex": "^/api/notes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/notes(?:/)?$"
+    },
+    {
+      "page": "/api/settings/banner",
+      "regex": "^/api/settings/banner(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/settings/banner(?:/)?$"
+    },
+    {
+      "page": "/api/settings/footer",
+      "regex": "^/api/settings/footer(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/settings/footer(?:/)?$"
+    },
+    {
+      "page": "/api/settings/popup",
+      "regex": "^/api/settings/popup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/settings/popup(?:/)?$"
+    },
+    {
+      "page": "/api/teachers",
+      "regex": "^/api/teachers(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/teachers(?:/)?$"
+    },
+    {
+      "page": "/api/teachers/rate",
+      "regex": "^/api/teachers/rate(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/teachers/rate(?:/)?$"
+    },
+    {
+      "page": "/api/upload",
+      "regex": "^/api/upload(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/upload(?:/)?$"
+    },
+    {
+      "page": "/api/users",
+      "regex": "^/api/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/users(?:/)?$"
+    },
+    {
+      "page": "/api/users/delete",
+      "regex": "^/api/users/delete(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/users/delete(?:/)?$"
+    },
+    {
+      "page": "/campus",
+      "regex": "^/campus(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/campus(?:/)?$"
+    },
+    {
+      "page": "/cikmis-sorular",
+      "regex": "^/cikmis\\-sorular(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cikmis\\-sorular(?:/)?$"
+    },
+    {
+      "page": "/ders-notlari",
+      "regex": "^/ders\\-notlari(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ders\\-notlari(?:/)?$"
+    },
+    {
+      "page": "/etkinlikler",
+      "regex": "^/etkinlikler(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/etkinlikler(?:/)?$"
+    },
+    {
+      "page": "/favicon.ico",
+      "regex": "^/favicon\\.ico(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/favicon\\.ico(?:/)?$"
+    },
+    {
+      "page": "/forum",
+      "regex": "^/forum(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/forum(?:/)?$"
+    },
+    {
+      "page": "/giris",
+      "regex": "^/giris(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/giris(?:/)?$"
+    },
+    {
+      "page": "/haberler",
+      "regex": "^/haberler(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/haberler(?:/)?$"
+    },
+    {
+      "page": "/hocalar",
+      "regex": "^/hocalar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/hocalar(?:/)?$"
+    },
+    {
+      "page": "/kara-kutu",
+      "regex": "^/kara\\-kutu(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/kara\\-kutu(?:/)?$"
+    },
+    {
+      "page": "/kayit",
+      "regex": "^/kayit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/kayit(?:/)?$"
+    },
+    {
+      "page": "/kulupler",
+      "regex": "^/kulupler(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/kulupler(?:/)?$"
+    },
+    {
+      "page": "/kulupler/giris",
+      "regex": "^/kulupler/giris(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/kulupler/giris(?:/)?$"
+    },
+    {
+      "page": "/maintenance",
+      "regex": "^/maintenance(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/maintenance(?:/)?$"
+    },
+    {
+      "page": "/profil",
+      "regex": "^/profil(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/profil(?:/)?$"
+    },
+    {
+      "page": "/sifremi-unuttum",
+      "regex": "^/sifremi\\-unuttum(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sifremi\\-unuttum(?:/)?$"
+    },
+    {
+      "page": "/sifremi-yenile",
+      "regex": "^/sifremi\\-yenile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sifremi\\-yenile(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/yemekhane",
+      "regex": "^/yemekhane(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/yemekhane(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

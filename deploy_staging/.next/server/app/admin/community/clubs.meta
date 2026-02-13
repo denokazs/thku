@@ -1,0 +1,17 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/admin/layout,_N_T_/admin/community/layout,_N_T_/admin/community/clubs/layout,_N_T_/admin/community/clubs/page,_N_T_/admin/community/clubs"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/admin/community/clubs/__PAGE__",
+    "/admin/community/clubs",
+    "/admin/community",
+    "/admin",
+    "/_index",
+    "/_head"
+  ]
+}

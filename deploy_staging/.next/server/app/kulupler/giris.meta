@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/kulupler/layout,_N_T_/kulupler/giris/layout,_N_T_/kulupler/giris/page,_N_T_/kulupler/giris"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/kulupler/giris/__PAGE__",
+    "/kulupler/giris",
+    "/kulupler",
+    "/_index",
+    "/_head"
+  ]
+}
