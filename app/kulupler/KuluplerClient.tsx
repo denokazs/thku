@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Users, Calendar, TrendingUp, Sparkles, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import EventsSlider from '@/components/EventsSlider';
 import { CLUB_BADGES } from '@/lib/badges';
 
@@ -205,10 +206,13 @@ export default function KuluplerClient({ clubs, events }: { clubs: any[], events
                                         <div className="absolute -bottom-8 left-6">
                                             <div className={`w-16 h-16 bg-gradient-to-br ${club.logoBackground || 'from-red-600 to-orange-600'} rounded-2xl flex items-center justify-center text-4xl shadow-xl border-4 border-slate-900`}>
                                                 {club.logo && (club.logo.startsWith('/') || club.logo.startsWith('http')) ? (
-                                                    <img
+                                                    <Image
                                                         src={club.logo}
                                                         alt={club.name}
+                                                        width={64}
+                                                        height={64}
                                                         className="w-full h-full object-cover rounded-xl"
+                                                        unoptimized={club.logo.startsWith('http')} // Optional: only if external domains cause issues, but we have ** config.
                                                     />
                                                 ) : (
                                                     club.logo
