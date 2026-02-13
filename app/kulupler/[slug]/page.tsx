@@ -20,6 +20,13 @@ export default function ClubDetailPage() {
     const searchParams = useSearchParams();
     const { user } = useAuth();
 
+    const staticClub = getClubBySlug(params.slug as string);
+    // Prefer DB data if available, fallback to static for display
+    const club = dbClub || staticClub;
+
+    // Loading state - start true only if we don't have static data immediately
+    const [isLoading, setIsLoading] = useState(!staticClub);
+
     // Initialize tab from URL or default to 'about'
     const initialTab = (searchParams.get('tab') as 'about' | 'events' | 'gallery' | 'members' | 'contact') || 'about';
     const [activeTab, setActiveTabState] = useState(initialTab);
@@ -86,9 +93,7 @@ export default function ClubDetailPage() {
         showCancel: true
     });
 
-    const staticClub = getClubBySlug(params.slug as string);
-    // Prefer DB data if available, fallback to static for display
-    const club = dbClub || staticClub;
+    // NOTE: staticClub moved to top 
 
     // Analytics Tracking
     useEffect(() => {
@@ -192,11 +197,15 @@ export default function ClubDetailPage() {
                 }
             } catch (err) {
                 console.error("Failed to fetch club data", err);
+            } finally {
+                setIsLoading(false);
             }
         };
 
         if (params.slug) {
             initData();
+        } else {
+            setIsLoading(false);
         }
     }, [params.slug, user]);
 
@@ -245,6 +254,14 @@ export default function ClubDetailPage() {
                 .catch(err => console.error('Failed to check membership', err));
         }
     }, [user, club?.id]);
+
+    if (isLoading) {
+        return (
+            <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-500"></div>
+            </div>
+        );
+    }
 
     if (!club) {
         return (
