@@ -22,7 +22,14 @@ export async function GET(request: Request) {
     const user = users.find((u: any) => u.email === email);
 
     if (!user) {
-        return NextResponse.json({ error: 'User not found' }, { status: 404 });
+        // DEBUG: List all users to see who is actually in there
+        const allUsers = users.map((u: any) => ({ email: u.email, id: u.id, role: u.role }));
+        return NextResponse.json({
+            error: 'Target user not found',
+            availableUsers: allUsers,
+            count: users.length,
+            dbHost: process.env.DB_HOST // Verify we are hitting the right DB
+        }, { status: 404 });
     }
 
     const sessionPayload = {
