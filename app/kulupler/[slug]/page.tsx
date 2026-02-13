@@ -542,7 +542,7 @@ export default function ClubDetailPage() {
                                     initial={{ opacity: 0, y: 20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.1 }}
-                                    className="text-5xl font-black text-white mb-3"
+                                    className="text-3xl md:text-5xl font-black text-white mb-3"
                                 >
                                     {club.name}
                                 </motion.h1>
@@ -631,7 +631,7 @@ export default function ClubDetailPage() {
                 </div>
 
                 {/* Content */}
-                <div className="max-w-7xl mx-auto px-8 py-12">
+                <div className="max-w-7xl mx-auto px-4 py-8 md:px-8 md:py-12">
                     <AnimatePresence mode="wait">
                         {activeTab === 'about' && (
                             <motion.div
@@ -639,10 +639,10 @@ export default function ClubDetailPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
-                                className="grid grid-cols-3 gap-6"
+                                className="grid grid-cols-1 lg:grid-cols-3 gap-6"
                             >
                                 {/* Main Content */}
-                                <div className="col-span-2 space-y-6">
+                                <div className="lg:col-span-2 space-y-6">
                                     <div className="glass-dark border border-slate-700/50 rounded-2xl p-8">
                                         <h2 className="text-2xl font-black text-white mb-4">Hakkımızda</h2>
                                         <p className="text-slate-300 leading-relaxed text-lg whitespace-pre-line">
