@@ -9,9 +9,17 @@ const transporter = nodemailer.createTransport({
         pass: process.env.SMTP_PASS,
     },
     tls: {
-        rejectUnauthorized: false // Important for some shared hostings like cPanel
+        rejectUnauthorized: false
     }
 });
+
+// Debug: Check config on init (Server-side only)
+if (!process.env.SMTP_HOST || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+    console.warn('⚠️  WARNING: SMTP Environment variables are missing!');
+    console.warn('SMTP_HOST:', !!process.env.SMTP_HOST);
+    console.warn('SMTP_USER:', !!process.env.SMTP_USER);
+    console.warn('SMTP_PASS:', !!process.env.SMTP_PASS);
+}
 
 export const sendMail = async (to: string, subject: string, html: string) => {
     try {

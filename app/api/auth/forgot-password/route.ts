@@ -19,10 +19,13 @@ export async function POST(request: Request) {
         const userIndex = users.findIndex((u: any) => u.email && u.email.toLowerCase() === email.toLowerCase());
 
         if (userIndex === -1) {
+            console.log('Forgot Password: User not found for email:', email);
             // Security: Don't reveal if email exists
             // Return success even if user not found to prevent enumeration
             return NextResponse.json({ success: true, message: 'Eğer bu e-posta adresi kayıtlıysa, şifre sıfırlama bağlantısı gönderildi.' });
         }
+
+        console.log('Forgot Password: User found, attempting to send email to:', email);
 
         const user = users[userIndex];
         const resetToken = generateToken();
@@ -58,12 +61,23 @@ export async function POST(request: Request) {
             </div>
         `;
 
-        await sendMail(user.email, 'Şifre Sıfırlama - THK Üniversitesi Topluluk Sistemi', emailHtml);
+        const mailResult = await sendMail(user.email, 'Şifre Sıfırlama - THK Üniversitesi Topluluk Sistemi', emailHtml);
+
+        if (!mailResult.success) {
+            console.error('Mail Send Failed:', mailResult.error);
+            // Re-throw so catch block handles it
+            throw mailResult.error || new Error('Mail gönderilemedi.');
+        }
 
         return NextResponse.json({ success: true, message: 'Eğer bu e-posta adresi kayıtlıysa, şifre sıfırlama bağlantısı gönderildi.' });
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Forgot password error:', error);
-        return NextResponse.json({ error: 'Bir hata oluştu.' }, { status: 500 });
+        // Temporary Debug: Return actual error to client
+        return NextResponse.json({
+            success: false,
+            error: error.message || 'Bir hata oluştu.',
+            details: JSON.stringify(error)
+        }, { status: 500 });
     }
 }

@@ -52,19 +52,14 @@ export const POST = apiWrapper(async (request: Request) => {
     );
 
     if (!user) {
-        console.log('[LOGIN DEBUG] User NOT found. Available users:', users.length);
-        return NextResponse.json({ success: false, message: 'DEBUG: User not found in DB' }, { status: 401 });
+        return NextResponse.json({ success: false, message: 'Kullanıcı adı veya şifre hatalı.' }, { status: 401 });
     }
-
-    console.log('[LOGIN DEBUG] User found:', user.email);
 
     // 5. Password Check
     const passwordMatch = await bcrypt.compare(password, user.password);
-    console.log('[LOGIN DEBUG] Password match result:', passwordMatch);
 
     if (!passwordMatch) {
-        console.log('[LOGIN DEBUG] Password mismatch.');
-        return NextResponse.json({ success: false, message: 'DEBUG: Password mismatch' }, { status: 401 });
+        return NextResponse.json({ success: false, message: 'Kullanıcı adı veya şifre hatalı.' }, { status: 401 });
     }
 
     // 6. Success - Generate Token
