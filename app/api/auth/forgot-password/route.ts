@@ -20,9 +20,11 @@ export async function POST(request: Request) {
 
         if (userIndex === -1) {
             console.log('Forgot Password: User not found for email:', email);
-            // Security: Don't reveal if email exists
-            // Return success even if user not found to prevent enumeration
-            return NextResponse.json({ success: true, message: 'Eğer bu e-posta adresi kayıtlıysa, şifre sıfırlama bağlantısı gönderildi.' });
+            // DEBUG: Return error directly to user
+            return NextResponse.json({
+                success: false,
+                error: `Kullanıcı bulunamadı: "${email}" (Veritabanında yok)`
+            }, { status: 404 });
         }
 
         console.log('Forgot Password: User found, attempting to send email to:', email);
