@@ -73,13 +73,16 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ success: true, message: 'Eğer bu e-posta adresi kayıtlıysa, şifre sıfırlama bağlantısı gönderildi.' });
 
-    } catch (error: any) {
+    } catch (error) {
         console.error('Forgot password error:', error);
+
+        const errorMessage = error instanceof Error ? error.message : 'Bir hata oluştu.';
+
         // Temporary Debug: Return actual error to client
         return NextResponse.json({
             success: false,
-            error: error.message || 'Bir hata oluştu.',
-            details: JSON.stringify(error)
+            error: errorMessage,
+            details: JSON.stringify(error, Object.getOwnPropertyNames(error))
         }, { status: 500 });
     }
 }
