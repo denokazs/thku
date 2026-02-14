@@ -43,6 +43,9 @@ const NewsImage = ({ src, alt, category }: { src?: string, alt: string, category
 export default function FacultyPage() {
     // useParams returns string or string[], ensuring id is handled correctly
     const params = useParams();
+
+    if (!params) return null;
+
     const id = Array.isArray(params.id) ? params.id[0] : params.id;
     const [expandedNews, setExpandedNews] = useState<number | null>(null);
 

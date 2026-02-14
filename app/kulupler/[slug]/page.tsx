@@ -16,6 +16,7 @@ import ConfirmModal from '@/components/ConfirmModal';
 
 export default function ClubDetailPage() {
     const params = useParams();
+    if (!params) return null;
     const router = useRouter();
     const searchParams = useSearchParams();
     const { user } = useAuth();

@@ -573,6 +573,7 @@ const StatisticsTab = ({ club }: { club: any }) => {
 
 export default function ClubAdminPage() {
     const params = useParams();
+    if (!params) return null;
     const router = useRouter();
     const { showConfirm, showAlert } = useConfirm();
 
