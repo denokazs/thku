@@ -173,7 +173,7 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
                     {/* Navigation Sidebar */}
                     <div className="space-y-4">
                         <div className="glass-dark border border-slate-800 p-2 rounded-2xl">

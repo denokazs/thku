@@ -29,7 +29,7 @@ export default function Navbar() {
                         <div className="w-8 h-8 bg-red-600 rounded-tl-lg rounded-br-lg flex items-center justify-center text-white">
                             <Plane className="w-5 h-5 -rotate-45" />
                         </div>
-                        <Link href="/" className="text-2xl font-bold tracking-tighter text-blue-950 uppercase">
+                        <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter text-blue-950 uppercase">
                             THK <span className="font-light">ÜNİVERSİTESİ</span>
                         </Link>
                     </div>
