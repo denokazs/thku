@@ -44,7 +44,12 @@ export default function EventDetailsClient({ slug, event, club }: EventDetailsCl
     // Check if user has already joined
     useEffect(() => {
         if (user && event.id) {
-            fetch(`/api/events/attend?eventId=${event.id}&userId=${user.id || user.username}`)
+            const userId = user.id || user.username;
+            if (!userId) {
+                console.warn('User ID not available for attendance check');
+                return;
+            }
+            fetch(`/api/events/attend?eventId=${event.id}&userId=${userId}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.hasJoined) setHasJoined(true);
