@@ -16,7 +16,7 @@ export async function POST(request: Request) {
         const events = db.events || [];
 
         // Check if already attended
-        const existing = attendance.find((a: any) => a.eventId === eventId && a.userId === userId);
+        const existing = attendance.find((a: any) => a.eventId == eventId && a.userId == userId);
         if (existing) {
             return NextResponse.json({ error: 'Already attended' }, { status: 400 });
         }
