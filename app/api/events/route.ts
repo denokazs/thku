@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     const featured = searchParams.get('featured');
     const clubId = searchParams.get('clubId');
 
-    const db = await readDb();
+    const db = await readDb(['events']);
     let events = db.events || [];
 
     if (featured === 'true') {

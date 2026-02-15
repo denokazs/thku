@@ -20,7 +20,7 @@ export async function GET() {
         }
 
         // Fetch fresh user data from DB to ensure we have latest fields (like studentId)
-        const db = await readDb();
+        const db = await readDb(['users']);
         const user = db.users.find((u: any) => u.id === payload.id);
 
         if (!user) {

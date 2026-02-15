@@ -13,7 +13,7 @@ export async function GET(request: Request) {
         const category = searchParams.get('category');
         const includeStats = searchParams.get('includeStats');
 
-        const db = await readDb();
+        const db = await readDb(['clubs']);
         let clubs = db.clubs || [];
 
         if (category) {

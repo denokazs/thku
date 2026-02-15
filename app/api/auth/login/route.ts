@@ -39,7 +39,7 @@ export const POST = apiWrapper(async (request: Request) => {
     }
 
     // 4. DB Lookup
-    const db: any = await readDb();
+    const db: any = await readDb(['users']);
     const users = db.users || [];
 
     const normalizedInput = username.trim().toLowerCase();

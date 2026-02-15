@@ -11,7 +11,7 @@ export async function GET(request: Request) {
             return NextResponse.json({ error: 'Missing eventId' }, { status: 400 });
         }
 
-        const db = await readDb();
+        const db = await readDb(['attendance', 'users']);
         const attendance = db.attendance || [];
         const users = db.users || [];
 

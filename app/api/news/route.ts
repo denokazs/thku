@@ -5,7 +5,7 @@ import { readDb, writeDb } from '@/lib/db';
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
-    const db = await readDb();
+    const db = await readDb(['news']);
     // Sort by date descending (assuming string date format might need better parsing, but simple string sort works if ISO, otherwise relying on insertion order or ID)
     const news = (db.news || []).sort((a: any, b: any) => b.id - a.id);
     return NextResponse.json(news);
