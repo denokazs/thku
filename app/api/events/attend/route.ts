@@ -2,8 +2,50 @@
 import { NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
 
+// Helper: ensure the attendance table exists (MySQL only)
+async function ensureAttendanceTable() {
+    const useMysql = process.env.NODE_ENV === 'production' || process.env.DB_TYPE === 'mysql';
+    if (!useMysql) return; // SQLite tables are assumed to exist
+
+    try {
+        const mysql = require('mysql2/promise');
+        const pool = mysql.createPool({
+            host: process.env.DB_HOST || 'localhost',
+            port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASS || '',
+            database: process.env.DB_NAME || 'thk_db',
+        });
+
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS attendance (
+                id BIGINT NOT NULL,
+                eventId BIGINT DEFAULT NULL,
+                userId VARCHAR(255) DEFAULT NULL,
+                joinedAt VARCHAR(100) DEFAULT NULL,
+                PRIMARY KEY (id),
+                UNIQUE KEY unique_attendance (eventId, userId)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        `);
+        await pool.end();
+    } catch (e) {
+        console.error('Failed to ensure attendance table:', e);
+    }
+}
+
+// Run once on cold start
+let tableEnsured = false;
+async function ensureOnce() {
+    if (!tableEnsured) {
+        await ensureAttendanceTable();
+        tableEnsured = true;
+    }
+}
+
 export async function POST(request: Request) {
     try {
+        await ensureOnce();
+
         const body = await request.json();
         const { eventId, userId } = body;
 
@@ -15,14 +57,16 @@ export async function POST(request: Request) {
         const attendance = db.attendance || [];
         const events = db.events || [];
 
-        // Check if already attended
-        const existing = attendance.find((a: any) => a.eventId == eventId && a.userId == userId);
+        // Check if already attended - use string comparison for safety
+        const eventIdStr = String(eventId);
+        const userIdStr = String(userId);
+        const existing = attendance.find((a: any) => String(a.eventId) === eventIdStr && String(a.userId) === userIdStr);
         if (existing) {
             return NextResponse.json({ error: 'Already attended' }, { status: 400 });
         }
 
         // Check Capacity
-        const event = events.find((e: any) => e.id === eventId);
+        const event = events.find((e: any) => String(e.id) === eventIdStr);
         if (!event) {
             return NextResponse.json({ error: 'Event not found' }, { status: 404 });
         }
@@ -46,7 +90,7 @@ export async function POST(request: Request) {
         db.attendance.push(newAttendance);
 
         // Update event attendee count
-        const eventIndex = events.findIndex((e: any) => e.id === eventId);
+        const eventIndex = events.findIndex((e: any) => String(e.id) === eventIdStr);
         let currentAttendees = 0;
         if (eventIndex !== -1) {
             events[eventIndex].attendees = (events[eventIndex].attendees || 0) + 1;
@@ -65,6 +109,8 @@ export async function POST(request: Request) {
 
 export async function GET(request: Request) {
     try {
+        await ensureOnce();
+
         const { searchParams } = new URL(request.url);
         const eventId = searchParams.get('eventId');
         const userId = searchParams.get('userId');
@@ -76,7 +122,10 @@ export async function GET(request: Request) {
         const db = await readDb();
         const attendance = db.attendance || [];
 
-        const hasJoined = attendance.some((a: any) => a.eventId == eventId && a.userId == userId); // loose match for IDs
+        // Use string comparison for safety
+        const eventIdStr = String(eventId);
+        const userIdStr = String(userId);
+        const hasJoined = attendance.some((a: any) => String(a.eventId) === eventIdStr && String(a.userId) === userIdStr);
 
         return NextResponse.json({ hasJoined });
     } catch (error) {
@@ -86,6 +135,8 @@ export async function GET(request: Request) {
 
 export async function DELETE(request: Request) {
     try {
+        await ensureOnce();
+
         const body = await request.json();
         const { eventId, userId } = body;
 
@@ -97,16 +148,20 @@ export async function DELETE(request: Request) {
         const attendance = db.attendance || [];
         const events = db.events || [];
 
+        // Use string comparison for safety
+        const eventIdStr = String(eventId);
+        const userIdStr = String(userId);
+
         // Find and remove attendance
         const initialLength = attendance.length;
-        db.attendance = attendance.filter((a: any) => !(a.eventId == eventId && a.userId == userId));
+        db.attendance = attendance.filter((a: any) => !(String(a.eventId) === eventIdStr && String(a.userId) === userIdStr));
 
         if (db.attendance.length === initialLength) {
             return NextResponse.json({ error: 'Attendance not found' }, { status: 404 });
         }
 
         // Update event attendee count
-        const eventIndex = events.findIndex((e: any) => e.id == eventId);
+        const eventIndex = events.findIndex((e: any) => String(e.id) === eventIdStr);
         let currentAttendees = 0;
         if (eventIndex !== -1) {
             events[eventIndex].attendees = Math.max(0, (events[eventIndex].attendees || 0) - 1);

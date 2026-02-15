@@ -88,6 +88,7 @@ const MAPPINGS: any = {
     messages: { table: 'messages', json: 'messages', type: 'array', jsonFields: ['internalNotes'] },
     forumPosts: { table: 'forum_posts', json: 'forumPosts', type: 'array', jsonFields: ['likes', 'comments'] },
     members: { table: 'members', json: 'members', type: 'array' },
+    attendance: { table: 'attendance', json: 'attendance', type: 'array' },
     shuttleStops: { table: 'shuttle_stops', json: 'shuttleStops', type: 'array' },
     cafeteriaMenu: { table: 'cafeteria_menu', json: 'cafeteriaMenu', type: 'object', key: 'date' },
     settings: { table: 'settings', json: 'settings', type: 'kv' }

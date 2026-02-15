@@ -242,6 +242,23 @@ CREATE TABLE IF NOT EXISTS `members` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE IF NOT EXISTS `attendance` (
+  `id` bigint(20) NOT NULL,
+  `eventId` bigint(20) DEFAULT NULL,
+  `userId` varchar(255) DEFAULT NULL,
+  `joinedAt` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_attendance_event` (`eventId`),
+  KEY `idx_attendance_user` (`userId`),
+  UNIQUE KEY `unique_attendance` (`eventId`, `userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shuttle_stops`
 --
 
