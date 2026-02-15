@@ -8,7 +8,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     const pathname = usePathname();
 
     // Check if path is the GENERAL admin path OR the CLUB admin path
-    const isAdminPath = pathname.startsWith('/admin') || pathname.includes('/yonetim');
+    const isAdminPath = pathname?.startsWith('/admin') || pathname?.includes('/yonetim');
 
     if (isAdminPath) {
         return <>{children}</>;

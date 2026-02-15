@@ -1,0 +1,2 @@
+components/LayoutWrapper.tsx(11,25): error TS18047: 'pathname' is possibly 'null'.
+components/LayoutWrapper.tsx(11,58): error TS18047: 'pathname' is possibly 'null'.

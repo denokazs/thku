@@ -218,6 +218,11 @@ export function validateEvent(data: any): ValidationResult {
         sanitized.coverImage = sanitizeString(data.coverImage);
     }
 
+    // Event Images validation
+    if (data.images && Array.isArray(data.images)) {
+        sanitized.images = data.images.filter((img: any) => typeof img === 'string');
+    }
+
     return {
         isValid: errors.length === 0,
         errors,

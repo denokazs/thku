@@ -35,22 +35,51 @@ export default function ProfilePage() {
         setLoadingData(true);
         try {
             // Fetch Events
-            const eventsRes = await fetch(`/api/users/${user.id || user.username}/events`);
+            const eventsRes = await fetch(`/api/users/${user.id || user.username}/events`, { cache: 'no-store' });
             if (eventsRes.ok) {
                 const data = await eventsRes.json();
                 setEvents(Array.isArray(data) ? data : []);
             }
 
-            // Fetch Clubs
-            const idToUse = user.studentId || user.username; // Fallback to username for non-student users
-            const clubsRes = await fetch(`/api/members?studentId=${idToUse}&email=${user.email}`);
+            // Fetch All Clubs (Dynamic Source)
+            // We need this to resolve clubId from memberships to actual club details
+            // because memberships store database IDs which might differ from static IDs
+            const allClubsRes = await fetch('/api/clubs?includeStats=false', { cache: 'no-store' }); // fetch all
+            let allClubs = [];
+            if (allClubsRes.ok) {
+                allClubs = await allClubsRes.json();
+            }
+            // Merge or fallback to static data if API fails or is empty (though API should return DB clubs)
+            // Actually, we should prioritize DB clubs, but if DB is empty, maybe fallback to static?
+            // But if DB is empty, user can't be member of strict DB clubs.
+            // Let's combine them for safety, preferring DB.
+            const combinedClubs = [...allClubs, ...CLUBS_DATA];
+
+            // Fetch Memberships
+            const idToUse = user.studentId || user.username;
+            const clubsRes = await fetch(`/api/members?studentId=${idToUse}&email=${user.email}`, { cache: 'no-store' });
+
             if (clubsRes.ok) {
                 const membersData = await clubsRes.json();
-                // Merge member data with static club data
+
+                // Merge member data with club info
                 const enrichedClubs = membersData.map((member: any) => {
-                    const clubInfo = CLUBS_DATA.find(c => c.id === member.clubId);
+                    // LOOSE EQUALITY CHECK (==) is critical here because DB might store string vs number
+                    // We look in allClubs first (DB), then CLUBS_DATA (Static)
+                    // But actually combinedClubs has both (duplicates possible?)
+                    // If dupes exist, find find() picks first one. DB clubs likely come first or we prioritize.
+
+                    // Better strategy: Try to find in allClubs (DB) first
+                    let clubInfo = allClubs.find((c: any) => c.id == member.clubId);
+
+                    // If not found, try static data
+                    if (!clubInfo) {
+                        clubInfo = CLUBS_DATA.find(c => c.id == member.clubId);
+                    }
+
                     return { ...member, clubInfo };
                 }).filter((item: any) => item.clubInfo); // Filter out if club not found
+
                 setMyClubs(enrichedClubs);
             }
         } catch (error) {

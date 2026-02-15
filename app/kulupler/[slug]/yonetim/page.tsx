@@ -1384,7 +1384,7 @@ export default function ClubAdminPage() {
             setIsSubmitting(true);
             try {
                 if (mode === 'create') {
-                    const newEventPayload = { ...eventData, clubId: club.id, clubName: club.name, attendees: 0, images: [], isPast: false };
+                    const newEventPayload = { ...eventData, clubId: club.id, clubName: club.name, attendees: 0, isPast: false };
                     const res = await fetch('/api/events', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },

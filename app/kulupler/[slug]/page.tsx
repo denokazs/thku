@@ -34,12 +34,12 @@ export default function ClubDetailPage() {
     const [isLoading, setIsLoading] = useState(!staticClub);
 
     // Initialize tab from URL or default to 'about'
-    const initialTab = (searchParams.get('tab') as 'about' | 'events' | 'gallery' | 'members' | 'contact') || 'about';
+    const initialTab = (searchParams?.get('tab') as 'about' | 'events' | 'gallery' | 'members' | 'contact') || 'about';
     const [activeTab, setActiveTabState] = useState(initialTab);
 
     // Sync state with URL changes (e.g. back button)
     useEffect(() => {
-        const tab = searchParams.get('tab');
+        const tab = searchParams?.get('tab');
         if (tab && ['about', 'events', 'gallery', 'members', 'contact'].includes(tab)) {
             setActiveTabState(tab as any);
         }
@@ -1455,7 +1455,7 @@ function EventCard({ event, isPast = false, user }: { event: ClubEvent; isPast?:
             {/* Clickable Overlay Link (Background for whole card) */}
             {/* Clickable Overlay Link (Background for whole card) */}
             <Link
-                href={`/kulupler/${params.slug}/etkinlik/${event.id}`}
+                href={`/kulupler/${params?.slug}/etkinlik/${event.id}`}
                 className="absolute inset-0 z-0"
             >
                 {event.coverImage ? (
@@ -1529,7 +1529,7 @@ function EventCard({ event, isPast = false, user }: { event: ClubEvent; isPast?:
                 {/* Visible Details Link */}
                 <div className="flex justify-end mb-2 pointer-events-auto">
                     <Link
-                        href={`/kulupler/${params.slug}/etkinlik/${event.id}`}
+                        href={`/kulupler/${params?.slug}/etkinlik/${event.id}`}
                         className="text-white text-xs font-bold flex items-center gap-1 hover:text-red-400 transition-colors hover:translate-x-1 duration-300"
                     >
                         Detayları İncele <ChevronRight className="w-4 h-4" />
