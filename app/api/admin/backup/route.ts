@@ -1,13 +1,20 @@
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
+import { verifyJWT } from '@/lib/jwt';
 
-export async function GET(request: Request) {
+export async function GET() {
     try {
-        // Simple auth check - require a secret key
-        const { searchParams } = new URL(request.url);
-        const key = searchParams.get('key');
+        // STRICT AUTH: Require super_admin session cookie
+        const cookieStore = await cookies();
+        const token = cookieStore.get('auth_session')?.value;
 
-        if (key !== process.env.BACKUP_SECRET && key !== 'thku-backup-2026') {
+        if (!token) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        }
+
+        const payload = await verifyJWT(token);
+        if (!payload || payload.role !== 'super_admin') {
+            return NextResponse.json({ error: 'Forbidden - Super Admin only' }, { status: 403 });
         }
 
         let mysql;
@@ -31,18 +38,12 @@ export async function GET(request: Request) {
             'shuttle_stops', 'cafeteria_menu', 'settings', 'club_admins'
         ];
 
-        const backup: any = {
-            timestamp: new Date().toISOString(),
-            tables: {}
-        };
+        const backup: any = { timestamp: new Date().toISOString(), tables: {} };
 
         for (const table of tables) {
             try {
                 const [rows] = await pool.query(`SELECT * FROM \`${table}\``);
-                backup.tables[table] = {
-                    count: rows.length,
-                    data: rows
-                };
+                backup.tables[table] = { count: rows.length, data: rows };
             } catch (err: any) {
                 backup.tables[table] = { error: err.message, count: 0, data: [] };
             }
@@ -50,7 +51,6 @@ export async function GET(request: Request) {
 
         await pool.end();
 
-        // Return as downloadable JSON
         return new NextResponse(JSON.stringify(backup, null, 2), {
             headers: {
                 'Content-Type': 'application/json',
@@ -60,6 +60,6 @@ export async function GET(request: Request) {
 
     } catch (error: any) {
         console.error('Backup error:', error);
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        return NextResponse.json({ error: 'Server error' }, { status: 500 });
     }
 }
