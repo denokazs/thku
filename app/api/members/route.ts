@@ -9,7 +9,7 @@ export async function GET(request: Request) {
     const clubId = searchParams.get('clubId');
 
     const db = await readDb(['members']);
-    let members = db.members;
+    let members = db.members || [];
 
     if (clubId) {
         members = members.filter((m: any) => m.clubId == clubId);
@@ -56,6 +56,9 @@ export async function POST(request: Request) {
 
         const db = await readDb(['members']);
 
+        // Initialize members array if not exists
+        if (!db.members) db.members = [];
+
         const existingMember = db.members.find((m: any) =>
             m.clubId === sanitizedData.clubId &&
             (m.studentId === sanitizedData.studentId || m.email === sanitizedData.email)
@@ -86,6 +89,7 @@ export async function PUT(request: Request) {
     try {
         const body = await request.json();
         const db = await readDb(['members']);
+        if (!db.members) db.members = [];
 
         const member = db.members.find((m: any) => m.id == body.id);
         if (!member) {
@@ -113,6 +117,8 @@ export async function DELETE(request: Request) {
         if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
 
         const db = await readDb(['members']);
+        if (!db.members) db.members = [];
+
         const member = db.members.find((m: any) => m.id == id);
 
         if (!member) {
