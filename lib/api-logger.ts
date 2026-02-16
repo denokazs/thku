@@ -20,6 +20,14 @@ export interface ApiLogEntry {
     responseTime?: number;
     requestBody?: string;
     responseError?: string;
+    // GPS Precise Location (optional)
+    gpsLatitude?: number;
+    gpsLongitude?: number;
+    gpsAccuracy?: number;
+    gpsAddress?: string;
+    gpsStreet?: string;
+    gpsCity?: string;
+    gpsPostalCode?: string;
 }
 
 /**
@@ -113,6 +121,19 @@ export async function logApiRequest(params: {
             // Fetch geolocation (with timeout)
             const geo = await getGeolocation(ip);
 
+            // Try to get GPS location from request headers (sent by client)
+            let gpsData: any = {};
+            if ('headers' in params.request) {
+                const gpsHeader = params.request.headers.get('x-gps-location');
+                if (gpsHeader) {
+                    try {
+                        gpsData = JSON.parse(gpsHeader);
+                    } catch (e) {
+                        // Invalid GPS data, ignore
+                    }
+                }
+            }
+
             const logEntry: ApiLogEntry = {
                 timestamp: Date.now(),
                 method: params.method,
@@ -128,6 +149,14 @@ export async function logApiRequest(params: {
                 responseTime: params.responseTime,
                 requestBody: params.requestBody ? JSON.stringify(params.requestBody).substring(0, 5000) : undefined,
                 responseError: params.responseError?.substring(0, 1000),
+                // GPS precise location (if available)
+                gpsLatitude: gpsData.latitude,
+                gpsLongitude: gpsData.longitude,
+                gpsAccuracy: gpsData.accuracy,
+                gpsAddress: gpsData.address,
+                gpsStreet: gpsData.street,
+                gpsCity: gpsData.city,
+                gpsPostalCode: gpsData.postalCode,
             };
 
             // Write to database
