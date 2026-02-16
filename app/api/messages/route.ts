@@ -10,7 +10,7 @@ export async function GET(request: Request) {
         const userId = searchParams.get('userId');
         const id = searchParams.get('id');
 
-        const db = await readDb();
+        const db = await readDb(['messages']);
         let messages = db.messages || [];
 
         // Single message lookup by ID
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
 
         const sanitizedData = validation.sanitized!;
 
-        const db = await readDb();
+        const db = await readDb(['messages']);
 
         if (!db.messages) db.messages = [];
 
@@ -127,7 +127,7 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
     try {
         const body = await request.json();
-        const db = await readDb();
+        const db = await readDb(['messages']);
 
         if (!db.messages) return NextResponse.json({ error: 'No messages found' }, { status: 404 });
 

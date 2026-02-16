@@ -13,7 +13,7 @@ export async function GET(request: Request) {
         const category = searchParams.get('category');
         const includeStats = searchParams.get('includeStats');
 
-        const db = await readDb(['clubs']);
+        const db = await readDb(['clubs', 'members', 'events']);
         let clubs = db.clubs || [];
 
         if (category) {
@@ -76,7 +76,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const db = await readDb();
+        const db = await readDb(['clubs']);
 
         // Check if slug already exists
         if (db.clubs.some((c: any) => c.slug === sanitizedData.slug)) {
@@ -133,7 +133,7 @@ export async function PUT(request: Request) {
             await requireClubAccess(sanitizedData.id);
         }
 
-        const db = await readDb(); // Await readDb()
+        const db = await readDb(['clubs']); // Await readDb()
         const index = db.clubs.findIndex((c: any) => c.id === sanitizedData.id);
         if (index === -1) {
             return NextResponse.json({ error: 'Club not found' }, { status: 404 });
@@ -211,7 +211,7 @@ export async function DELETE(request: Request) {
             return NextResponse.json({ error: 'Club ID required' }, { status: 400 });
         }
 
-        const db = await readDb();
+        const db = await readDb(['clubs']);
         const clubId = parseInt(id);
 
         const initialLength = db.clubs.length;

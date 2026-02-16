@@ -4,7 +4,7 @@ import { verifyAdminAuth } from '@/lib/admin-auth';
 
 export async function GET() {
     try {
-        const db = await readDb();
+        const db = await readDb(['settings']);
         const settings = db.settings?.popup || {
             enabled: false,
             title: "",
@@ -37,7 +37,7 @@ export async function PUT(request: Request) {
         }
 
         const body = await request.json();
-        const db = await readDb();
+        const db = await readDb(['settings']);
 
         if (!db.settings) db.settings = {};
         db.settings.popup = body;

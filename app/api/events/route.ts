@@ -66,7 +66,7 @@ export async function POST(request: Request) {
             await requireClubAccess(sanitizedData.clubId);
         }
 
-        const db = await readDb();
+        const db = await readDb(['events']);
 
         const newEvent = {
             ...sanitizedData,
@@ -96,7 +96,7 @@ export async function PUT(request: Request) {
             // Let's rely on manual field extraction for safety.
         }
 
-        const db = await readDb();
+        const db = await readDb(['events']);
 
         const event = db.events.find((e: any) => e.id === body.id);
         if (!event) {
@@ -161,7 +161,7 @@ export async function DELETE(request: Request) {
 
         if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
 
-        const db = await readDb();
+        const db = await readDb(['events']);
         const event = db.events.find((e: any) => e.id === parseInt(id));
 
         if (!event) {

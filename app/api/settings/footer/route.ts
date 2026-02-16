@@ -8,7 +8,7 @@ export const revalidate = 0;
 
 export async function GET() {
     try {
-        const db = await readDb();
+        const db = await readDb(['settings']);
         const settings = db.settings?.footer || {
             // Default fallback if DB is empty
             brand: { title: "THK ÜNİVERSİTESİ", description: "Türkiye'nin Havacılık ve Uzay Bilimleri Merkezi." },
@@ -30,7 +30,7 @@ export async function PUT(request: Request) {
         }
 
         const body = await request.json();
-        const db = await readDb();
+        const db = await readDb(['settings']);
 
         if (!db.settings) db.settings = {};
         db.settings.footer = body;

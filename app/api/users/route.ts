@@ -9,7 +9,7 @@ export async function GET(request: Request) {
         // Only super_admin or club_admin can view users list
         await requireRole(['super_admin', 'club_admin']);
 
-        const db = await readDb();
+        const db = await readDb(['users']);
         const { searchParams } = new URL(request.url);
         const clubId = searchParams.get('clubId');
 
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
         await requireRole(['super_admin']);
 
         const body = await request.json();
-        const db = await readDb();
+        const db = await readDb(['users']);
 
         if (db.users.find((u: any) => u.username === body.username)) {
             return NextResponse.json({ error: 'Username already exists' }, { status: 400 });
@@ -70,7 +70,7 @@ export async function DELETE(request: Request) {
 
         if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
 
-        const db = await readDb();
+        const db = await readDb(['users']);
 
         // Prevent deleting super admin (id 1 or username 'admin')
         const userToDelete = (db.users || []).find((u: any) => String(u.id) === String(id));
@@ -113,7 +113,7 @@ export async function PUT(request: Request) {
             return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
         }
 
-        const db = await readDb();
+        const db = await readDb(['users']);
         const index = db.users.findIndex((u: any) => u.id === body.id);
 
         if (index === -1) return NextResponse.json({ error: 'User not found' }, { status: 404 });

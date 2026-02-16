@@ -4,7 +4,7 @@ import { readDb, writeDb } from '@/lib/db';
 
 export async function GET() {
     try {
-        const db = await readDb();
+        const db = await readDb(['forumPosts']);
         // Filter only approved posts for the public feed
         const approvedPosts = (db.forumPosts || [])
             .filter((post: any) => post.status === 'approved')
@@ -33,7 +33,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
         }
 
-        const db = await readDb();
+        const db = await readDb(['forumPosts']);
 
         const newPost = {
             id: crypto.randomUUID(),

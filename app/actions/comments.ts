@@ -5,7 +5,7 @@ import { Comment } from '@/types';
 
 // Helper to get comments from DB
 async function getCommentsDB() {
-    const db = await readDb();
+    const db = await readDb(['comments']);
     return Array.isArray(db.comments) ? db.comments : [];
 }
 
@@ -23,7 +23,7 @@ export async function addCommentAction(
     user: string,
     parentCommentId?: number
 ): Promise<Comment> {
-    const db: any = await readDb();
+    const db: any = await readDb(['comments']);
     if (!db.comments) db.comments = [];
 
     const newComment: Comment = {
@@ -47,7 +47,7 @@ export async function updateCommentStatusAction(
     id: number,
     status: Comment['status']
 ): Promise<void> {
-    const db: any = await readDb();
+    const db: any = await readDb(['comments']);
     if (!db.comments) return;
 
     db.comments = db.comments.map((c: Comment) => c.id === id ? { ...c, status } : c);
@@ -58,7 +58,7 @@ export async function toggleCommentLikeAction(
     id: number,
     increment: number
 ): Promise<void> {
-    const db: any = await readDb();
+    const db: any = await readDb(['comments']);
     if (!db.comments) return;
 
     db.comments = db.comments.map((c: Comment) =>

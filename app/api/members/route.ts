@@ -8,7 +8,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const clubId = searchParams.get('clubId');
 
-    const db = await readDb();
+    const db = await readDb(['members']);
     let members = db.members;
 
     if (clubId) {
@@ -54,7 +54,7 @@ export async function POST(request: Request) {
             }
         }
 
-        const db = await readDb();
+        const db = await readDb(['members']);
 
         const existingMember = db.members.find((m: any) =>
             m.clubId === sanitizedData.clubId &&
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
     try {
         const body = await request.json();
-        const db = await readDb();
+        const db = await readDb(['members']);
 
         const member = db.members.find((m: any) => m.id == body.id);
         if (!member) {
@@ -112,7 +112,7 @@ export async function DELETE(request: Request) {
 
         if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
 
-        const db = await readDb();
+        const db = await readDb(['members']);
         const member = db.members.find((m: any) => m.id == id);
 
         if (!member) {
