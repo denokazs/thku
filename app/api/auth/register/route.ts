@@ -8,6 +8,8 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { name, studentId, department, email, phone, password, confirmPassword } = body;
 
+        console.log('[Register] Attempt:', { name, studentId, email });
+
         // Basic validation
         if (!name || !studentId || !email || !password || !confirmPassword) {
             return NextResponse.json({ error: 'Tüm alanları doldurunuz.' }, { status: 400 });
@@ -21,7 +23,8 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Şifre en az 8 karakter olmalıdır.' }, { status: 400 });
         }
 
-        const db = await readDb();
+        // Optimize: Only read users table
+        const db = await readDb(['users']);
         const users = db.users || [];
 
         // Check duplicates
@@ -37,7 +40,7 @@ export async function POST(request: Request) {
 
         // Create new user
         const newUser = {
-            id: Date.now(),
+            id: crypto.randomUUID(), // Use UUID string to match varchar(255) schema
             username: studentId.toLowerCase(), // Use studentId as default username
             name,
             studentId: studentId.toLowerCase(),
@@ -49,10 +52,15 @@ export async function POST(request: Request) {
             createdAt: new Date().toISOString()
         };
 
+        if (!db.users) db.users = [];
         db.users.push(newUser);
+
+        // Write only users table (since db only has users key)
         await writeDb(db);
 
-        // Sanitize return (remove password)
+        console.log('[Register] Success:', newUser.id);
+
+        // Sanitize return
         const { password: _, ...userWithoutPassword } = newUser;
 
         return NextResponse.json({ success: true, user: userWithoutPassword });
