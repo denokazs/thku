@@ -43,6 +43,8 @@ export async function POST(request: Request) {
         }
 
         const db = await readDb(['news']);
+        if (!db.news) db.news = [];
+
         const newsItem = { ...newItem, id: Date.now() };
         db.news.push(newsItem);
         await writeDb(db);
@@ -87,6 +89,8 @@ export async function DELETE(request: Request) {
         }
 
         const db = await readDb(['news']);
+        if (!db.news) db.news = [];
+
         const index = db.news.findIndex((item: any) => item.id === id);
 
         if (index === -1) {

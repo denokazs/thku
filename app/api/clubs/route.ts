@@ -77,6 +77,7 @@ export async function POST(request: Request) {
         }
 
         const db = await readDb(['clubs']);
+        if (!db.clubs) db.clubs = [];
 
         // Check if slug already exists
         if (db.clubs.some((c: any) => c.slug === sanitizedData.slug)) {
@@ -134,6 +135,8 @@ export async function PUT(request: Request) {
         }
 
         const db = await readDb(['clubs']); // Await readDb()
+        if (!db.clubs) db.clubs = [];
+
         const index = db.clubs.findIndex((c: any) => c.id === sanitizedData.id);
         if (index === -1) {
             return NextResponse.json({ error: 'Club not found' }, { status: 404 });
@@ -212,6 +215,8 @@ export async function DELETE(request: Request) {
         }
 
         const db = await readDb(['clubs']);
+        if (!db.clubs) db.clubs = [];
+
         const clubId = parseInt(id);
 
         const initialLength = db.clubs.length;

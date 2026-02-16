@@ -33,6 +33,7 @@ export async function POST(request: Request) {
 
         const body = await request.json();
         const db = await readDb(['users']);
+        if (!db.users) db.users = [];
 
         if (db.users.find((u: any) => u.username === body.username)) {
             return NextResponse.json({ error: 'Username already exists' }, { status: 400 });
@@ -71,9 +72,10 @@ export async function DELETE(request: Request) {
         if (!id) return NextResponse.json({ error: 'ID required' }, { status: 400 });
 
         const db = await readDb(['users']);
+        if (!db.users) db.users = [];
 
         // Prevent deleting super admin (id 1 or username 'admin')
-        const userToDelete = (db.users || []).find((u: any) => String(u.id) === String(id));
+        const userToDelete = db.users.find((u: any) => String(u.id) === String(id));
 
         if (!userToDelete) {
             return NextResponse.json({ error: 'User not found' }, { status: 404 });
@@ -114,6 +116,8 @@ export async function PUT(request: Request) {
         }
 
         const db = await readDb(['users']);
+        if (!db.users) db.users = [];
+
         const index = db.users.findIndex((u: any) => u.id === body.id);
 
         if (index === -1) return NextResponse.json({ error: 'User not found' }, { status: 404 });

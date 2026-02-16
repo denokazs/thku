@@ -95,7 +95,6 @@ export async function POST(request: Request) {
         const sanitizedData = validation.sanitized!;
 
         const db = await readDb(['messages']);
-
         if (!db.messages) db.messages = [];
 
         const newMessage = {
@@ -128,8 +127,7 @@ export async function PUT(request: Request) {
     try {
         const body = await request.json();
         const db = await readDb(['messages']);
-
-        if (!db.messages) return NextResponse.json({ error: 'No messages found' }, { status: 404 });
+        if (!db.messages) db.messages = [];
 
         const currentMsg = db.messages.find((m: any) => m.id === body.id);
         if (!currentMsg) return NextResponse.json({ error: 'Message not found' }, { status: 404 });
