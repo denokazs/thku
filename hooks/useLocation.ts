@@ -26,7 +26,7 @@ export function useLocation() {
         }
     }, []);
 
-    const requestLocation = async () => {
+    const requestLocation = async (): Promise<PreciseLocation | null> => {
         setLoading(true);
         setError(null);
 
@@ -37,13 +37,16 @@ export function useLocation() {
                 setLocation(loc);
                 setPermission('granted');
                 cacheLocation(loc);
+                return loc;
             } else {
                 setError('Location access denied');
                 setPermission('denied');
+                return null;
             }
         } catch (err) {
             setError('Failed to get location');
             console.error('[useLocation]', err);
+            return null;
         } finally {
             setLoading(false);
         }

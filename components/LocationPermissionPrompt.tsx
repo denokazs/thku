@@ -30,11 +30,11 @@ export function LocationPermissionPrompt() {
     };
 
     const handleAllow = async () => {
-        await requestLocation();
+        const loc = await requestLocation();
 
         // Send location to backend if granted
-        if (location) {
-            sendLocationToBackend(location);
+        if (loc) {
+            sendLocationToBackend(loc);
         }
 
         handleDismiss();

@@ -18,9 +18,18 @@ export async function GET() {
 
 import { getSession } from '@/lib/auth';
 import { sanitizeString } from '@/lib/sanitize';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: Request) {
     try {
+        // 1. Rate Check (2 posts per hour)
+        const ip = request.headers.get('x-forwarded-for') || 'unknown';
+        const limiter = rateLimit(ip + '_forum_post', { limit: 2, windowMs: 60 * 60 * 1000 });
+
+        if (!limiter.success) {
+            return NextResponse.json({ error: 'Çok fazla konu açtınız. Lütfen biraz bekleyiniz.' }, { status: 429 });
+        }
+
         const session = await getSession();
         if (!session) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

@@ -2,11 +2,35 @@ import { NextRequest, NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import { logApiRequest } from '@/lib/api-logger';
+import { rateLimit } from '@/lib/rate-limit';
+import { validateTurnstile } from '@/lib/turnstile';
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
+        const ip = request.headers.get('x-forwarded-for') || 'unknown';
+
+        // 1. Rate Limit (3 registrations per hour per IP)
+        const limiter = rateLimit(ip + '_register', { limit: 3, windowMs: 60 * 60 * 1000 });
+        if (!limiter.success) {
+            await logApiRequest({
+                request,
+                method: 'POST',
+                endpoint: '/api/auth/register',
+                statusCode: 429,
+                responseError: 'Rate limit exceeded',
+            });
+            return NextResponse.json({ error: 'Çok fazla kayıt denemesi. Lütfen 1 saat sonra tekrar deneyiniz.' }, { status: 429 });
+        }
+
         const body = await request.json();
-        const { name, studentId, department, email, phone, password, confirmPassword } = body;
+        const { name, studentId, department, email, phone, password, confirmPassword, turnstileToken } = body;
+
+        // 2. Validate Turnstile CAPTCHA
+        const turnstile = await validateTurnstile(turnstileToken);
+        if (!turnstile.success) {
+            return NextResponse.json({ error: turnstile.error }, { status: 400 });
+        }
+
 
         console.log('[Register] Attempt:', { name, studentId, email });
 

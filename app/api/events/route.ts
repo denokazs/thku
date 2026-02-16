@@ -1,14 +1,26 @@
-
 import { NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
 import { requireClubAccess, handleAuthError } from '@/lib/auth';
 import { validateEvent } from '@/lib/validation';
+import { logApiRequest } from '@/lib/api-logger';
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const limit = searchParams.get('limit');
     const featured = searchParams.get('featured');
     const clubId = searchParams.get('clubId');
+
+    // Attempt logging safely
+    try {
+        await logApiRequest({
+            request,
+            method: 'GET',
+            endpoint: '/api/events',
+            statusCode: 200
+        });
+    } catch (error) {
+        console.error('Logging failed:', error);
+    }
 
     const db = await readDb(['events']);
     let events = db.events || [];

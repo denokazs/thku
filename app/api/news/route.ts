@@ -1,12 +1,21 @@
 
 import { NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
+import { logApiRequest } from '@/lib/api-logger';
 
 export const dynamic = 'force-dynamic';
 
 export async function GET(request: Request) {
+    // Log the view (works for anonymous users too)
+    await logApiRequest({
+        request,
+        method: 'GET',
+        endpoint: '/api/news',
+        statusCode: 200
+    });
+
     const db = await readDb(['news']);
-    // Sort by date descending (assuming string date format might need better parsing, but simple string sort works if ISO, otherwise relying on insertion order or ID)
+    // Sort by date descending
     const news = (db.news || []).sort((a: any, b: any) => b.id - a.id);
     return NextResponse.json(news);
 }

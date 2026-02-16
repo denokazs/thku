@@ -23,7 +23,16 @@ export const POST = apiWrapper(async (request: Request) => {
 
     // 2. Parse Body
     const body = await request.json();
-    const { username, password } = body;
+    const { username, password, turnstileToken } = body;
+
+    // 3. Turnstile CAPTCHA Check
+    const { validateTurnstile } = await import('@/lib/turnstile');
+    const captcha = await validateTurnstile(turnstileToken);
+
+    // Validate only if configured (optional for login if rate limit is tight)
+    if (process.env.TURNSTILE_SECRET_KEY && !captcha.success) {
+        return NextResponse.json({ success: false, message: captcha.error }, { status: 400 });
+    }
 
     // 3. Honeytoken Check (Simplified)
     const HONEYTOKENS = ['super_admin', 'root', 'admin123', 'sysadmin'];

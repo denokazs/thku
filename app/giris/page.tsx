@@ -6,24 +6,39 @@ import { useRouter } from 'next/navigation';
 import { Plane, Lock, User, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
-export default function LoginPage() {
-    const [identifier, setIdentifier] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+import { TurnstileWidget } from '@/components/TurnstileWidget';
+
+export default function GirisYap() {
     const { login } = useAuth();
     const router = useRouter();
+    const [formData, setFormData] = useState({
+        username: '',
+        password: '',
+        turnstileToken: ''
+    });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleTurnstileVerify = (token: string) => {
+        setFormData(prev => ({ ...prev, turnstileToken: token }));
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
-
-        const result = await login(identifier, password);
+        const result = await login(formData.username, formData.password);
 
         if (result.success) {
             router.push('/kulupler');
         } else {
             setError(result.message || 'Giriş yapılamadı.');
         }
+        setLoading(false);
     };
 
     return (
@@ -50,10 +65,10 @@ export default function LoginPage() {
                             <User className="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                             <input
                                 type="text"
-                                name="identifier"
+                                name="username"
                                 autoComplete="username"
-                                value={identifier}
-                                onChange={(e) => setIdentifier(e.target.value)}
+                                value={formData.username}
+                                onChange={handleInputChange}
                                 className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all font-medium text-slate-800"
                                 placeholder="Örn: 2023... veya mail@thku.edu.tr"
                                 required
@@ -69,8 +84,8 @@ export default function LoginPage() {
                                 type="password"
                                 name="password"
                                 autoComplete="current-password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                value={formData.password}
+                                onChange={handleInputChange}
                                 className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500 transition-all font-medium text-slate-800"
                                 placeholder="••••••••"
                                 required
@@ -78,18 +93,24 @@ export default function LoginPage() {
                         </div>
                     </div>
 
-                    <div className="flex justify-end">
-                        <Link
-                            href="/sifremi-unuttum"
-                            className="text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors"
-                        >
-                            Şifremi Unuttum?
-                        </Link>
+                    <div className="flex items-center justify-between mb-6">
+                        <label className="flex items-center text-sm text-slate-600 cursor-pointer">
+                            <input type="checkbox" className="mr-2 rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                            Beni hatırla
+                        </label>
+                        <a href="#" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+                            Şifremi unuttum?
+                        </a>
                     </div>
+
+                    <TurnstileWidget
+                        onVerify={(token) => setFormData({ ...formData, turnstileToken: token })}
+                    />
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-950 text-white py-3.5 rounded-xl font-bold hover:bg-red-600 transition-colors shadow-lg shadow-blue-900/20 pt-3"
+                        disabled={loading}
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                         Giriş Yap
                     </button>
