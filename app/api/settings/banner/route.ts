@@ -37,14 +37,12 @@ export async function PUT(request: Request) {
         }
 
         const body = await request.json();
-        console.log('Saving banner settings:', body);
         const db = await readDb();
 
         if (!db.settings) db.settings = {};
         db.settings.banner = body;
 
         await writeDb(db);
-        console.log('Banner settings saved successfully');
         return NextResponse.json({ success: true, banner: body });
     } catch (error) {
         console.error('Error saving banner settings:', error);

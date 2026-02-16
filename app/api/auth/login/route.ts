@@ -43,7 +43,7 @@ export const POST = apiWrapper(async (request: Request) => {
     const users = db.users || [];
 
     const normalizedInput = username.trim().toLowerCase();
-    console.log('[LOGIN DEBUG] Input:', normalizedInput);
+
 
     const user = users.find((u: any) =>
         (u.username && u.username.toLowerCase() === normalizedInput) ||

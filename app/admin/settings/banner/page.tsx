@@ -49,7 +49,6 @@ export default function BannerSettings() {
     const handleSave = async () => {
         setSaving(true);
         try {
-            console.log('Saving banner settings:', settings);
             const res = await fetch('/api/settings/banner', {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
@@ -57,7 +56,6 @@ export default function BannerSettings() {
             });
 
             const data = await res.json();
-            console.log('Save response:', data);
 
             if (res.ok) {
                 alert('Banner ayarları kaydedildi!');

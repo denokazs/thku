@@ -37,14 +37,12 @@ export async function PUT(request: Request) {
         }
 
         const body = await request.json();
-        console.log('Saving popup settings:', body);
         const db = await readDb();
 
         if (!db.settings) db.settings = {};
         db.settings.popup = body;
 
         await writeDb(db);
-        console.log('Popup settings saved successfully');
         return NextResponse.json({ success: true, popup: body });
     } catch (error) {
         console.error('Error saving popup settings:', error);

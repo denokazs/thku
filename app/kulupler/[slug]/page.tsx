@@ -166,18 +166,6 @@ export default function ClubDetailPage() {
                         if (found) {
                             setDbClub(found);
 
-                            // DEBUG: Log for troubleshooting admin button
-                            console.log('🔍 Club loaded:', {
-                                clubId: found.id,
-                                clubSlug: found.slug,
-                                userRole: user?.role,
-                                userClubId: user?.clubId,
-                                shouldShowButton: user && (
-                                    user.role === 'super_admin' ||
-                                    (user.role === 'club_admin' && user.clubId === found.id)
-                                )
-                            });
-
                             // 2. Fetch Events using correct DB ID
                             const eventsRes = await fetch(`/api/events?clubId=${found.id}`, { cache: 'no-store' });
                             if (eventsRes.ok) {
