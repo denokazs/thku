@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
-import { Plane, Lock, User, GraduationCap } from 'lucide-react';
+import { Lock, User, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
 import { TurnstileWidget } from '@/components/TurnstileWidget';
@@ -31,7 +31,7 @@ export default function GirisYap() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
-        const result = await login(formData.username, formData.password);
+        const result = await login(formData.username, formData.password, formData.turnstileToken);
 
         if (result.success) {
             router.push('/kulupler');

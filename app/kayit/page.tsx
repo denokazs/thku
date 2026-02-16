@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { User, Lock, Mail, Phone, Hash, GraduationCap, Building2, X } from 'lucide-react';
+import { User, Lock, Mail, Phone, Hash, GraduationCap, Building2 } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/context/AuthContext';
@@ -84,18 +84,10 @@ export default function RegisterPage() {
 
             setSuccess(true);
 
-            // Auto login after register
-            const loginRes = await login(formData.studentId, formData.password);
-
-            if (loginRes.success) {
-                setTimeout(() => {
-                    router.push('/kulupler');
-                }, 1000);
-            } else {
-                setTimeout(() => {
-                    router.push('/giris');
-                }, 1000);
-            }
+            // Redirect to login page
+            setTimeout(() => {
+                router.push('/giris');
+            }, 2000);
         } catch (err) {
             console.error('Registration error:', err);
             setError('Bir hata oluştu. Lütfen tekrar deneyin.');
