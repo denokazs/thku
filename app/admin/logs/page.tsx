@@ -19,6 +19,13 @@ interface ApiLog {
     responseTime?: number;
     requestBody?: string;
     responseError?: string;
+    gpsLatitude?: number;
+    gpsLongitude?: number;
+    gpsAccuracy?: number;
+    gpsAddress?: string;
+    gpsStreet?: string;
+    gpsCity?: string;
+    gpsPostalCode?: string;
 }
 
 export default function AdminLogsPage() {
@@ -222,7 +229,7 @@ export default function AdminLogsPage() {
                                     <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Method</th>
                                     <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Endpoint</th>
                                     <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Kullanıcı</th>
-                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">IP / Konum</th>
+                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Konum (IP / GPS)</th>
                                     <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Status</th>
                                     <th className="px-4 py-3 text-left text-xs font-medium text-slate-700 uppercase tracking-wider">Süre</th>
                                 </tr>
@@ -253,15 +260,39 @@ export default function AdminLogsPage() {
                                             )}
                                         </td>
                                         <td className="px-4 py-3 text-sm text-slate-900">
-                                            <div className="space-y-1">
-                                                <div className="flex items-center gap-2">
-                                                    <Globe className="w-4 h-4 text-slate-400" />
-                                                    <code className="text-xs">{log.ipAddress}</code>
-                                                </div>
-                                                {(log.city || log.country) && (
-                                                    <div className="flex items-center gap-2 text-xs text-slate-600">
-                                                        <MapPin className="w-3 h-3" />
-                                                        {[log.city, log.region, log.country].filter(Boolean).join(', ')}
+                                            <div className="space-y-2">
+                                                {/* GPS Location (Priority) */}
+                                                {log.gpsLatitude ? (
+                                                    <div className="bg-blue-50 p-2 rounded border border-blue-100">
+                                                        <div className="flex items-center gap-1 text-blue-800 font-medium text-xs mb-1">
+                                                            <MapPin className="w-3 h-3" />
+                                                            GPS Konumu (±{Math.round(log.gpsAccuracy || 0)}m)
+                                                        </div>
+                                                        <div className="text-xs text-slate-700 mb-1" title={log.gpsAddress}>
+                                                            {log.gpsStreet || log.gpsAddress || 'Bilinmeyen Adres'}
+                                                        </div>
+                                                        <a
+                                                            href={`https://www.google.com/maps?q=${log.gpsLatitude},${log.gpsLongitude}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="text-xs text-blue-600 hover:underline flex items-center gap-1"
+                                                        >
+                                                            Haritada Gör ↗
+                                                        </a>
+                                                    </div>
+                                                ) : (
+                                                    /* IP Location (Fallback) */
+                                                    <div className="space-y-1">
+                                                        <div className="flex items-center gap-2">
+                                                            <Globe className="w-4 h-4 text-slate-400" />
+                                                            <code className="text-xs">{log.ipAddress}</code>
+                                                        </div>
+                                                        {(log.city || log.country) && (
+                                                            <div className="flex items-center gap-2 text-xs text-slate-600">
+                                                                <MapPin className="w-3 h-3" />
+                                                                {[log.city, log.region, log.country].filter(Boolean).join(', ')}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 )}
                                             </div>
