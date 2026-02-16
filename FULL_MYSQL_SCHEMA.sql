@@ -316,4 +316,42 @@ CREATE TABLE IF NOT EXISTS `club_admins` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `attendance`
+--
+
+CREATE TABLE IF NOT EXISTS `attendance` (
+  `id` bigint(20) NOT NULL,
+  `eventId` bigint(20) DEFAULT NULL,
+  `userId` varchar(255) DEFAULT NULL,
+  `joinedAt` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_attendance` (`eventId`, `userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exams`
+--
+
+CREATE TABLE IF NOT EXISTS `exams` (
+  `id` varchar(255) NOT NULL,
+  `courseCode` varchar(50) NOT NULL,
+  `courseName` varchar(255) DEFAULT '',
+  `year` int(11) DEFAULT NULL,
+  `term` varchar(50) DEFAULT NULL,
+  `fileUrl` text DEFAULT NULL,
+  `status` varchar(50) DEFAULT 'pending',
+  `uploadedBy` varchar(255) DEFAULT NULL,
+  `uploadedByName` varchar(255) DEFAULT NULL,
+  `moderatedAt` varchar(100) DEFAULT NULL,
+  `moderatedBy` varchar(255) DEFAULT NULL,
+  `createdAt` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 COMMIT;
