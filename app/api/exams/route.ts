@@ -2,8 +2,49 @@ import { NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
 import { getSession } from '@/lib/auth';
 
+// Auto-create exams table on Railway MySQL if it doesn't exist
+let tableEnsured = false;
+async function ensureExamsTable() {
+    if (tableEnsured) return;
+    const useMysql = process.env.NODE_ENV === 'production' || process.env.DB_TYPE === 'mysql';
+    if (!useMysql) { tableEnsured = true; return; }
+
+    try {
+        const mysql = require('mysql2/promise');
+        const pool = mysql.createPool({
+            host: process.env.DB_HOST || 'localhost',
+            port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASS || '',
+            database: process.env.DB_NAME || 'thk_db',
+        });
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS exams (
+                id VARCHAR(255) NOT NULL,
+                courseCode VARCHAR(50) NOT NULL,
+                courseName VARCHAR(255) DEFAULT '',
+                year INT DEFAULT NULL,
+                term VARCHAR(50) DEFAULT NULL,
+                fileUrl TEXT DEFAULT NULL,
+                status VARCHAR(50) DEFAULT 'pending',
+                uploadedBy VARCHAR(255) DEFAULT NULL,
+                uploadedByName VARCHAR(255) DEFAULT NULL,
+                moderatedAt VARCHAR(100) DEFAULT NULL,
+                moderatedBy VARCHAR(255) DEFAULT NULL,
+                createdAt VARCHAR(100) DEFAULT NULL,
+                PRIMARY KEY (id)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+        `);
+        await pool.end();
+        tableEnsured = true;
+    } catch (e) {
+        console.error('Failed to ensure exams table:', e);
+    }
+}
+
 export async function GET(request: Request) {
     try {
+        await ensureExamsTable();
         const { searchParams } = new URL(request.url);
         const code = searchParams.get('code');
         const showAll = searchParams.get('all') === 'true';
@@ -39,6 +80,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
     try {
+        await ensureExamsTable();
         const session = await getSession();
         if (!session) {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -84,6 +126,7 @@ export async function POST(request: Request) {
 
 export async function PUT(request: Request) {
     try {
+        await ensureExamsTable();
         const session = await getSession();
         if (!session || session.role !== 'super_admin') {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -119,6 +162,7 @@ export async function PUT(request: Request) {
 
 export async function DELETE(request: Request) {
     try {
+        await ensureExamsTable();
         const session = await getSession();
         if (!session || session.role !== 'super_admin') {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
