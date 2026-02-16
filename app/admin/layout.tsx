@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { LayoutDashboard, MessageSquare, FileText, LogOut, Users, Newspaper, BarChart3, ShieldAlert, FileArchive, GraduationCap, Calendar, Settings } from 'lucide-react';
+import { LayoutDashboard, MessageSquare, FileText, LogOut, Users, Newspaper, BarChart3, ShieldAlert, FileArchive, GraduationCap, Calendar, Settings, Activity, Database } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -127,6 +127,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { label: 'Kullanıcılar', icon: Users, href: '/admin/users' },
         { label: 'İçerik Yönetimi', icon: FileText, href: '/admin/content' },
         { label: 'İstatistikler', icon: BarChart3, href: '/admin/analytics' },
+        // System & Monitoring
+        { label: 'API Logları', icon: Activity, href: '/admin/logs' },
+        { label: 'Database Migration', icon: Database, href: '/admin/migrate' },
         // Community Section
         { label: 'Moderasyon', icon: ShieldAlert, href: '/admin/community/moderation' },
         { label: 'Kulüp Yönetimi', icon: Users, href: '/admin/community/clubs' },
