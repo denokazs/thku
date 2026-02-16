@@ -16,7 +16,7 @@ declare global {
     }
 }
 
-export function TurnstileWidget({ siteKey = '0x4AAAAAAA8u6a-N22m6sB5x', onVerify, onError, onExpire }: TurnstileProps) {
+export function TurnstileWidget({ siteKey = '1x00000000000000000000AA', onVerify, onError, onExpire }: TurnstileProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isLoaded, setIsLoaded] = useState(false);
 
