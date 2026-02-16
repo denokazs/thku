@@ -10,9 +10,7 @@ export async function validateTurnstile(token: string) {
         return { success: false, error: 'CAPTCHA token eksik' };
     }
 
-    // Use Test Secret Key to match the frontend Test Site Key
-    // TODO: Revert to process.env.TURNSTILE_SECRET_KEY for production
-    const secretKey = '1x00000000000000000000AA';
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
 
     // If key is not configured, skip verification (dev mode or misconfig)
     if (!secretKey) {
