@@ -1,7 +1,7 @@
-
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
 import bcrypt from 'bcryptjs';
+import { logApiRequest } from '@/lib/api-logger';
 
 export async function POST(request: Request) {
     try {
@@ -60,6 +60,17 @@ export async function POST(request: Request) {
 
         console.log('[Register] Success:', newUser.id);
 
+        // Log API request (async, non-blocking)
+        await logApiRequest({
+            request,
+            method: 'POST',
+            endpoint: '/api/auth/register',
+            userId: newUser.id,
+            username: newUser.username,
+            statusCode: 200,
+            requestBody: { name, studentId, email }, // Don't log password
+        });
+
         // Sanitize return
         const { password: _, ...userWithoutPassword } = newUser;
 
@@ -67,6 +78,16 @@ export async function POST(request: Request) {
 
     } catch (error) {
         console.error('Registration error:', error);
+
+        // Log failed attempt
+        await logApiRequest({
+            request,
+            method: 'POST',
+            endpoint: '/api/auth/register',
+            statusCode: 500,
+            responseError: String(error),
+        });
+
         return NextResponse.json({ error: 'Sunucu hatası.' }, { status: 500 });
     }
 }

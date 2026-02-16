@@ -94,7 +94,8 @@ const MAPPINGS: any = {
     teachers: { table: 'teachers', json: 'teachers', type: 'array', jsonFields: ['ratings'] },
     shuttleStops: { table: 'shuttle_stops', json: 'shuttleStops', type: 'array' },
     cafeteriaMenu: { table: 'cafeteria_menu', json: 'cafeteriaMenu', type: 'object', key: 'date' },
-    settings: { table: 'settings', json: 'settings', type: 'kv' }
+    settings: { table: 'settings', json: 'settings', type: 'kv' },
+    apiLogs: { table: 'api_logs', json: 'apiLogs', type: 'array' }
 };
 
 export async function readDb(tableNames?: string[]) {

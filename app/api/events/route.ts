@@ -97,7 +97,7 @@ export async function PUT(request: Request) {
         }
 
         const db = await readDb(['events']);
-
+        if (!db.events) db.events = [];
         const event = db.events.find((e: any) => e.id === body.id);
         if (!event) {
             return NextResponse.json({ error: 'Event not found' }, { status: 404 });
