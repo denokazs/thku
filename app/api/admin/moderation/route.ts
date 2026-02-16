@@ -57,59 +57,91 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
     try {
-        const isAdmin = await verifyAdminAuth();
-        if (!isAdmin) {
+        const { getSession } = require('@/lib/auth');
+        const userSession = await getSession();
+
+        if (!userSession || userSession.role !== 'super_admin') {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
         }
 
         const body = await request.json();
-        const { type, id, action, teacherId } = body; // action: 'approve' | 'reject' | 'delete'
+        const { type, id, action, teacherId } = body;
+
+        console.log(`[Moderation] Processing ${action} for ${type} ${id}`);
 
         if (!type || !id || !action) {
             return NextResponse.json({ error: 'Missing parameters' }, { status: 400 });
         }
 
-        const db = await readDb();
+        // Determine which table to load based on type
+        // This is crucial for performance and safety - do not reload/rewrite user table just to approve a note!
+        let tablesToLoad: string[] = [];
+        if (type === 'post') tablesToLoad = ['forumPosts'];
+        else if (type === 'note') tablesToLoad = ['lectureNotes'];
+        else if (type === 'exam') tablesToLoad = ['exams'];
+        else if (type === 'teacher' || type === 'rating') tablesToLoad = ['teachers'];
+        else {
+            return NextResponse.json({ error: 'Invalid type' }, { status: 400 });
+        }
+
+        const db = await readDb(tablesToLoad);
         let found = false;
+        const now = new Date().toISOString();
+        const moderator = userSession.username;
 
         if (type === 'post') {
-            const post = db.forumPosts?.find((p: any) => p.id === id);
+            const post = (db.forumPosts || []).find((p: any) => p.id === id);
             if (post) {
                 if (action === 'approve') post.status = 'approved';
                 else if (action === 'reject' || action === 'delete') db.forumPosts = db.forumPosts.filter((p: any) => p.id !== id);
-                else post.status = action === 'approve' ? 'approved' : 'rejected'; // Fallback
+                else post.status = action === 'approve' ? 'approved' : 'rejected';
                 found = true;
             }
         } else if (type === 'note') {
-            const note = db.lectureNotes?.find((n: any) => n.id === id);
+            const note = (db.lectureNotes || []).find((n: any) => n.id === id);
             if (note) {
-                if (action === 'delete') db.lectureNotes = db.lectureNotes.filter((n: any) => n.id !== id);
-                else note.status = action === 'approve' ? 'approved' : 'rejected';
+                if (action === 'delete') {
+                    db.lectureNotes = db.lectureNotes.filter((n: any) => n.id !== id);
+                } else {
+                    note.status = action === 'approve' ? 'approved' : 'rejected';
+                    note.moderatedAt = now;
+                    note.moderatedBy = moderator;
+                }
                 found = true;
             }
         } else if (type === 'exam') {
-            const exam = db.exams?.find((e: any) => e.id === id);
+            const exam = (db.exams || []).find((e: any) => e.id === id);
             if (exam) {
-                if (action === 'delete') db.exams = db.exams.filter((e: any) => e.id !== id);
-                else exam.status = action === 'approve' ? 'approved' : 'rejected';
+                if (action === 'delete') {
+                    db.exams = db.exams.filter((e: any) => e.id !== id);
+                } else {
+                    exam.status = action === 'approve' ? 'approved' : 'rejected';
+                    exam.moderatedAt = now;
+                    exam.moderatedBy = moderator;
+                }
                 found = true;
             }
         } else if (type === 'rating') {
-            const teacher = db.teachers?.find((t: any) => t.id === teacherId);
+            const teacher = (db.teachers || []).find((t: any) => t.id === teacherId);
             if (teacher) {
                 const rating = teacher.ratings?.find((r: any) => r.id === id);
                 if (rating) {
                     if (action === 'delete') teacher.ratings = teacher.ratings.filter((r: any) => r.id !== id);
-                    else rating.status = action === 'approve' ? 'approved' : 'rejected';
+                    else {
+                        rating.status = action === 'approve' ? 'approved' : 'rejected';
+                        rating.moderatedAt = now;
+                    }
                     found = true;
                 }
             }
         } else if (type === 'teacher') {
-            const teacher = db.teachers?.find((t: any) => t.id === id);
+            const teacher = (db.teachers || []).find((t: any) => t.id === id);
             if (teacher) {
                 if (action === 'delete') db.teachers = db.teachers.filter((t: any) => t.id !== id);
                 else {
                     teacher.status = action === 'approve' ? 'approved' : 'rejected';
+                    teacher.moderatedAt = now;
+                    teacher.moderatedBy = moderator;
                     if (action === 'reject') {
                         db.teachers = db.teachers.filter((t: any) => t.id !== id);
                     }
@@ -119,12 +151,15 @@ export async function POST(request: Request) {
         }
 
         if (!found) {
+            console.log(`[Moderation] Item not found: ${type} ${id}`);
             return NextResponse.json({ error: 'Item not found' }, { status: 404 });
         }
 
         await writeDb(db);
+        console.log(`[Moderation] Success: ${type} ${id} ${action}`);
         return NextResponse.json({ success: true, message: `Item ${action}d` });
     } catch (error) {
+        console.error('[Moderation] Error:', error);
         return NextResponse.json({ error: 'Moderation action failed' }, { status: 500 });
     }
 }
