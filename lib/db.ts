@@ -90,6 +90,8 @@ const MAPPINGS: any = {
     members: { table: 'members', json: 'members', type: 'array' },
     attendance: { table: 'attendance', json: 'attendance', type: 'array' },
     exams: { table: 'exams', json: 'exams', type: 'array' },
+    lectureNotes: { table: 'lecture_notes', json: 'lectureNotes', type: 'array' },
+    teachers: { table: 'teachers', json: 'teachers', type: 'array', jsonFields: ['ratings'] },
     shuttleStops: { table: 'shuttle_stops', json: 'shuttleStops', type: 'array' },
     cafeteriaMenu: { table: 'cafeteria_menu', json: 'cafeteriaMenu', type: 'object', key: 'date' },
     settings: { table: 'settings', json: 'settings', type: 'kv' }

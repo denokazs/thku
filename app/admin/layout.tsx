@@ -132,6 +132,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { label: 'Kulüp Yönetimi', icon: Users, href: '/admin/community/clubs' },
         { label: 'Etkinlik Yönetimi', icon: Calendar, href: '/admin/community/events' },
         { label: 'Çıkmış Sınavlar', icon: FileArchive, href: '/admin/community/exams' },
+        { label: 'Ders Notları', icon: FileText, href: '/admin/community/notes' },
         { label: 'Hoca Yönetimi', icon: GraduationCap, href: '/admin/community/teachers' },
         { label: 'Footer Ayarları', icon: Settings, href: '/admin/settings/footer' },
         { label: 'Banner Ayarları', icon: MessageSquare, href: '/admin/settings/banner' },
