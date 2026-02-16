@@ -1,13 +1,15 @@
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { readDb, writeDb } from '@/lib/db';
-import { requireClubAccess, handleAuthError } from '@/lib/auth';
+import { requireAuth, requireRole, requireClubAccess, handleAuthError } from '@/lib/auth';
 import { validateClub } from '@/lib/validation';
+import { withApiLogging } from '@/lib/with-logging';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
-export async function GET(request: Request) {
+// Wrap GET with logging
+const getHandler = async (request: NextRequest) => {
     try {
         const { searchParams } = new URL(request.url);
         const category = searchParams.get('category');

@@ -97,6 +97,14 @@ export async function logApiRequest(params: {
     // Run logging asynchronously in the background
     setImmediate(async () => {
         try {
+            // Auto-run migration if needed (only on MySQL/production)
+            if (process.env.NODE_ENV === 'production' || process.env.DB_TYPE === 'mysql') {
+                const { runMigrations } = await import('./migrations');
+                await runMigrations().catch(err => {
+                    console.warn('[Auto-Migration] Skipped:', err.message);
+                });
+            }
+
             const ip = extractIpAddress(params.request);
             const userAgent = 'headers' in params.request
                 ? params.request.headers.get('user-agent') || undefined

@@ -7,6 +7,7 @@ import { apiWrapper } from '@/lib/api-wrapper';
 import { readDb } from '@/lib/db';
 import { rateLimit } from '@/lib/rate-limit';
 import { logAudit } from '@/lib/audit';
+import { logApiRequest } from '@/lib/api-logger';
 
 export const POST = apiWrapper(async (request: Request) => {
     const ip = request.headers.get('x-forwarded-for') || 'unknown';
@@ -76,7 +77,6 @@ export const POST = apiWrapper(async (request: Request) => {
     };
 
     const token = await signJWT(sessionPayload);
-    const response = NextResponse.json({ success: true, user: sessionPayload });
 
     // 7. Set Cookie
     const cookieStore = await cookies();
@@ -84,9 +84,18 @@ export const POST = apiWrapper(async (request: Request) => {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
-        path: '/',
-        maxAge: 60 * 60 * 24 // 1 day
+        maxAge: 60 * 60 * 24 * 7 // 7 days
     });
 
-    return response;
+    // Log successful login
+    await logApiRequest({
+        request,
+        method: 'POST',
+        endpoint: '/api/auth/login',
+        userId: user.id,
+        username: user.username,
+        statusCode: 200,
+    });
+
+    return NextResponse.json({ success: true, user: sessionPayload });
 });
