@@ -238,6 +238,10 @@ async function readDbMysql(tableNames?: string[]) {
             }
         } catch (err: any) {
             console.error(`Error fetching ${key}:`, err.message);
+            try {
+                const fs = require('fs');
+                fs.appendFileSync('db_debug.log', `[${new Date().toISOString()}] Error fetching ${key}: ${err.message}\n${err.stack}\n---\n`);
+            } catch (e) { }
             data[config.json] = config.type === 'array' ? [] : {};
         }
     }

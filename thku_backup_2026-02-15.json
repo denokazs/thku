@@ -1,0 +1,373 @@
+{
+  "timestamp": "2026-02-15T00:50:22.271Z",
+  "tables": {
+    "users": {
+      "count": 2,
+      "data": [
+        {
+          "id": "1770999823147",
+          "username": "230445029",
+          "password": "$2b$10$ccdmmbO8ePu8CbsosOl2vuiBrraGZNCLDtAGxgwZnPPamCOalCoYK",
+          "name": "Ahmet Bartu Aslan",
+          "role": "student",
+          "clubId": null,
+          "email": "s230445029@stu.thk.edu.tr",
+          "phone": "(541)-406-09-14",
+          "studentId": "230445029",
+          "department": "Endüstri mühendisliği",
+          "createdAt": "2026-02-13T16:23:43.147Z",
+          "resetToken": null,
+          "resetTokenExpire": null
+        },
+        {
+          "id": "1771019639272",
+          "username": "denokaz",
+          "password": "$2b$10$4OcR2lHJtCd3bj/QODeiy.VPfPVDwORwbJwZKcedJ3.J3zhcczPFS",
+          "name": "Deniz Kazmacı",
+          "role": "super_admin",
+          "clubId": null,
+          "email": "kazmacideniz@gmail.com",
+          "phone": "05382533330",
+          "studentId": "250445013",
+          "department": "IT",
+          "createdAt": null,
+          "resetToken": null,
+          "resetTokenExpire": null
+        }
+      ]
+    },
+    "clubs": {
+      "count": 8,
+      "data": [
+        {
+          "id": 1771019853496,
+          "slug": "ies",
+          "name": "IES",
+          "description": "IES (Industrial Engineering Society), Kasım 2018’den bu yana okulumuz bünyesinde faaliyet gösteren ilk ve tek Endüstri Mühendisliği topluluğudur.",
+          "category": "akademik",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771019820/thku_uploads/lbx3zge0swuxjoog3faz.png",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "IES (Industrial Engineering Society), Kasım 2018’den bu yana okulumuz bünyesinde faaliyet gösteren ilk ve tek Endüstri Mühendisliği topluluğudur. Topluluk; öğrencilerin akademik, mesleki ve kişisel gelişimlerini desteklemek amacıyla seminerler, teknik eğitimler, kariyer etkinlikleri ve sektör–öğrenci buluşmaları organize etmekte; disiplinler arası etkileşimi artırarak tüm öğrencilere mühendislik bilincinin kazandırılmasını hedeflemektedir. Farklı bölümlerden gelen üyeleriyle birlikte sürekli büyüyen IES, 500’ü aşkın üyesiyle öğrencileri iş dünyasına ve profesyonel hayata hazırlamayı amaçlayan sürdürülebilir bir öğrenci organizasyonu olarak faaliyetlerini sürdürmektedir.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"career-focused\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 2,
+          "isOfficial": null,
+          "logoBackground": "from-white to-slate-200"
+        },
+        {
+          "id": 1771019945449,
+          "slug": "roket",
+          "name": "Roket Topluluğu",
+          "description": "Roket Topluluğu, havacılık ve uzay dünyasına ilgi duyan öğrencileri bir araya getirerek ilham verici konuşmalar, sektör buluşmaları, zirveler ve sosyal etkinlikler düzenleyen bir öğrenci topluluğudur. Amacımız; öğrencilerin bu alanlardaki güncel gelişmeleri takip edebileceği, kendini geliştirebileceği ve güçlü bir çevre edinebileceği bir ortam oluşturmaktadır.",
+          "category": "teknoloji",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020334/thku_uploads/ecprni2cqmcd6erwxpbz.png",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "Roket Topluluğu, havacılık ve uzay dünyasına ilgi duyan öğrencileri bir araya getirerek ilham verici konuşmalar, sektör buluşmaları, zirveler ve sosyal etkinlikler düzenleyen bir öğrenci topluluğudur. Amacımız; öğrencilerin bu alanlardaki güncel gelişmeleri takip edebileceği, kendini geliştirebileceği ve güçlü bir çevre edinebileceği bir ortam oluşturmaktadır.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"tech-leader\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 9999,
+          "isOfficial": null,
+          "logoBackground": "from-slate-800 to-slate-900"
+        },
+        {
+          "id": 1771020014431,
+          "slug": "fintech",
+          "name": "Finance Technologies Space (FinTech)",
+          "description": "Yapay zekâdan veri bilimine, blockchain’den siber güvenliğe; dijital ödeme sistemlerinden açık bankacılığa kadar...",
+          "category": "teknoloji",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771019984/thku_uploads/qsvr0rdfbeqy6bck00kw.png",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "En hakiki mürşit ilimdir.”\n\nBizler, bu sözü bir alıntı değil; bir yön, bir duruş ve bir sorumluluk olarak kabul ediyoruz.\nBilimin ışığında düşünen, teknolojinin gücüyle üreten ve girişimci ruhla harekete geçen bir neslin temsilcileriyiz.\n\nAmacımız; finansal teknolojiler alanında yalnızca bilgi sahibi bireyler yetiştirmek değil, geleceğin sistemlerini tasarlayan öncü zihinler yetiştirmektir.\n\nYapay zekâdan veri bilimine, blockchain’den siber güvenliğe; dijital ödeme sistemlerinden açık bankacılığa kadar uzanan geniş bir alanda, finans ve mühendisliği birleştirerek değer üreten çözümler geliştiriyoruz.\n\nBiz; gelişmeleri takip eden değil, dönüşümü başlatan bir topluluğuz.\nHackathonlarla fikir üretir, projelerle somutlaştırır, iş birlikleriyle büyürüz.\nEtik değerleri, veri gizliliğini ve finansal sorumluluğu temel ilke kabul ederiz.\n\nHedefimiz; Türk Hava Kurumu Üniversitesi’ni ulusal ve uluslararası arenada güçlü şekilde temsil eden, yenilikçi ve sürdürülebilir projeler üreten bir merkez hâline getirmektir.\n\nÇünkü biz inanıyoruz ki;\nTürkiye’nin dijital finans geleceği, bilimi rehber edinen cesur zihinlerle inşa edilecektir.\n\nVe biz, o geleceği inşa etmeye talibiz.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"innovative\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 9999,
+          "isOfficial": null,
+          "logoBackground": null
+        },
+        {
+          "id": 1771020085293,
+          "slug": "ccc",
+          "name": "Cabin Crew Club",
+          "description": "Cabin Crew Club, havacılığa ilgi duyan ve sektörü yakından tanımak isteyen herkesi bir araya getiren aktif bir öğrenci topluluğudur. Kulübümüz kapsamında havalimanı gezileri, havacılık müzesi ziyaretleri ve sektör profesyonelleriyle gerçekleştirilen havacılık söyleşileri düzenleyerek üyelerimizin sektörü yerinde deneyimlemesini sağlıyoruz. Amacımız; teorik bilgiyi saha deneyimiyle desteklemek, havacılık kültürünü yaymak ve üyelerimize kariyer yolculuklarında güçlü bir vizyon kazandırmaktır.",
+          "category": "akademik",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020073/thku_uploads/ax7hcrezkcmvt3gyryb4.png",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "Cabin Crew Club, havacılığa ilgi duyan ve sektörü yakından tanımak isteyen herkesi bir araya getiren aktif bir öğrenci topluluğudur. Kulübümüz kapsamında havalimanı gezileri, havacılık müzesi ziyaretleri ve sektör profesyonelleriyle gerçekleştirilen havacılık söyleşileri düzenleyerek üyelerimizin sektörü yerinde deneyimlemesini sağlıyoruz. Amacımız; teorik bilgiyi saha deneyimiyle desteklemek, havacılık kültürünü yaymak ve üyelerimize kariyer yolculuklarında güçlü bir vizyon kazandırmaktır.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"career-focused\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 9999,
+          "isOfficial": null,
+          "logoBackground": null
+        },
+        {
+          "id": 1771020283870,
+          "slug": "utet",
+          "name": "Uydu Teknolojileri Topluluğu (UTET)",
+          "description": "UTET (Uydu Teknolojileri Topluluğu), Türk Hava Kurumu Üniversitesi bünyesinde faaliyet gösteren; uydu ve uzay teknolojilerine ilgi duyan öğrencileri bir araya getiren teknik bir topluluktur. Topluluk, yarışmaların yanı sıra düzenlediği teknik eğitimler, uygulamalı atölyeler ve teknik geziler ile üyelerinin mühendislik bilgisini pratiğe dönüştürmesini ve sektörel farkındalık kazanmasını hedefler.",
+          "category": "teknoloji",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020275/thku_uploads/ib5h8tvmp5h5mfdgspq2.png",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "UTET (Uydu Teknolojileri Topluluğu), Türk Hava Kurumu Üniversitesi bünyesinde faaliyet gösteren; uydu ve uzay teknolojilerine ilgi duyan öğrencileri bir araya getiren teknik bir topluluktur. Topluluk, yarışmaların yanı sıra düzenlediği teknik eğitimler, uygulamalı atölyeler ve teknik geziler ile üyelerinin mühendislik bilgisini pratiğe dönüştürmesini ve sektörel farkındalık kazanmasını hedefler.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"tech-leader\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 9999,
+          "isOfficial": null,
+          "logoBackground": null
+        },
+        {
+          "id": 1771020579075,
+          "slug": "gdgc",
+          "name": "GDG on Campus UTAA",
+          "description": "GDG (Google Developer Groups - Google Geliştirici Grupları), Google teknolojileri, yazılım geliştirme, mobil, web ve bulut çözümleriyle ilgilenen geliştiricilerin bir araya geldiği, gönüllülük esasına dayalı, kâr amacı gütmeyen küresel bir topluluk ağıdır. 140'tan fazla ülkede, teknik atölyeler, seminerler ve DevFest gibi etkinlikler düzenleyerek bilgi paylaşımını ve teknik becerilerin artırılmasını sağlar.",
+          "category": "teknoloji",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020559/thku_uploads/jesghdlybjtowoctxinz.png",
+          "coverImage": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771113301/thku_uploads/gsw5tehwavvq0femtja9.png",
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "GDG (Google Developer Groups - Google Geliştirici Grupları), Google teknolojileri, yazılım geliştirme, mobil, web ve bulut çözümleriyle ilgilenen geliştiricilerin bir araya geldiği, gönüllülük esasına dayalı, kâr amacı gütmeyen küresel bir topluluk ağıdır. 140'tan fazla ülkede, teknik atölyeler, seminerler ve DevFest gibi etkinlikler düzenleyerek bilgi paylaşımını ve teknik becerilerin artırılmasını sağlar.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"sponsored\",\"global\",\"tech-leader\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 1,
+          "isOfficial": null,
+          "logoBackground": "from-white to-slate-200"
+        },
+        {
+          "id": 1771020746502,
+          "slug": "yazveb",
+          "name": "Yapay Zeka Ve Veri Bilimi Topluluğu",
+          "description": "Topluluğumuzun Amacı Üniversitemizde çağımızın gerektirdiği yeni teknolojik gelişmelerden üyelerimizi haberdar etmek ve eğitim, aktivite ve büyük organizasyonlar düzenleyerek gelişmelerine katkıda bulunmaktır.",
+          "category": "teknoloji",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020738/thku_uploads/c7avgwn4yzciyl99kzqc.jpg",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "Topluluğumuzun Amacı Üniversitemizde çağımızın gerektirdiği yeni teknolojik gelişmelerden üyelerimizi haberdar etmek ve eğitim, aktivite ve büyük organizasyonlar düzenleyerek gelişmelerine katkıda bulunmaktır.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"tech-leader\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 9999,
+          "isOfficial": null,
+          "logoBackground": null
+        },
+        {
+          "id": 1771020861734,
+          "slug": "ecodrive",
+          "name": "Eco Drive Kulübü",
+          "description": "Eco Drive Topluluğu, 2024 yılından bu yana THKÜ Sağlık, Kültür ve Spor Direktörlüğü bünyesinde faaliyet gösteren; üniversitemizin hibrit ve elektrikli araçlar alanındaki ilk ve tek teknoloji topluluğudur. Başta kara araçları olmak üzere, deniz ve hava araçları için yenilikçi çözümler üretmeyi amaçlayan topluluğumuz, tüm bölümlerden öğrencileri disiplinler arası bir üretim çatısı altında buluşturmaktadır.",
+          "category": "teknoloji",
+          "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020838/thku_uploads/t2ztgccmbswm7vhbqqq8.jpg",
+          "coverImage": null,
+          "leader": null,
+          "email": null,
+          "instagram": null,
+          "twitter": null,
+          "linkedin": null,
+          "members": null,
+          "foundedYear": 2026,
+          "longDescription": "Eco Drive Topluluğu, 2024 yılından bu yana THKÜ Sağlık, Kültür ve Spor Direktörlüğü bünyesinde faaliyet gösteren; üniversitemizin hibrit ve elektrikli araçlar alanındaki ilk ve tek teknoloji topluluğudur. Başta kara araçları olmak üzere, deniz ve hava araçları için yenilikçi çözümler üretmeyi amaçlayan topluluğumuz, tüm bölümlerden öğrencileri disiplinler arası bir üretim çatısı altında buluşturmaktadır. Alanında uzman isimlerle mentorluk buluşmaları, teknik geziler ve staj imkanları organize ederek üyelerini profesyonel dünyaya hazırlayan Eco Drive; geliştirdiği projelerle üniversitemizi ulusal ve uluslararası yarışmalarda temsil eden sürdürülebilir bir teknoloji organizasyonudur.",
+          "meetingDay": "Belirlenmedi",
+          "meetingLocation": "Belirlenmedi",
+          "president": "{\"name\":\"Atanmadı\",\"email\":\"\",\"avatar\":\"👤\"}",
+          "gallery": "[]",
+          "badges": "[\"innovative\"]",
+          "socialMedia": "{}",
+          "createdAt": null,
+          "isActive": 1,
+          "displayOrder": 9999,
+          "isOfficial": null,
+          "logoBackground": null
+        }
+      ]
+    },
+    "events": {
+      "count": 1,
+      "data": [
+        {
+          "id": 1771113475547,
+          "title": "deneme başlık",
+          "date": "2026-02-18",
+          "time": "06:56",
+          "location": "konum",
+          "description": "opjetrjshglıvkerömfdsnglkvermnfd lksxzvnclkerads vzx açıklama",
+          "image": null,
+          "coverImage": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771113426/thku_uploads/neqqpjyuwn8k3oeqvcm5.png",
+          "clubId": 1771020579075,
+          "clubName": "GDG on Campus UTAA",
+          "type": null,
+          "category": "Konferans",
+          "capacity": "-1",
+          "images": "[]",
+          "schedule": "[{\"time\":\"04:57\",\"title\":\"sdwefgdsafwe\"},{\"time\":\"06:00\",\"title\":\"rwgdvscxz \"}]",
+          "speakers": "[{\"name\":\"ad soyad\",\"title\":\"sr engineer\",\"company\":\"ladeka lts\",\"image\":\"https://res.cloudinary.com/dprmyu6zo/image/upload/v1771113469/thku_uploads/qofvx3irohyfipnulryo.png\"}]",
+          "faq": "[{\"question\":\"egrwfsdcax\",\"answer\":\"tbegrwefswda\"}]",
+          "requirements": "katılım şartları reıgjverjngdv",
+          "registrationLink": "",
+          "attendees": 7,
+          "isPast": 0,
+          "isFeatured": 0
+        }
+      ]
+    },
+    "news": {
+      "count": 0,
+      "data": []
+    },
+    "confessions": {
+      "count": 0,
+      "data": []
+    },
+    "comments": {
+      "count": 0,
+      "data": []
+    },
+    "messages": {
+      "count": 0,
+      "data": []
+    },
+    "forum_posts": {
+      "count": 0,
+      "data": []
+    },
+    "announcements": {
+      "count": 0,
+      "data": []
+    },
+    "members": {
+      "count": 1,
+      "data": [
+        {
+          "id": 1771022856744,
+          "name": "Deniz Kazmacı",
+          "role": "Uye",
+          "clubId": 1771020579075,
+          "studentId": "250445013",
+          "email": "kazmacideniz@gmail.com",
+          "phone": "05382533330",
+          "joinedAt": "2026",
+          "status": "active",
+          "reason": "Hızlı Katılım (Site Üzerinden)",
+          "department": "IT",
+          "avatar": "👤"
+        }
+      ]
+    },
+    "attendance": {
+      "count": 1,
+      "data": [
+        {
+          "id": 1771116080593,
+          "eventId": 1771113475547,
+          "userId": "1771019639272",
+          "joinedAt": "2026-02-15T00:41:20.593Z"
+        }
+      ]
+    },
+    "shuttle_stops": {
+      "count": 0,
+      "data": []
+    },
+    "cafeteria_menu": {
+      "count": 0,
+      "data": []
+    },
+    "settings": {
+      "count": 1,
+      "data": [
+        {
+          "key": "site_settings",
+          "value": "{}"
+        }
+      ]
+    },
+    "club_admins": {
+      "count": 0,
+      "data": []
+    }
+  }
+}

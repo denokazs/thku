@@ -60,6 +60,10 @@ export async function GET() {
 
     } catch (error: any) {
         console.error('Backup error:', error);
-        return NextResponse.json({ error: 'Server error' }, { status: 500 });
+        try {
+            const fs = require('fs');
+            fs.appendFileSync('backup_debug.log', `[${new Date().toISOString()}] BACKUP ERROR: ${error.message}\n${error.stack}\n`);
+        } catch (e) { }
+        return NextResponse.json({ error: 'Server error', details: error.message }, { status: 500 });
     }
 }
