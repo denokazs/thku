@@ -61,200 +61,212 @@ export const CLUB_CATEGORIES = [
 
 export const CLUBS_DATA: Club[] = [
     {
-        id: 1,
-        name: 'THKU Robotics Club',
-        slug: 'robotics',
-        category: 'teknoloji',
-        description: 'Robotik ve yapay zeka alanında projeler geliştiren teknoloji kulübü',
-        longDescription: 'THKU Robotics Club, kampüsün en aktif teknoloji kulüplerinden biri olarak robotik, yapay zeka ve otomasyon sistemleri üzerine çalışmalar yürütmektedir. Üyelerimiz Arduino, Raspberry Pi ve ROS gibi platformlar kullanarak çeşitli projeler geliştirmektedir.',
-        logo: '🤖',
-        coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1200&h=400&fit=crop',
-        memberCount: 45,
-        foundedYear: 2020,
-        president: {
-            name: 'Ahmet Yılmaz',
-            email: 'ahmet.yilmaz@thku.edu.tr',
-            avatar: '👨‍💻'
+        "id": 1771019853496,
+        "name": "IES",
+        "slug": "ies",
+        "category": "akademik",
+        "description": "IES (Industrial Engineering Society), Kasım 2018’den bu yana okulumuz bünyesinde faaliyet gösteren ilk ve tek Endüstri Mühendisliği topluluğudur.",
+        "longDescription": "IES (Industrial Engineering Society), Kasım 2018’den bu yana okulumuz bünyesinde faaliyet gösteren ilk ve tek Endüstri Mühendisliği topluluğudur. Topluluk; öğrencilerin akademik, mesleki ve kişisel gelişimlerini desteklemek amacıyla seminerler, teknik eğitimler, kariyer etkinlikleri ve sektör–öğrenci buluşmaları organize etmekte; disiplinler arası etkileşimi artırarak tüm öğrencilere mühendislik bilincinin kazandırılmasını hedeflemektedir. Farklı bölümlerden gelen üyeleriyle birlikte sürekli büyüyen IES, 500’ü aşkın üyesiyle öğrencileri iş dünyasına ve profesyonel hayata hazırlamayı amaçlayan sürdürülebilir bir öğrenci organizasyonu olarak faaliyetlerini sürdürmektedir.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771019820/thku_uploads/lbx3zge0swuxjoog3faz.png",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_robotics',
-            discord: 'discord.gg/thkurobotics',
-            email: 'robotics@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Çarşamba 17:00',
-        meetingLocation: 'Mühendislik Fakültesi Lab-3',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 2,
-        name: 'Tiyatro Kulübü',
-        slug: 'tiyatro',
-        category: 'sanat',
-        description: 'Sahne sanatları ve tiyatro gösterileri düzenleyen sanat kulübü',
-        longDescription: 'Kampüsün kalbi olan Tiyatro Kulübümüz, her yıl onlarca gösteriye imza atmaktadır. Oyunculuk workshopları, doğaçlama çalışmaları ve profesyonel sahne deneyimleri sunuyoruz.',
-        logo: '🎭',
-        coverImage: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=1200&h=400&fit=crop',
-        memberCount: 38,
-        foundedYear: 2018,
-        president: {
-            name: 'Elif Demir',
-            email: 'elif.demir@thku.edu.tr',
-            avatar: '👩‍🎨'
+        "id": 1771019945449,
+        "name": "Roket Topluluğu",
+        "slug": "roket",
+        "category": "teknoloji",
+        "description": "Roket Topluluğu, havacılık ve uzay dünyasına ilgi duyan öğrencileri bir araya getirerek ilham verici konuşmalar, sektör buluşmaları, zirveler ve sosyal etkinlikler düzenleyen bir öğrenci topluluğudur. Amacımız; öğrencilerin bu alanlardaki güncel gelişmeleri takip edebileceği, kendini geliştirebileceği ve güçlü bir çevre edinebileceği bir ortam oluşturmaktadır.",
+        "longDescription": "Roket Topluluğu, havacılık ve uzay dünyasına ilgi duyan öğrencileri bir araya getirerek ilham verici konuşmalar, sektör buluşmaları, zirveler ve sosyal etkinlikler düzenleyen bir öğrenci topluluğudur. Amacımız; öğrencilerin bu alanlardaki güncel gelişmeleri takip edebileceği, kendini geliştirebileceği ve güçlü bir çevre edinebileceği bir ortam oluşturmaktadır.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020334/thku_uploads/ecprni2cqmcd6erwxpbz.png",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_tiyatro',
-            twitter: '@thkutiyatro',
-            email: 'tiyatro@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Salı & Perşembe 18:00',
-        meetingLocation: 'Kültür Merkezi Sahne',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 3,
-        name: 'Basketbol Kulübü',
-        slug: 'basketbol',
-        category: 'spor',
-        description: 'Kampüs basketbol turnuvaları ve antrenmanları düzenleyen spor kulübü',
-        longDescription: 'THKU Basketbol Kulübü olarak hem üniversite içi hem de üniversiteler arası turnuvalarda başarıyla temsil ediyoruz. Haftada 3 gün düzenli antrenmanlarımız var.',
-        logo: '🏀',
-        coverImage: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1200&h=400&fit=crop',
-        memberCount: 52,
-        foundedYear: 2017,
-        president: {
-            name: 'Can Öztürk',
-            email: 'can.ozturk@thku.edu.tr',
-            avatar: '🏃‍♂️'
+        "id": 1771020014431,
+        "name": "Finance Technologies Space (FinTech)",
+        "slug": "fintech",
+        "category": "teknoloji",
+        "description": "Yapay zekâdan veri bilimine, blockchain’den siber güvenliğe; dijital ödeme sistemlerinden açık bankacılığa kadar...",
+        "longDescription": "En hakiki mürşit ilimdir.”\n\nBizler, bu sözü bir alıntı değil; bir yön, bir duruş ve bir sorumluluk olarak kabul ediyoruz.\nBilimin ışığında düşünen, teknolojinin gücüyle üreten ve girişimci ruhla harekete geçen bir neslin temsilcileriyiz.\n\nAmacımız; finansal teknolojiler alanında yalnızca bilgi sahibi bireyler yetiştirmek değil, geleceğin sistemlerini tasarlayan öncü zihinler yetiştirmektir.\n\nYapay zekâdan veri bilimine, blockchain’den siber güvenliğe; dijital ödeme sistemlerinden açık bankacılığa kadar uzanan geniş bir alanda, finans ve mühendisliği birleştirerek değer üreten çözümler geliştiriyoruz.\n\nBiz; gelişmeleri takip eden değil, dönüşümü başlatan bir topluluğuz.\nHackathonlarla fikir üretir, projelerle somutlaştırır, iş birlikleriyle büyürüz.\nEtik değerleri, veri gizliliğini ve finansal sorumluluğu temel ilke kabul ederiz.\n\nHedefimiz; Türk Hava Kurumu Üniversitesi’ni ulusal ve uluslararası arenada güçlü şekilde temsil eden, yenilikçi ve sürdürülebilir projeler üreten bir merkez hâline getirmektir.\n\nÇünkü biz inanıyoruz ki;\nTürkiye’nin dijital finans geleceği, bilimi rehber edinen cesur zihinlerle inşa edilecektir.\n\nVe biz, o geleceği inşa etmeye talibiz.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771019984/thku_uploads/qsvr0rdfbeqy6bck00kw.png",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_basketbol',
-            email: 'basketbol@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Pazartesi, Çarşamba, Cuma 17:30',
-        meetingLocation: 'Spor Salonu',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 4,
-        name: 'IEEE Student Branch',
-        slug: 'ieee',
-        category: 'akademik',
-        description: 'Elektrik-elektronik mühendisliği ve teknoloji odaklı akademik kulüp',
-        longDescription: 'IEEE THKU Student Branch, dünya çapında tanınan IEEE organizasyonunun kampüs temsilciliğidir. Teknik workshoplar, konferanslar ve proje yarışmaları düzenliyoruz.',
-        logo: '⚡',
-        coverImage: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1200&h=400&fit=crop',
-        memberCount: 67,
-        foundedYear: 2019,
-        president: {
-            name: 'Zeynep Kaya',
-            email: 'zeynep.kaya@thku.edu.tr',
-            avatar: '👩‍🔬'
+        "id": 1771020085293,
+        "name": "Cabin Crew Club",
+        "slug": "ccc",
+        "category": "akademik",
+        "description": "Cabin Crew Club, havacılığa ilgi duyan ve sektörü yakından tanımak isteyen herkesi bir araya getiren aktif bir öğrenci topluluğudur. Kulübümüz kapsamında havalimanı gezileri, havacılık müzesi ziyaretleri ve sektör profesyonelleriyle gerçekleştirilen havacılık söyleşileri düzenleyerek üyelerimizin sektörü yerinde deneyimlemesini sağlıyoruz. Amacımız; teorik bilgiyi saha deneyimiyle desteklemek, havacılık kültürünü yaymak ve üyelerimize kariyer yolculuklarında güçlü bir vizyon kazandırmaktır.",
+        "longDescription": "Cabin Crew Club, havacılığa ilgi duyan ve sektörü yakından tanımak isteyen herkesi bir araya getiren aktif bir öğrenci topluluğudur. Kulübümüz kapsamında havalimanı gezileri, havacılık müzesi ziyaretleri ve sektör profesyonelleriyle gerçekleştirilen havacılık söyleşileri düzenleyerek üyelerimizin sektörü yerinde deneyimlemesini sağlıyoruz. Amacımız; teorik bilgiyi saha deneyimiyle desteklemek, havacılık kültürünü yaymak ve üyelerimize kariyer yolculuklarında güçlü bir vizyon kazandırmaktır.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020073/thku_uploads/ax7hcrezkcmvt3gyryb4.png",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@ieee_thku',
-            twitter: '@ieeethku',
-            email: 'ieee@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Perşembe 16:00',
-        meetingLocation: 'Mühendislik Fakültesi Konferans Salonu',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 5,
-        name: 'Fotoğrafçılık Kulübü',
-        slug: 'fotograf',
-        category: 'sanat',
-        description: 'Fotoğraf sanatı ve görsel hikaye anlatıcılığı üzerine çalışan kulüp',
-        longDescription: 'Objektifimizden yansıyan dünya! Fotoğraf tekniklerini öğrenip, kampüs ve şehir fotoğraf gezileri düzenliyoruz. Yıl sonunda büyük bir sergi açıyoruz.',
-        logo: '📸',
-        coverImage: 'https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200&h=400&fit=crop',
-        memberCount: 31,
-        foundedYear: 2021,
-        president: {
-            name: 'Mert Arslan',
-            email: 'mert.arslan@thku.edu.tr',
-            avatar: '📷'
+        "id": 1771020283870,
+        "name": "Uydu Teknolojileri Topluluğu (UTET)",
+        "slug": "utet",
+        "category": "teknoloji",
+        "description": "UTET (Uydu Teknolojileri Topluluğu), Türk Hava Kurumu Üniversitesi bünyesinde faaliyet gösteren; uydu ve uzay teknolojilerine ilgi duyan öğrencileri bir araya getiren teknik bir topluluktur. Topluluk, yarışmaların yanı sıra düzenlediği teknik eğitimler, uygulamalı atölyeler ve teknik geziler ile üyelerinin mühendislik bilgisini pratiğe dönüştürmesini ve sektörel farkındalık kazanmasını hedefler.",
+        "longDescription": "UTET (Uydu Teknolojileri Topluluğu), Türk Hava Kurumu Üniversitesi bünyesinde faaliyet gösteren; uydu ve uzay teknolojilerine ilgi duyan öğrencileri bir araya getiren teknik bir topluluktur. Topluluk, yarışmaların yanı sıra düzenlediği teknik eğitimler, uygulamalı atölyeler ve teknik geziler ile üyelerinin mühendislik bilgisini pratiğe dönüştürmesini ve sektörel farkındalık kazanmasını hedefler.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020275/thku_uploads/ib5h8tvmp5h5mfdgspq2.png",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_foto',
-            email: 'fotograf@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Cumartesi 14:00',
-        meetingLocation: 'Kütüphane 2. Kat Toplantı Odası',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 6,
-        name: 'Satranç Kulübü',
-        slug: 'satranc',
-        category: 'sosyal',
-        description: 'Strateji ve mantık oyunları seven öğrencilerin buluşma noktası',
-        longDescription: 'Her hafta turnuvalar düzenliyor, satranç eğitimleri veriyoruz. Üniversiteler arası satranç şampiyonasında 3 kez şampiyon olduk!',
-        logo: '♟️',
-        coverImage: 'https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=1200&h=400&fit=crop',
-        memberCount: 28,
-        foundedYear: 2019,
-        president: {
-            name: 'Deniz Şahin',
-            email: 'deniz.sahin@thku.edu.tr',
-            avatar: '👤'
+        "id": 1771020579075,
+        "name": "GDG on Campus UTAA",
+        "slug": "gdgc",
+        "category": "teknoloji",
+        "description": "GDG (Google Developer Groups - Google Geliştirici Grupları), Google teknolojileri, yazılım geliştirme, mobil, web ve bulut çözümleriyle ilgilenen geliştiricilerin bir araya geldiği, gönüllülük esasına dayalı, kâr amacı gütmeyen küresel bir topluluk ağıdır. 140'tan fazla ülkede, teknik atölyeler, seminerler ve DevFest gibi etkinlikler düzenleyerek bilgi paylaşımını ve teknik becerilerin artırılmasını sağlar.",
+        "longDescription": "GDG (Google Developer Groups - Google Geliştirici Grupları), Google teknolojileri, yazılım geliştirme, mobil, web ve bulut çözümleriyle ilgilenen geliştiricilerin bir araya geldiği, gönüllülük esasına dayalı, kâr amacı gütmeyen küresel bir topluluk ağıdır. 140'tan fazla ülkede, teknik atölyeler, seminerler ve DevFest gibi etkinlikler düzenleyerek bilgi paylaşımını ve teknik becerilerin artırılmasını sağlar.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020559/thku_uploads/jesghdlybjtowoctxinz.png",
+        "coverImage": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771113301/thku_uploads/gsw5tehwavvq0femtja9.png",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_satranc',
-            email: 'satranc@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Salı & Cuma 18:00',
-        meetingLocation: 'Öğrenci Kulübü Lounge',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 7,
-        name: 'Müzik Kulübü',
-        slug: 'muzik',
-        category: 'sanat',
-        description: 'Enstrüman çalışmaları ve konserler düzenleyen müzik topluluğu',
-        longDescription: 'Gitar, piyano, davul ve vokal çalışmaları yapıyor, kampüs konserlerimizle müzikseverlerle buluşuyoruz. Her dönem en az 2 konser veriyoruz.',
-        logo: '🎸',
-        coverImage: 'https://images.unsplash.com/photo-1511735111819-9a3f7709049c?w=1200&h=400&fit=crop',
-        memberCount: 41,
-        foundedYear: 2018,
-        president: {
-            name: 'Ayşe Yıldız',
-            email: 'ayse.yildiz@thku.edu.tr',
-            avatar: '🎤'
+        "id": 1771020746502,
+        "name": "Yapay Zeka Ve Veri Bilimi Topluluğu",
+        "slug": "yazveb",
+        "category": "teknoloji",
+        "description": "Topluluğumuzun Amacı Üniversitemizde çağımızın gerektirdiği yeni teknolojik gelişmelerden üyelerimizi haberdar etmek ve eğitim, aktivite ve büyük organizasyonlar düzenleyerek gelişmelerine katkıda bulunmaktır.",
+        "longDescription": "Topluluğumuzun Amacı Üniversitemizde çağımızın gerektirdiği yeni teknolojik gelişmelerden üyelerimizi haberdar etmek ve eğitim, aktivite ve büyük organizasyonlar düzenleyerek gelişmelerine katkıda bulunmaktır.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020738/thku_uploads/c7avgwn4yzciyl99kzqc.jpg",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_muzik',
-            email: 'muzik@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Çarşamba 19:00',
-        meetingLocation: 'Kültür Merkezi Müzik Stüdyosu',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     },
     {
-        id: 8,
-        name: 'Girişimcilik Kulübü',
-        slug: 'girisimcilik',
-        category: 'akademik',
-        description: 'Startup fikirleri geliştiren ve iş dünyasına hazırlanan kulüp',
-        longDescription: 'İş fikirleri geliştirme, pitch eğitimleri, mentörlük programları ve startup yarışmaları düzenliyoruz. Alumni networkümüz ile sektör deneyimi kazanma fırsatı sunuyoruz.',
-        logo: '💡',
-        coverImage: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1200&h=400&fit=crop',
-        memberCount: 55,
-        foundedYear: 2020,
-        president: {
-            name: 'Burak Çelik',
-            email: 'burak.celik@thku.edu.tr',
-            avatar: '💼'
+        "id": 1771020861734,
+        "name": "Eco Drive Kulübü",
+        "slug": "ecodrive",
+        "category": "teknoloji",
+        "description": "Eco Drive Topluluğu, 2024 yılından bu yana THKÜ Sağlık, Kültür ve Spor Direktörlüğü bünyesinde faaliyet gösteren; üniversitemizin hibrit ve elektrikli araçlar alanındaki ilk ve tek teknoloji topluluğudur. Başta kara araçları olmak üzere, deniz ve hava araçları için yenilikçi çözümler üretmeyi amaçlayan topluluğumuz, tüm bölümlerden öğrencileri disiplinler arası bir üretim çatısı altında buluşturmaktadır.",
+        "longDescription": "Eco Drive Topluluğu, 2024 yılından bu yana THKÜ Sağlık, Kültür ve Spor Direktörlüğü bünyesinde faaliyet gösteren; üniversitemizin hibrit ve elektrikli araçlar alanındaki ilk ve tek teknoloji topluluğudur. Başta kara araçları olmak üzere, deniz ve hava araçları için yenilikçi çözümler üretmeyi amaçlayan topluluğumuz, tüm bölümlerden öğrencileri disiplinler arası bir üretim çatısı altında buluşturmaktadır. Alanında uzman isimlerle mentorluk buluşmaları, teknik geziler ve staj imkanları organize ederek üyelerini profesyonel dünyaya hazırlayan Eco Drive; geliştirdiği projelerle üniversitemizi ulusal ve uluslararası yarışmalarda temsil eden sürdürülebilir bir teknoloji organizasyonudur.",
+        "logo": "https://res.cloudinary.com/dprmyu6zo/image/upload/v1771020838/thku_uploads/t2ztgccmbswm7vhbqqq8.jpg",
+        "coverImage": "",
+        "memberCount": 0,
+        "foundedYear": 2026,
+        "president": {
+            "name": "Atanmadı",
+            "email": "",
+            "avatar": "👤"
         },
-        socialMedia: {
-            instagram: '@thku_startup',
-            twitter: '@thkustartup',
-            email: 'girisimcilik@thku.edu.tr'
+        "socialMedia": {
+            "instagram": "",
+            "twitter": "",
+            "discord": "",
+            "email": ""
         },
-        meetingDay: 'Perşembe 17:00',
-        meetingLocation: 'İşletme Fakültesi Innovation Lab',
-        isActive: true
+        "meetingDay": "Belirlenmedi",
+        "meetingLocation": "Belirlenmedi",
+        "isActive": true
     }
 ];
 
