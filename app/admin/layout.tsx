@@ -130,6 +130,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         // System & Monitoring
         { label: 'API Logları', icon: Activity, href: '/admin/logs' },
         { label: 'Database Migration', icon: Database, href: '/admin/migrate' },
+        { label: 'Sistem Yedeği Al', icon: Database, href: '/api/admin/backup' },
         // Community Section
         { label: 'Moderasyon', icon: ShieldAlert, href: '/admin/community/moderation' },
         { label: 'Kulüp Yönetimi', icon: Users, href: '/admin/community/clubs' },

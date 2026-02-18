@@ -32,11 +32,11 @@ export async function GET() {
             database: process.env.DB_NAME || 'thk_db',
         });
 
-        const tables = [
-            'users', 'clubs', 'events', 'news', 'confessions', 'comments',
-            'messages', 'forum_posts', 'announcements', 'members', 'attendance',
-            'shuttle_stops', 'cafeteria_menu', 'settings', 'club_admins'
-        ];
+        // DYNAMIC TABLE FETCHING: Get all tables from the database
+        // This ensures that even if new tables are added later, they are automatically included in the backup.
+        const [tableRows] = await pool.query('SHOW TABLES');
+        const tables = (tableRows as any[]).map(row => Object.values(row)[0] as string);
+
 
         const backup: any = { timestamp: new Date().toISOString(), tables: {} };
 

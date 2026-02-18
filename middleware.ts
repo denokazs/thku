@@ -4,7 +4,6 @@ import type { NextRequest } from 'next/server';
 // 🛑 CANARY ENDPOINTS (The Minefield)
 // These URLs do not exist. Any request to them is malicious scanning.
 const TRAP_URLS = [
-    '/api/admin/backup',
     '/api/config',
     '/admin/phpmyadmin',
     '/wp-admin',
