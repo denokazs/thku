@@ -715,46 +715,99 @@ export default function ClubDetailPage() {
                                         </div>
                                     )}
 
-                                    {/* Social Media */}
-                                    {club.socialMedia && (
-                                        <div className="glass-dark border border-slate-700/50 rounded-2xl p-6">
-                                            <h3 className="text-lg font-black text-white mb-4">İletişim</h3>
-                                            <div className="space-y-3">
-                                                {club.socialMedia.email && (
-                                                    <a href={`mailto:${club.socialMedia.email}`} className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
-                                                        <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center group-hover:bg-blue-600/30 transition-colors">
-                                                            <Mail className="w-5 h-5 text-blue-400" />
-                                                        </div>
-                                                        <span className="font-medium text-sm">{club.socialMedia.email}</span>
-                                                    </a>
-                                                )}
-                                                {club.socialMedia.instagram && (
-                                                    <a href={`https://instagram.com/${club.socialMedia.instagram.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
-                                                        <div className="w-10 h-10 bg-pink-600/20 rounded-lg flex items-center justify-center group-hover:bg-pink-600/30 transition-colors">
-                                                            <Instagram className="w-5 h-5 text-pink-400" />
-                                                        </div>
-                                                        <span className="font-medium text-sm">{club.socialMedia.instagram}</span>
-                                                    </a>
-                                                )}
-                                                {club.socialMedia.twitter && (
-                                                    <a href={`https://twitter.com/${club.socialMedia.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
-                                                        <div className="w-10 h-10 bg-blue-400/20 rounded-lg flex items-center justify-center group-hover:bg-blue-400/30 transition-colors">
-                                                            <Twitter className="w-5 h-5 text-blue-300" />
-                                                        </div>
-                                                        <span className="font-medium text-sm">{club.socialMedia.twitter}</span>
-                                                    </a>
-                                                )}
-                                                {club.socialMedia.discord && (
-                                                    <a href={`https://${club.socialMedia.discord}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
-                                                        <div className="w-10 h-10 bg-indigo-600/20 rounded-lg flex items-center justify-center group-hover:bg-indigo-600/30 transition-colors">
-                                                            <MessageCircle className="w-5 h-5 text-indigo-400" />
-                                                        </div>
-                                                        <span className="font-medium text-sm">{club.socialMedia.discord}</span>
-                                                    </a>
-                                                )}
-                                            </div>
+                                    {/* Contact & Social Media */}
+                                    <div className="glass-dark border border-slate-700/50 rounded-2xl p-6">
+                                        <h3 className="text-lg font-black text-white mb-4">İletişim</h3>
+                                        <div className="space-y-3">
+                                            {(() => {
+                                                // Helper to parse social media safely
+                                                const social = (() => {
+                                                    if (!club.socialMedia) return {};
+                                                    if (typeof club.socialMedia === 'string') {
+                                                        try { return JSON.parse(club.socialMedia); } catch { return {}; }
+                                                    }
+                                                    return club.socialMedia;
+                                                })();
+
+                                                return (
+                                                    <>
+                                                        {/* Direct Contact Info */}
+                                                        {club.email && (
+                                                            <a href={`mailto:${club.email}`} className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center group-hover:bg-blue-600/30 transition-colors">
+                                                                    <Mail className="w-5 h-5 text-blue-400" />
+                                                                </div>
+                                                                <span className="font-medium text-sm break-all">{club.email}</span>
+                                                            </a>
+                                                        )}
+                                                        {club.phone && (
+                                                            <a href={`tel:${club.phone}`} className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-green-600/20 rounded-lg flex items-center justify-center group-hover:bg-green-600/30 transition-colors">
+                                                                    <div className="w-5 h-5 text-green-400">📞</div>
+                                                                </div>
+                                                                <span className="font-medium text-sm">{club.phone}</span>
+                                                            </a>
+                                                        )}
+                                                        {club.website && (
+                                                            <a href={club.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-purple-600/20 rounded-lg flex items-center justify-center group-hover:bg-purple-600/30 transition-colors">
+                                                                    <div className="w-5 h-5 text-purple-400">🌐</div>
+                                                                </div>
+                                                                <span className="font-medium text-sm truncate">{club.website.replace(/^https?:\/\//, '')}</span>
+                                                            </a>
+                                                        )}
+
+                                                        {/* Divider if both exist */}
+                                                        {(club.email || club.phone || club.website) && Object.keys(social).length > 0 && (
+                                                            <div className="h-px bg-slate-700/50 my-2"></div>
+                                                        )}
+
+                                                        {/* Social Media Links */}
+                                                        {social.instagram && (
+                                                            <a href={`https://instagram.com/${social.instagram.replace('@', '').replace('https://instagram.com/', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-pink-600/20 rounded-lg flex items-center justify-center group-hover:bg-pink-600/30 transition-colors">
+                                                                    <Instagram className="w-5 h-5 text-pink-400" />
+                                                                </div>
+                                                                <span className="font-medium text-sm">@{social.instagram.replace(/^@/, '').replace('https://instagram.com/', '').replace(/\/$/, '')}</span>
+                                                            </a>
+                                                        )}
+                                                        {social.twitter && (
+                                                            <a href={`https://twitter.com/${social.twitter.replace('@', '').replace('https://twitter.com/', '').replace('https://x.com/', '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-blue-400/20 rounded-lg flex items-center justify-center group-hover:bg-blue-400/30 transition-colors">
+                                                                    <Twitter className="w-5 h-5 text-blue-300" />
+                                                                </div>
+                                                                <span className="font-medium text-sm">@{social.twitter.replace(/^@/, '').replace('https://twitter.com/', '').replace('https://x.com/', '').replace(/\/$/, '')}</span>
+                                                            </a>
+                                                        )}
+                                                        {social.linkedin && (
+                                                            <a href={social.linkedin.startsWith('http') ? social.linkedin : `https://linkedin.com/in/${social.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-blue-700/20 rounded-lg flex items-center justify-center group-hover:bg-blue-700/30 transition-colors">
+                                                                    <div className="w-5 h-5 text-blue-500 font-bold">in</div>
+                                                                </div>
+                                                                <span className="font-medium text-sm">LinkedIn</span>
+                                                            </a>
+                                                        )}
+                                                        {social.discord && (
+                                                            <a href={social.discord.startsWith('http') ? social.discord : `https://${social.discord}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-indigo-600/20 rounded-lg flex items-center justify-center group-hover:bg-indigo-600/30 transition-colors">
+                                                                    <MessageCircle className="w-5 h-5 text-indigo-400" />
+                                                                </div>
+                                                                <span className="font-medium text-sm">Discord</span>
+                                                            </a>
+                                                        )}
+                                                        {social.youtube && (
+                                                            <a href={social.youtube.startsWith('http') ? social.youtube : `https://youtube.com/@${social.youtube}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors group">
+                                                                <div className="w-10 h-10 bg-red-600/20 rounded-lg flex items-center justify-center group-hover:bg-red-600/30 transition-colors">
+                                                                    <div className="w-5 h-5 text-red-500">▶</div>
+                                                                </div>
+                                                                <span className="font-medium text-sm">YouTube</span>
+                                                            </a>
+                                                        )}
+                                                    </>
+                                                );
+                                            })()}
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             </motion.div>
                         )}
