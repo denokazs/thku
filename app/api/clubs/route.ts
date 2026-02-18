@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 export const revalidate = 0;
 
 // Wrap GET with logging
-const getHandler = async (request: NextRequest) => {
+export const GET = async (request: NextRequest) => {
     try {
         const { searchParams } = new URL(request.url);
         const category = searchParams.get('category');
@@ -42,7 +42,11 @@ const getHandler = async (request: NextRequest) => {
         }
 
         return NextResponse.json(clubs);
-    } catch (error) {
+    } catch (error: any) {
+        try {
+            const fs = require('fs');
+            fs.appendFileSync('api_debug.log', `[${new Date().toISOString()}] CLUB API ERROR: ${error.message}\n${error.stack}\n`);
+        } catch (e) { }
         return NextResponse.json({ error: 'Failed to fetch clubs' }, { status: 500 });
     }
 }
