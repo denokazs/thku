@@ -246,6 +246,77 @@ const ClubSettingsTab = ({ club, setClub, showNotification }: { club: any, setCl
                     </div>
                 </div>
 
+                {/* Contact Info Section */}
+                <div className="pt-6 border-t border-slate-700/50">
+                    <h3 className="text-lg font-bold text-white mb-4">İletişim Bilgileri</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label className="block text-slate-400 text-sm font-bold mb-2">E-posta</label>
+                            <input
+                                type="email"
+                                value={formData.email || ''}
+                                onChange={e => setFormData({ ...formData, email: e.target.value })}
+                                className="w-full bg-slate-900/50 border border-slate-700 rounded-xl p-3 text-white focus:border-red-500 outline-none"
+                                placeholder="iletisim@kulup.com"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-slate-400 text-sm font-bold mb-2">Telefon</label>
+                            <input
+                                type="tel"
+                                value={formData.phone || ''}
+                                onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                                className="w-full bg-slate-900/50 border border-slate-700 rounded-xl p-3 text-white focus:border-red-500 outline-none"
+                                placeholder="0555 555 55 55"
+                            />
+                        </div>
+                        <div className="md:col-span-2">
+                            <label className="block text-slate-400 text-sm font-bold mb-2">Web Sitesi</label>
+                            <input
+                                type="url"
+                                value={formData.website || ''}
+                                onChange={e => setFormData({ ...formData, website: e.target.value })}
+                                className="w-full bg-slate-900/50 border border-slate-700 rounded-xl p-3 text-white focus:border-red-500 outline-none"
+                                placeholder="https://..."
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Social Media Section */}
+                <div className="pt-6 border-t border-slate-700/50">
+                    <h3 className="text-lg font-bold text-white mb-4">Sosyal Medya</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {['instagram', 'twitter', 'linkedin', 'discord', 'youtube'].map(platform => (
+                            <div key={platform}>
+                                <label className="block text-slate-400 text-sm font-bold mb-2 capitalize flex items-center gap-2">
+                                    {platform === 'twitter' ? 'X (Twitter)' : platform}
+                                </label>
+                                <input
+                                    type="text"
+                                    value={
+                                        (typeof formData.socialMedia === 'object' && formData.socialMedia)
+                                            ? formData.socialMedia[platform] || ''
+                                            : ''
+                                    }
+                                    onChange={e => {
+                                        const currentSocial = (typeof formData.socialMedia === 'object' && formData.socialMedia) ? formData.socialMedia : {};
+                                        setFormData({
+                                            ...formData,
+                                            socialMedia: {
+                                                ...currentSocial,
+                                                [platform]: e.target.value
+                                            }
+                                        });
+                                    }}
+                                    className="w-full bg-slate-900/50 border border-slate-700 rounded-xl p-3 text-white focus:border-red-500 outline-none"
+                                    placeholder={`https://${platform}.com/...`}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 {/* President Information Section */}
                 <div className="pt-6 border-t border-slate-700/50">
                     <h3 className="text-lg font-bold text-white mb-4">Başkan Bilgileri</h3>
