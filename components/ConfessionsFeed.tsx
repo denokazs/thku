@@ -2,17 +2,55 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PlaneTakeoff, PlaneLanding, MessageSquare, Share2, Edit3, Flame, Trophy, Clock, Sparkles } from 'lucide-react';
+import { PlaneTakeoff, PlaneLanding, Share2, Edit3, Flame, Trophy, Clock, Sparkles, MessageSquare } from 'lucide-react';
 import { useStore } from '@/context/StoreContext';
 import CommentsList from './CommentsList';
 import InlineCommentForm from './InlineCommentForm';
 
-const TYPE_CONFIG: Record<string, { emoji: string; label: string; ring: string }> = {
-    complaint: { emoji: '😤', label: 'Şikayet', ring: 'ring-red-500/30' },
-    romance: { emoji: '💘', label: 'Aşk & Meşk', ring: 'ring-pink-500/30' },
-    question: { emoji: '🤔', label: 'Soru', ring: 'ring-blue-500/30' },
-    other: { emoji: '🤫', label: 'İtiraf', ring: 'ring-slate-500/30' },
+const TYPE_CONFIG: Record<string, {
+    emoji: string; label: string;
+    cardBg: string; cardBorder: string; cardAccent: string;
+    avatarGradient: string; badgeCls: string;
+}> = {
+    complaint: {
+        emoji: '😤', label: 'Şikayet',
+        cardBg: 'bg-gradient-to-br from-red-950/40 to-slate-900/60',
+        cardBorder: 'border-red-500/20 hover:border-red-500/40',
+        cardAccent: 'from-red-500 to-orange-500',
+        avatarGradient: 'from-red-500 to-orange-600',
+        badgeCls: 'bg-red-500/15 text-red-300 border-red-500/20',
+    },
+    romance: {
+        emoji: '💘', label: 'Aşk & Meşk',
+        cardBg: 'bg-gradient-to-br from-pink-950/40 to-slate-900/60',
+        cardBorder: 'border-pink-500/20 hover:border-pink-500/40',
+        cardAccent: 'from-pink-500 to-rose-500',
+        avatarGradient: 'from-pink-500 to-rose-600',
+        badgeCls: 'bg-pink-500/15 text-pink-300 border-pink-500/20',
+    },
+    question: {
+        emoji: '🤔', label: 'Soru',
+        cardBg: 'bg-gradient-to-br from-blue-950/40 to-slate-900/60',
+        cardBorder: 'border-blue-500/20 hover:border-blue-500/40',
+        cardAccent: 'from-blue-400 to-cyan-500',
+        avatarGradient: 'from-blue-500 to-cyan-500',
+        badgeCls: 'bg-blue-500/15 text-blue-300 border-blue-500/20',
+    },
+    other: {
+        emoji: '🤫', label: 'İtiraf',
+        cardBg: 'bg-gradient-to-br from-violet-950/40 to-slate-900/60',
+        cardBorder: 'border-violet-500/20 hover:border-violet-500/40',
+        cardAccent: 'from-violet-500 to-indigo-500',
+        avatarGradient: 'from-violet-500 to-indigo-600',
+        badgeCls: 'bg-violet-500/15 text-violet-300 border-violet-500/20',
+    },
 };
+
+const SORT_CONFIG = [
+    { key: 'new', label: 'Yeni', icon: Clock, active: 'bg-sky-500 text-white shadow-lg shadow-sky-500/30' },
+    { key: 'hot', label: 'Trend', icon: Flame, active: 'bg-orange-500 text-white shadow-lg shadow-orange-500/30' },
+    { key: 'top', label: 'En İyi', icon: Trophy, active: 'bg-amber-400 text-black shadow-lg shadow-amber-400/30' },
+] as const;
 
 interface ConfessionsFeedProps {
     onOpenModal?: () => void;
@@ -29,10 +67,9 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
         .sort((a, b) => {
             if (sortBy === 'new') return b.timestamp - a.timestamp;
             if (sortBy === 'top') return b.likes - a.likes;
-            // hot
-            const scoreA = a.likes / Math.max(1, (Date.now() - a.timestamp) / 3600000);
-            const scoreB = b.likes / Math.max(1, (Date.now() - b.timestamp) / 3600000);
-            return scoreB - scoreA;
+            const sA = a.likes / Math.max(1, (Date.now() - a.timestamp) / 3600000);
+            const sB = b.likes / Math.max(1, (Date.now() - b.timestamp) / 3600000);
+            return sB - sA;
         });
 
     const openReply = (confessionId: number, parentCommentId: number, parentUser: string) => {
@@ -43,18 +80,12 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
     return (
         <div>
             {/* ─── Sort bar ─── */}
-            <div className="flex gap-1 mb-6 p-1 bg-white/5 border border-white/8 rounded-2xl backdrop-blur-sm">
-                {([
-                    { key: 'new', label: 'Yeni', icon: Clock },
-                    { key: 'hot', label: 'Trend', icon: Flame },
-                    { key: 'top', label: 'En İyi', icon: Trophy },
-                ] as { key: 'new' | 'hot' | 'top'; label: string; icon: React.ElementType }[]).map(({ key, label, icon: Icon }) => (
+            <div className="flex gap-1.5 mb-6 p-1.5 bg-white/[0.04] border border-white/[0.08] rounded-2xl">
+                {SORT_CONFIG.map(({ key, label, icon: Icon, active }) => (
                     <button
                         key={key}
                         onClick={() => setSortBy(key)}
-                        className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl text-sm font-bold transition-all duration-200 ${sortBy === key
-                                ? 'bg-white text-black shadow-md'
-                                : 'text-slate-500 hover:text-slate-300'
+                        className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-sm font-bold transition-all duration-200 ${sortBy === key ? active : 'text-slate-500 hover:text-slate-200 hover:bg-white/5'
                             }`}
                     >
                         <Icon className="w-3.5 h-3.5" />
@@ -65,17 +96,19 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
 
             {/* ─── Empty state ─── */}
             {items.length === 0 ? (
-                <div className="text-center py-24 flex flex-col items-center">
-                    <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mb-5 text-3xl">
+                <div className="text-center py-24 flex flex-col items-center gap-4">
+                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-violet-500/20 to-pink-500/20 border border-violet-500/20 flex items-center justify-center text-3xl">
                         🤫
                     </div>
-                    <p className="text-slate-400 font-semibold mb-1">Frekans sessiz.</p>
-                    <p className="text-slate-600 text-sm mb-6">İlk itirafı atmak sana kalıyor.</p>
-                    {onOpenModal && (
-                        <button onClick={onOpenModal} className="text-sm font-bold text-red-400 hover:text-red-300 underline underline-offset-4 transition-colors">
-                            Anonim itiraf et →
-                        </button>
-                    )}
+                    <div>
+                        <p className="text-slate-300 font-semibold mb-1">Frekans sessiz.</p>
+                        <p className="text-slate-600 text-sm mb-4">İlk itirafı atmak sana kalıyor.</p>
+                        {onOpenModal && (
+                            <button onClick={onOpenModal} className="text-sm font-bold text-red-400 hover:text-red-300 underline underline-offset-4 transition-colors">
+                                Anonim itiraf et →
+                            </button>
+                        )}
+                    </div>
                 </div>
             ) : (
                 <div className="space-y-3">
@@ -92,43 +125,43 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                 initial={{ opacity: 0, y: 12 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: Math.min(index * 0.04, 0.25), duration: 0.3 }}
-                                className="group relative bg-white/[0.04] border border-white/[0.08] rounded-2xl overflow-hidden hover:bg-white/[0.06] hover:border-white/[0.14] transition-all duration-200"
+                                className={`group relative border rounded-2xl overflow-hidden transition-all duration-200 ${cfg.cardBg} ${cfg.cardBorder}`}
                             >
-                                {/* Subtle left accent bar */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-0.5 ${netScore > 10 ? 'bg-gradient-to-b from-yellow-500 to-amber-600' :
-                                        netScore > 3 ? 'bg-gradient-to-b from-green-500 to-emerald-600' :
-                                            item.type === 'complaint' ? 'bg-gradient-to-b from-red-500/50 to-transparent' :
-                                                item.type === 'romance' ? 'bg-gradient-to-b from-pink-500/50 to-transparent' :
-                                                    'bg-gradient-to-b from-slate-600/50 to-transparent'
-                                    }`} />
+                                {/* Top accent gradient line */}
+                                <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${cfg.cardAccent} opacity-60`} />
 
-                                <div className="p-5">
+                                <div className="p-5 pt-4">
                                     {/* Header */}
                                     <div className="flex items-start gap-3 mb-3">
-                                        {/* Avatar */}
-                                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 text-lg ring-2 ${cfg.ring} ${item.authorAvatar
-                                                ? 'bg-slate-800'
-                                                : 'bg-gradient-to-br from-slate-700 to-slate-800 text-sm font-black text-slate-300'
-                                            }`}>
+                                        {/* Colorful avatar */}
+                                        <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${cfg.avatarGradient} shadow-lg text-white text-sm font-black`}>
                                             {item.authorAvatar || item.user.charAt(0).toUpperCase()}
                                         </div>
 
                                         <div className="flex-1 min-w-0">
                                             <div className="flex flex-wrap items-center gap-2">
-                                                <span className="text-sm font-bold text-slate-200 truncate">{item.user}</span>
+                                                <span className="text-sm font-bold text-white truncate">{item.user}</span>
                                                 <span className="text-xs text-slate-600">·</span>
-                                                <span className="text-xs text-slate-600 font-mono">
+                                                <span className="text-xs text-slate-500 font-mono">
                                                     {new Date(item.timestamp).toLocaleDateString('tr-TR', { day: 'numeric', month: 'short' })}
                                                 </span>
-                                                <span className="text-xs px-1.5 py-0.5 rounded-md bg-white/5 text-slate-500 border border-white/8">
+                                                <span className={`text-xs px-2 py-0.5 rounded-full border font-bold ${cfg.badgeCls}`}>
                                                     {cfg.emoji} {cfg.label}
                                                 </span>
                                             </div>
                                         </div>
+
+                                        {/* Hot badge */}
+                                        {netScore > 5 && (
+                                            <div className="flex items-center gap-1 bg-orange-500/20 border border-orange-500/30 text-orange-300 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                                <Sparkles className="w-2.5 h-2.5" />
+                                                TREND
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Content */}
-                                    <p className="text-slate-200 leading-[1.7] text-[15px] whitespace-pre-line mb-3 pl-[52px]">
+                                    <p className="text-slate-100 leading-[1.75] text-[15px] whitespace-pre-line mb-3 pl-[52px]">
                                         {item.text}
                                     </p>
 
@@ -136,7 +169,7 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                     {item.tags && item.tags.length > 0 && (
                                         <div className="flex flex-wrap gap-1.5 mb-3 pl-[52px]">
                                             {item.tags.map(tag => (
-                                                <span key={tag} className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">
+                                                <span key={tag} className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/20">
                                                     #{tag}
                                                 </span>
                                             ))}
@@ -146,53 +179,45 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                     {/* Action bar */}
                                     <div className="flex items-center justify-between pl-[52px]">
                                         <div className="flex items-center gap-1">
-                                            {/* Upvote */}
                                             <button
                                                 onClick={() => voteConfession(item.id, 'up')}
-                                                className={`group/btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${voted === 'up'
-                                                        ? 'bg-green-500/15 text-green-400 ring-1 ring-green-500/30'
-                                                        : 'text-slate-500 hover:bg-white/5 hover:text-green-400'
+                                                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${voted === 'up'
+                                                        ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/30'
+                                                        : 'text-slate-500 hover:bg-emerald-500/15 hover:text-emerald-400'
                                                     }`}
                                             >
-                                                <PlaneTakeoff className="w-3.5 h-3.5" />
-                                                {item.likes}
+                                                <PlaneTakeoff className="w-3.5 h-3.5" /> {item.likes}
                                             </button>
-
-                                            {/* Downvote */}
                                             <button
                                                 onClick={() => voteConfession(item.id, 'down')}
-                                                className={`group/btn flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${voted === 'down'
-                                                        ? 'bg-red-500/15 text-red-400 ring-1 ring-red-500/30'
-                                                        : 'text-slate-500 hover:bg-white/5 hover:text-red-400'
+                                                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${voted === 'down'
+                                                        ? 'bg-red-500 text-white shadow-md shadow-red-500/30'
+                                                        : 'text-slate-500 hover:bg-red-500/15 hover:text-red-400'
                                                     }`}
                                             >
-                                                <PlaneLanding className="w-3.5 h-3.5" />
-                                                {item.dislikes || 0}
+                                                <PlaneLanding className="w-3.5 h-3.5" /> {item.dislikes || 0}
                                             </button>
                                         </div>
 
                                         <div className="flex items-center gap-1">
-                                            {/* Share */}
                                             <button
                                                 onClick={() => {
                                                     const t = `THKÜ İtiraf: ${item.text}\n\n${window.location.href}`;
                                                     if (navigator.share) navigator.share({ title: 'THKÜ İtiraf', text: t, url: window.location.href });
                                                     else navigator.clipboard.writeText(t);
                                                 }}
-                                                className="p-2 rounded-xl text-slate-600 hover:text-slate-300 hover:bg-white/5 transition-all"
+                                                className="p-2 rounded-xl text-slate-600 hover:text-sky-400 hover:bg-sky-500/10 transition-all"
                                             >
                                                 <Share2 className="w-3.5 h-3.5" />
                                             </button>
-
-                                            {/* Comment toggle */}
                                             <button
                                                 onClick={() => {
                                                     setActiveReply(null);
                                                     setActiveCommentId(prev => prev === item.id ? null : item.id);
                                                 }}
                                                 className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${isCommentOpen
-                                                        ? 'bg-sky-500/15 text-sky-400 ring-1 ring-sky-500/30'
-                                                        : 'text-slate-500 hover:bg-white/5 hover:text-sky-400'
+                                                        ? 'bg-sky-500 text-white shadow-md shadow-sky-500/30'
+                                                        : 'text-slate-500 hover:bg-sky-500/15 hover:text-sky-400'
                                                     }`}
                                             >
                                                 <Edit3 className="w-3.5 h-3.5" />
@@ -206,11 +231,11 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                 <AnimatePresence>
                                     {isCommentOpen && (
                                         <motion.div
-                                            key="comment-form"
+                                            key="form"
                                             initial={{ opacity: 0, height: 0 }}
                                             animate={{ opacity: 1, height: 'auto' }}
                                             exit={{ opacity: 0, height: 0 }}
-                                            className="overflow-hidden border-t border-white/6"
+                                            className="overflow-hidden border-t border-white/8"
                                         >
                                             <div className="px-5 py-4">
                                                 <InlineCommentForm
@@ -224,9 +249,9 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                     )}
                                 </AnimatePresence>
 
-                                {/* Comments — always shown inline (Instagram style) */}
+                                {/* Comments */}
                                 {commentCount > 0 && (
-                                    <div className="border-t border-white/6 px-5 pb-4">
+                                    <div className="border-t border-white/[0.06] px-5 pb-4">
                                         <CommentsList
                                             confessionId={item.id}
                                             confessionUser={item.user}
@@ -245,14 +270,6 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                                 ) : null
                                             }
                                         />
-                                    </div>
-                                )}
-
-                                {/* Hot badge */}
-                                {sortBy === 'hot' && netScore > 5 && (
-                                    <div className="absolute top-3 right-3 flex items-center gap-1 bg-orange-500/10 border border-orange-500/20 text-orange-400 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                        <Sparkles className="w-2.5 h-2.5" />
-                                        TREND
                                     </div>
                                 )}
                             </motion.article>
