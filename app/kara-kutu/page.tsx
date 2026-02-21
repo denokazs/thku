@@ -1,51 +1,70 @@
 'use client';
 
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Lock, Radio } from 'lucide-react';
 import ConfessionsFeed from '@/components/ConfessionsFeed';
-import TrendingSidebar from '@/components/TrendingSidebar';
 import ConfessionModal from '@/components/ConfessionModal';
+import { useStore } from '@/context/StoreContext';
 
 export default function KaraKutuPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const { confessions } = useStore();
+    const approvedCount = confessions.filter(c => c.status === 'approved').length;
 
     return (
-        <div className="min-h-screen bg-slate-900 text-slate-200 relative">
-            {/* Page Header */}
-            <div className="relative overflow-hidden bg-slate-950 border-b border-slate-800 pt-10 pb-20">
-                <div className="absolute top-0 inset-x-0 h-40 bg-gradient-to-b from-blue-900/10 to-transparent pointer-events-none"></div>
-                <div className="absolute -left-20 top-20 w-96 h-96 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="min-h-screen bg-[#0a0a0f] text-slate-200 relative overflow-x-hidden">
 
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <h1 className="text-red-500 font-bold tracking-[0.3em] uppercase mb-4 text-sm animate-pulse">Kritik İrtifa // 30.000 FT</h1>
-                    <h2 className="text-4xl md:text-6xl font-black text-white mb-6 glitch-effect">
-                        KARA <span className="text-slate-700">KUTU</span>
-                    </h2>
-                    <p className="max-w-2xl mx-auto text-slate-400 font-mono text-sm leading-relaxed">
-                        Bu frekansta herkes anonim. Kokpitte konuşulanlar burada kalır.
-                        <br />
-                        <span className="text-red-500/80">#Dikkat:</span> Radar aktif.
+            {/* Ambient background glows */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+                <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-[120px]" />
+                <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-indigo-600/5 rounded-full blur-[100px]" />
+                <div className="absolute top-1/2 left-0 w-[300px] h-[300px] bg-rose-600/4 rounded-full blur-[80px]" />
+            </div>
+
+            {/* ───── HERO ───── */}
+            <header className="relative z-10 pt-16 pb-12 px-4">
+                <div className="max-w-2xl mx-auto text-center">
+                    {/* Status pill */}
+                    <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold px-4 py-1.5 rounded-full mb-6">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
+                        <Radio className="w-3 h-3" />
+                        FREKANS AÇIK · {approvedCount} İTİRAF YAYINDA
+                    </div>
+
+                    <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4 leading-none">
+                        KARA<span className="text-red-500">.</span>KUTU
+                    </h1>
+
+                    <p className="text-slate-500 text-base leading-relaxed max-w-md mx-auto mb-8">
+                        Kimliksiz anlat. Anonim dinle. <br />
+                        Kokpitte söylenenler burada kalır.
                     </p>
-                </div>
-            </div>
 
-            {/* Main Content */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                <div className="grid lg:grid-cols-[1fr,320px] gap-8">
-                    <ConfessionsFeed />
-                    <TrendingSidebar onOpenModal={() => setIsModalOpen(true)} />
+                    {/* CTA button */}
+                    <button
+                        onClick={() => setIsModalOpen(true)}
+                        className="group inline-flex items-center gap-3 bg-white text-black font-bold text-sm px-6 py-3 rounded-full hover:bg-red-500 hover:text-white transition-all duration-200 shadow-lg shadow-black/30"
+                    >
+                        <Lock className="w-4 h-4" />
+                        Anonim İtiraf Et
+                        <span className="opacity-50 group-hover:opacity-100 transition-opacity">→</span>
+                    </button>
                 </div>
-            </div>
+            </header>
 
-            {/* Floating Submit Button (Mobile) */}
+            {/* ───── FEED ───── */}
+            <main className="relative z-10 max-w-2xl mx-auto px-4 pb-24">
+                <ConfessionsFeed onOpenModal={() => setIsModalOpen(true)} />
+            </main>
+
+            {/* Floating action button (mobile) */}
             <button
                 onClick={() => setIsModalOpen(true)}
-                className="lg:hidden fixed bottom-8 right-8 w-14 h-14 bg-red-600 hover:bg-red-700 rounded-full shadow-2xl shadow-red-900/50 flex items-center justify-center transition-all hover:scale-110 z-50"
+                className="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-red-500 hover:bg-red-400 rounded-full shadow-2xl shadow-red-900/50 flex items-center justify-center transition-all hover:scale-110 z-50 active:scale-95"
             >
                 <Plus className="w-6 h-6 text-white" />
             </button>
 
-            {/* Confession Modal */}
             <ConfessionModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     );
