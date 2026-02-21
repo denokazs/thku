@@ -99,7 +99,7 @@ export async function POST(request: Request) {
                 const club = db.clubs?.find((c: any) => c.id === newEvent.clubId);
                 if (!club) return; // No club found, skip emails
 
-                const clubMembers = db.members?.filter((m: any) => m.clubId === newEvent.clubId && m.status === 'approved') || [];
+                const clubMembers = db.members?.filter((m: any) => m.clubId === newEvent.clubId && m.status === 'active') || [];
                 if (clubMembers.length === 0) return; // No approved members, skip
 
                 const { sendMail } = await import('@/lib/mail');

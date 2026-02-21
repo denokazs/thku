@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1771022856744,
+    "name": "Deniz Kazmacı",
+    "role": "Sosyal Medya Sorumlusu",
+    "clubId": 1771020579075,
+    "studentId": "250445013",
+    "email": "kazmacideniz@gmail.com",
+    "phone": "05382533330",
+    "joinedAt": "2026",
+    "status": "active",
+    "reason": "Hızlı Katılım (Site Üzerinden)",
+    "department": "IT",
+    "avatar": "👤"
+  },
+  {
+    "id": 1771417066034,
+    "name": "Deneme Hesabı",
+    "role": "Uye",
+    "clubId": 1771020579075,
+    "studentId": "38483432043923",
+    "email": "kazmacidenizz@gmail.com",
+    "phone": "05014861736",
+    "joinedAt": "2026",
+    "status": "active",
+    "reason": "Hızlı Katılım (Site Üzerinden)",
+    "department": "Diğer",
+    "avatar": "👤"
+  }
+]
