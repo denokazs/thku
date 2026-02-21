@@ -324,7 +324,7 @@ export default function EventDetailsClient({ slug, event, club }: EventDetailsCl
                                                     <ChevronRight className="w-4 h-4" />
                                                 </span>
                                             </summary>
-                                            <div className="text-slate-600 p-4 pt-0 whitespace-pre-line bg-white leading-relaxed border-t border-slate-100 mt-2">
+                                            <div className="text-black font-medium p-4 pt-0 whitespace-pre-line bg-white leading-relaxed border-t border-slate-100 mt-2">
                                                 {item.answer}
                                             </div>
                                         </details>
