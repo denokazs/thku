@@ -1,11 +1,12 @@
 import { MetadataRoute } from 'next'
+import { CLUBS_DATA } from '@/app/kulupler/clubsData'
 
 const BASE_URL = 'https://thku.com.tr'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const now = new Date()
 
-    return [
+    const staticRoutes: MetadataRoute.Sitemap = [
         // Ana sayfa
         { url: BASE_URL, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
         // İçerik sayfaları
@@ -24,7 +25,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${BASE_URL}/giris`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
         { url: `${BASE_URL}/kayit`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
         { url: `${BASE_URL}/sifremi-unuttum`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
-        // Kulüp girişi
         { url: `${BASE_URL}/kulupler/giris`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     ]
+
+    // Her kulübün sayfası — CLUBS_DATA'dan otomatik olarak üretilir
+    const clubRoutes: MetadataRoute.Sitemap = CLUBS_DATA
+        .filter(club => club.isActive && club.slug)
+        .map(club => ({
+            url: `${BASE_URL}/kulupler/${club.slug}`,
+            lastModified: now,
+            changeFrequency: 'weekly' as const,
+            priority: 0.75,
+        }))
+
+    return [...staticRoutes, ...clubRoutes]
 }
