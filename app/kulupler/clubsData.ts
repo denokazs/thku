@@ -40,6 +40,7 @@ export interface ClubEvent {
     title: string;
     description: string;
     date: string;
+    time?: string;
     endDate?: string;
     location: string;
     capacity: number;

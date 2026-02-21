@@ -1377,7 +1377,7 @@ function EventCard({ event, isPast = false, user }: { event: ClubEvent; isPast?:
     const params = useParams(); // Get slug for the link
     const eventDate = new Date(event.date);
     const formattedDate = eventDate.toLocaleDateString('tr-TR', { day: '2-digit', month: 'long', year: 'numeric' });
-    const formattedTime = eventDate.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
+    const formattedTime = event.time || eventDate.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
 
     // Safety check for event attendees
     const attendees = typeof event.attendees === 'number' ? event.attendees : 0;

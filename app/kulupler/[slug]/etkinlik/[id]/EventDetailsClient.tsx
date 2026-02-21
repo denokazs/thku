@@ -194,7 +194,7 @@ export default function EventDetailsClient({ slug, event, club }: EventDetailsCl
                         </div>
                         <div className="flex items-center gap-2">
                             <Clock className="w-5 h-5 text-orange-400" />
-                            <span>{eventDate.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</span>
+                            <span>{event.time || eventDate.toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' })}</span>
                         </div>
                         <div className="flex items-center gap-2">
                             <MapPin className="w-5 h-5 text-yellow-400" />

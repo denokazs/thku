@@ -350,7 +350,7 @@ export default function ProfilePage() {
                                                             <h3 className="font-bold text-white text-lg">{event.title}</h3>
                                                             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mt-2">
                                                                 <span className="flex items-center gap-1"><Calendar className="w-4 h-4 text-slate-500" /> {new Date(event.date).toLocaleDateString()}</span>
-                                                                <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-slate-500" /> {new Date(event.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                                                                <span className="flex items-center gap-1"><Clock className="w-4 h-4 text-slate-500" /> {event.time || new Date(event.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                                                                 <span className="flex items-center gap-1"><MapPin className="w-4 h-4 text-slate-500" /> {event.location}</span>
                                                             </div>
                                                         </div>
