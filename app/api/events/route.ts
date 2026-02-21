@@ -93,36 +93,31 @@ export async function POST(request: Request) {
         await writeDb(db);
 
         // --- EMAIL NOTIFICATION LOGIC ---
-        // Fire and forget email notification
-        (async () => {
-            try {
-                const club = db.clubs?.find((c: any) => c.id === newEvent.clubId);
-                if (!club) return; // No club found, skip emails
-
+        // In serverless environments like Vercel, we MUST await the email sending,
+        // otherwise the function container is frozen/killed before the email goes out.
+        try {
+            const club = db.clubs?.find((c: any) => c.id === newEvent.clubId);
+            if (club) {
                 const clubMembers = db.members?.filter((m: any) => m.clubId === newEvent.clubId && m.status === 'active') || [];
-                if (clubMembers.length === 0) return; // No approved members, skip
+                if (clubMembers.length > 0) {
+                    const { sendMail } = await import('@/lib/mail');
+                    const { getNewEventEmailTemplate } = await import('@/lib/email-templates');
 
-                const { sendMail } = await import('@/lib/mail');
-                const { getNewEventEmailTemplate } = await import('@/lib/email-templates');
+                    const emailHtml = getNewEventEmailTemplate(newEvent, club);
+                    const subject = `Yeni Etkinlik: ${newEvent.title} - ${club.name}`;
 
-                const emailHtml = getNewEventEmailTemplate(newEvent, club);
-                const subject = `Yeni Etkinlik: ${newEvent.title} - ${club.name}`;
+                    const emails = clubMembers.map((m: any) => m.email).filter(Boolean);
 
-                // Send to all members individually (BCC approach or looping)
-                // Looping is safer for individualized tracking/unsubscribe links later if needed,
-                // but BCC is faster. Given potentially many students, BCC is often better for a simple setup.
-                // Let's use BCC for efficiency.
-                const emails = clubMembers.map((m: any) => m.email).filter(Boolean);
-
-                if (emails.length > 0) {
-                    // We send to the sender themselves or a no-reply address, and BCC everyone
-                    await sendMail(emails.join(','), subject, emailHtml);
-                    console.log(`Successfully queued event notification for ${emails.length} members of ${club.name}`);
+                    if (emails.length > 0) {
+                        await sendMail(emails.join(','), subject, emailHtml);
+                        console.log(`Successfully queued event notification for ${emails.length} members of ${club.name}`);
+                    }
                 }
-            } catch (emailError) {
-                console.error('Error sending event notifications:', emailError);
             }
-        })();
+        } catch (emailError) {
+            console.error('Error sending event notifications:', emailError);
+            // We intentionally don't throw here so the event creation still succeeds even if mail fails
+        }
         // --- END EMAIL LOGIC ---
 
         return NextResponse.json(newEvent);
