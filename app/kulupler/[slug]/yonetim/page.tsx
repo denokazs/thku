@@ -1389,8 +1389,49 @@ export default function ClubAdminPage() {
         const [isUnlimited, setIsUnlimited] = useState(false);
         const [uploadingImage, setUploadingImage] = useState(false);
         const [showAttendees, setShowAttendees] = useState(false);
+        const [showEmailComposer, setShowEmailComposer] = useState(false);
+        const [emailSubject, setEmailSubject] = useState('');
+        const [emailMessage, setEmailMessage] = useState('');
+        const [sendingEmail, setSendingEmail] = useState(false);
         const [attendees, setAttendees] = useState<any[]>([]);
         const [selectedEvent, setSelectedEvent] = useState<any>(null);
+
+        const handleSendEmail = async (e: React.FormEvent) => {
+            e.preventDefault();
+            if (!emailSubject.trim() || !emailMessage.trim()) {
+                showNotification('Lütfen başlık ve mesaj girin.', 'error');
+                return;
+            }
+            if (!selectedEvent) return;
+
+            setSendingEmail(true);
+            try {
+                const res = await fetch('/api/events/attendees/email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        eventId: selectedEvent.id,
+                        subject: emailSubject,
+                        message: emailMessage
+                    })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    showNotification(data.message || 'E-postalar başarıyla gönderildi!', 'success');
+                    setShowEmailComposer(false);
+                    setEmailSubject('');
+                    setEmailMessage('');
+                } else {
+                    showNotification(data.error || 'Gönderim başarısız!', 'error');
+                }
+            } catch (err) {
+                showNotification('Bir bağlantı hatası oluştu.', 'error');
+            } finally {
+                setSendingEmail(false);
+            }
+        };
 
         const handleViewAttendees = async (event: any) => {
             setSelectedEvent(event);
@@ -1834,13 +1875,20 @@ export default function ClubAdminPage() {
                                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                                 className="bg-slate-900 border border-slate-700 rounded-2xl w-full max-w-2xl relative z-10 shadow-2xl overflow-hidden flex flex-col max-h-[80vh]"
                             >
-                                <div className="flex justify-between items-center mb-6 p-6 border-b border-slate-800 bg-slate-900/50">
+                                <div className="flex justify-between items-center mb-6 p-6 border-b border-slate-800 bg-slate-900/50 flex-col md:flex-row gap-4">
                                     <h3 className="text-xl font-bold text-white flex items-center gap-2">
                                         <Users className="w-6 h-6 text-red-500" />
                                         Katılımcı Listesi
                                         <span className="text-sm font-normal text-slate-400 ml-2">({attendees.length} Kişi)</span>
                                     </h3>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-2 flex-wrap items-center">
+                                        <button
+                                            onClick={() => setShowEmailComposer(true)}
+                                            disabled={attendees.length === 0}
+                                            className="bg-blue-600/20 text-blue-400 hover:bg-blue-600 hover:text-white border border-blue-600/50 px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all disabled:opacity-50"
+                                        >
+                                            <Mail className="w-4 h-4" /> Toplu Mail
+                                        </button>
                                         <button
                                             onClick={() => {
                                                 const dataToExport = attendees.map(a => ({
@@ -1852,7 +1900,7 @@ export default function ClubAdminPage() {
                                                 }));
                                                 downloadExcel(dataToExport, `${selectedEvent?.title.replace(/\s+/g, '-').toLowerCase()}-katilimcilar.xls`);
                                             }}
-                                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-colors"
+                                            className="bg-green-600 hover:bg-green-700 text-white px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-colors disabled:opacity-50"
                                         >
                                             <FileDown className="w-4 h-4" /> Listeyi İndir
                                         </button>
@@ -1862,37 +1910,84 @@ export default function ClubAdminPage() {
                                     </div>
                                 </div>
 
-                                <div className="overflow-auto p-6">
-                                    {attendees.length > 0 ? (
-                                        <table className="w-full text-left border-collapse">
-                                            <thead>
-                                                <tr className="border-b border-slate-700 text-slate-400 text-xs uppercase">
-                                                    <th className="py-3">Ad Soyad</th>
-                                                    <th className="py-3">Öğrenci No</th>
-                                                    <th className="py-3">Telefon</th>
-                                                    <th className="py-3">E-posta</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody className="divide-y divide-slate-800">
-                                                {attendees.map((person, idx) => (
-                                                    <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
-                                                        <td className="py-3 text-white font-bold">{person.name}</td>
-                                                        <td className="py-3 text-slate-300 text-sm">{person.studentId || '-'}</td>
-                                                        <td className="py-3 text-slate-300 text-sm">{person.phone || '-'}</td>
-                                                        <td className="py-3 text-slate-300 text-sm">{person.email || '-'}</td>
-                                                    </tr>
-                                                ))}
-                                            </tbody>
-                                        </table>
-                                    ) : (
-                                        <div className="text-center py-12 text-slate-500">
-                                            Henüz katılımcı yok.
+                                {/* Conditionally Render Email Composer OR Attendees List */}
+                                {showEmailComposer ? (
+                                    <div className="flex flex-col h-full bg-slate-900 border-t border-slate-800">
+                                        <div className="flex items-center gap-3 p-6 pb-0">
+                                            <button onClick={() => setShowEmailComposer(false)} className="text-slate-400 hover:text-white p-1 rounded-lg hover:bg-slate-800 transition">
+                                                <ArrowLeft className="w-5 h-5" />
+                                            </button>
+                                            <h3 className="text-lg font-bold text-white flex items-center gap-2">
+                                                <Mail className="w-5 h-5 text-blue-500" /> {attendees.length} Katılımcıya E-Posta Gönder
+                                            </h3>
                                         </div>
-                                    )}
-                                </div>
-                                <div className="p-4 border-t border-slate-800 bg-slate-900/50 text-right text-xs text-slate-500">
-                                    Toplam {attendees.length} katılımcı
-                                </div>
+                                        <form onSubmit={handleSendEmail} className="p-6 space-y-4">
+                                            <div>
+                                                <label className="block text-slate-400 text-sm font-bold mb-2">Konu (Başlık)</label>
+                                                <input
+                                                    type="text"
+                                                    required
+                                                    value={emailSubject}
+                                                    onChange={e => setEmailSubject(e.target.value)}
+                                                    className="w-full bg-slate-900/50 border border-slate-700 rounded-xl p-3 text-white focus:border-blue-500 outline-none"
+                                                    placeholder="Örn: Etkinlik WhatsApp Grubu veya Son Dakika Değişikliği"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-slate-400 text-sm font-bold mb-2">Mesaj İçeriği</label>
+                                                <textarea
+                                                    required
+                                                    rows={6}
+                                                    value={emailMessage}
+                                                    onChange={e => setEmailMessage(e.target.value)}
+                                                    className="w-full bg-slate-900/50 border border-slate-700 rounded-xl p-3 text-white focus:border-blue-500 outline-none resize-none"
+                                                    placeholder="Merhaba arkadaşlar, etkinliğimizin WhatsApp grup linki aşağıdadır..."
+                                                />
+                                                <p className="text-xs text-slate-500 mt-2">Mesajınız, katılımcılara THK kurumsal e-posta şablonu içinde, gönderen kulüp bilgisiyle birlikte iletilecektir. Linkler otomatik tıklanabilir hale getirilecektir.</p>
+                                            </div>
+                                            <div className="pt-4 border-t border-slate-800 flex justify-end gap-3">
+                                                <button type="button" onClick={() => setShowEmailComposer(false)} className="px-5 py-2.5 rounded-xl font-bold text-slate-300 hover:bg-slate-800 transition">İptal</button>
+                                                <button type="submit" disabled={sendingEmail || attendees.length === 0} className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white px-6 py-2.5 rounded-xl font-bold transition flex items-center gap-2">
+                                                    {sendingEmail ? <><Loader2 className="w-4 h-4 animate-spin" /> Gönderiliyor...</> : <><Send className="w-4 h-4" /> Gönder</>}
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                ) : (
+                                    <>
+                                        <div className="overflow-auto p-6">
+                                            {attendees.length > 0 ? (
+                                                <table className="w-full text-left border-collapse">
+                                                    <thead>
+                                                        <tr className="border-b border-slate-700 text-slate-400 text-xs uppercase">
+                                                            <th className="py-3">Ad Soyad</th>
+                                                            <th className="py-3">Öğrenci No</th>
+                                                            <th className="py-3">Telefon</th>
+                                                            <th className="py-3">E-posta</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody className="divide-y divide-slate-800">
+                                                        {attendees.map((person, idx) => (
+                                                            <tr key={idx} className="hover:bg-slate-800/30 transition-colors">
+                                                                <td className="py-3 text-white font-bold">{person.name}</td>
+                                                                <td className="py-3 text-slate-300 text-sm">{person.studentId || '-'}</td>
+                                                                <td className="py-3 text-slate-300 text-sm">{person.phone || '-'}</td>
+                                                                <td className="py-3 text-slate-300 text-sm">{person.email || '-'}</td>
+                                                            </tr>
+                                                        ))}
+                                                    </tbody>
+                                                </table>
+                                            ) : (
+                                                <div className="text-center py-12 text-slate-500">
+                                                    Henüz katılımcı yok.
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="p-4 border-t border-slate-800 bg-slate-900/50 text-right text-xs text-slate-500">
+                                            Toplam {attendees.length} katılımcı
+                                        </div>
+                                    </>
+                                )}
                             </motion.div>
                         </div>
                     )}

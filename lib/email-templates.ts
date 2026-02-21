@@ -177,3 +177,148 @@ export function getNewEventEmailTemplate(event: any, club: any) {
     </html>
     `;
 }
+
+export function getEventAnnouncementTemplate(event: any, club: any, subject: string, customMessage: string) {
+    const primaryColor = club.color || '#F97316'; // Fallback to orange-500
+    const clubLogoUrl = club.logo || 'https://thku.com.tr/images/thk-logo.png';
+    const safeTitle = event.title.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    // Safely encode user's custom message and parse line breaks to HTML <br/>
+    const safeSubject = subject.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const safeMessage = customMessage.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, '<br/>');
+
+    // Make basic URLs clickable in the message
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const formattedMessage = safeMessage.replace(urlRegex, '<a href="$1" style="color: #2563eb; text-decoration: underline;" target="_blank">$1</a>');
+
+    return `
+    <!DOCTYPE html>
+    <html lang="tr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${safeSubject}</title>
+        <style>
+            /* Reset & Base Styles */
+            body, p, h1, h2, h3, h4, h5, h6 { margin: 0; padding: 0; }
+            body { 
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                background-color: #f3f4f6; /* gray-100 */
+                color: #1f2937; /* gray-800 */
+                line-height: 1.6;
+                -webkit-font-smoothing: antialiased;
+            }
+            img { max-width: 100%; height: auto; display: block; }
+            a { text-decoration: none; }
+            
+            /* Layout Structure */
+            .wrapper { width: 100%; background-color: #f3f4f6; padding: 40px 0; }
+            .container { 
+                max-width: 600px; 
+                margin: 0 auto; 
+                background-color: #ffffff; 
+                border-radius: 12px; 
+                overflow: hidden; 
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            }
+            
+            /* Header */
+            .header {
+                padding: 30px;
+                text-align: center;
+                background-color: #ffffff;
+                border-bottom: 3px solid ${primaryColor};
+            }
+            .club-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin: 0 auto 15px auto; }
+            .club-name { font-size: 18px; font-weight: 700; color: #111827; margin-bottom: 5px; }
+
+            /* Content Body */
+            .content { padding: 40px 30px; }
+            .subject-title { font-size: 22px; font-weight: 800; color: #111827; line-height: 1.3; margin-bottom: 25px; }
+            
+            /* Custom Message Box */
+            .message-box {
+                background-color: #f9fafb;
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                padding: 24px;
+                margin-bottom: 30px;
+                font-size: 16px;
+                color: #374151;
+            }
+
+            /* Event Reference Box */
+            .event-ref-box {
+                background-color: #ffffff;
+                border-left: 4px solid ${primaryColor};
+                padding: 15px;
+                margin-bottom: 30px;
+            }
+            .event-ref-label { font-size: 11px; color: #6b7280; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 4px;}
+            .event-ref-title { font-size: 15px; font-weight: 600; color: #111827;}
+
+            /* Action Button */
+            .action-wrapper { text-align: center; margin-top: 30px; }
+            .btn {
+                display: inline-block;
+                background-color: #1f2937;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: 600;
+                padding: 12px 24px;
+                border-radius: 8px;
+                text-decoration: none;
+            }
+            
+            /* Footer */
+            .footer {
+                background-color: #1f2937;
+                padding: 30px;
+                text-align: center;
+                color: #9ca3af;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="container">
+                
+                <!-- Header -->
+                <div class="header">
+                    <img src="${clubLogoUrl}" alt="${club.name} Logo" class="club-logo">
+                    <h2 class="club-name">${club.name}</h2>
+                    <p style="font-size: 13px; color: #6b7280;">Duyuru Mesajı</p>
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h1 class="subject-title">${safeSubject}</h1>
+                    
+                    <div class="message-box">
+                        ${formattedMessage}
+                    </div>
+
+                    <!-- Event Context Box -->
+                    <div class="event-ref-box">
+                        <div class="event-ref-label">İlgili Etkinlik</div>
+                        <div class="event-ref-title">${safeTitle}</div>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <div class="action-wrapper">
+                        <a href="https://thku.com.tr/kulupler/${club.slug}/etkinlik/${event.id}" class="btn" style="color: #ffffff !important;">Etkinlik Sayfasına Git</a>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <p>Bu e-posta, <strong>${club.name}</strong> tarafından <strong>${safeTitle}</strong> etkinliğine katıldığınız için size gönderilmiştir.</p>
+                </div>
+
+            </div>
+        </div>
+    </body>
+    </html>
+    `;
+}
