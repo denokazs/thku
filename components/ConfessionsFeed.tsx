@@ -14,13 +14,12 @@ const CommentModal = dynamic(() => import('./CommentModal'), {
 
 export default function ConfessionsFeed() {
     const { confessions, voteConfession, myVotes, getComments } = useStore();
-    const [activeTab, setActiveTab] = useState<'approved' | 'pending'>('approved');
     const [commentModalOpen, setCommentModalOpen] = useState(false);
     const [selectedConfession, setSelectedConfession] = useState<{ id: number; text: string } | null>(null);
     const [replyToComment, setReplyToComment] = useState<{ id: number; user: string } | null>(null);
 
-    // Filter items based on active tab
-    const items = confessions.filter(c => c.status === activeTab);
+    // Only show approved confessions to public users
+    const items = confessions.filter(c => c.status === 'approved');
 
     const handleVote = (id: number, type: 'up' | 'down') => {
         voteConfession(id, type);
@@ -28,36 +27,10 @@ export default function ConfessionsFeed() {
 
     return (
         <div className="space-y-6">
-            {/* Tabs */}
-            <div className="flex gap-4 border-b border-slate-800 pb-4">
-                <button
-                    onClick={() => setActiveTab('approved')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'approved'
-                        ? 'bg-red-600 text-white shadow-lg shadow-red-900/20'
-                        : 'text-slate-500 hover:text-white hover:bg-slate-800'
-                        }`}
-                >
-                    <CheckCircle2 className="w-4 h-4" />
-                    Radar (Onaylı)
-                </button>
-                <button
-                    onClick={() => setActiveTab('pending')}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold transition-all ${activeTab === 'pending'
-                        ? 'bg-amber-600 text-white shadow-lg shadow-amber-900/20'
-                        : 'text-slate-500 hover:text-white hover:bg-slate-800'
-                        }`}
-                >
-                    <Clock className="w-4 h-4" />
-                    Bekleme Hattı ({confessions.filter(c => c.status === 'pending').length})
-                </button>
-            </div>
-
             {items.length === 0 ? (
                 <div className="text-center py-20 bg-slate-900/50 rounded-xl border border-dashed border-slate-700">
                     <p className="text-slate-500">
-                        {activeTab === 'approved'
-                            ? 'Henüz onaylanmış itiraf bulunmamaktadır.'
-                            : 'Bekleyen itiraf yok. Temiz hava sahası!'}
+                        Henüz onaylanmış itiraf bulunmamaktadır.
                     </p>
                 </div>
             ) : (
@@ -100,12 +73,9 @@ export default function ConfessionsFeed() {
                                 <div className="flex items-center gap-1">
                                     <button
                                         onClick={() => handleVote(item.id, "up")}
-                                        disabled={activeTab === "pending"} // Disable voting on pending
-                                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all text-xs font-bold ${activeTab === "pending"
-                                            ? "bg-slate-800/30 text-slate-600 cursor-not-allowed"
-                                            : myVotes[item.id] === "up"
-                                                ? "bg-green-600 text-white shadow-lg shadow-green-900/40 hover:bg-green-700"
-                                                : "bg-slate-800/50 text-slate-400 hover:text-green-400 hover:bg-slate-800"
+                                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all text-xs font-bold ${myVotes[item.id] === "up"
+                                            ? "bg-green-600 text-white shadow-lg shadow-green-900/40 hover:bg-green-700"
+                                            : "bg-slate-800/50 text-slate-400 hover:text-green-400 hover:bg-slate-800"
                                             }`}
                                     >
                                         <PlaneTakeoff className={`w-3.5 h-3.5 ${myVotes[item.id] === "up" ? "animate-pulse" : ""}`} />
@@ -113,12 +83,9 @@ export default function ConfessionsFeed() {
                                     </button>
                                     <button
                                         onClick={() => handleVote(item.id, "down")}
-                                        disabled={activeTab === "pending"}
-                                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all text-xs font-bold ${activeTab === "pending"
-                                            ? "bg-slate-800/30 text-slate-600 cursor-not-allowed"
-                                            : myVotes[item.id] === "down"
-                                                ? "bg-red-600 text-white shadow-lg shadow-red-900/40 hover:bg-red-700"
-                                                : "bg-slate-800/50 text-slate-400 hover:text-red-400 hover:bg-slate-800"
+                                        className={`flex items-center gap-1 px-3 py-1.5 rounded-lg transition-all text-xs font-bold ${myVotes[item.id] === "down"
+                                            ? "bg-red-600 text-white shadow-lg shadow-red-900/40 hover:bg-red-700"
+                                            : "bg-slate-800/50 text-slate-400 hover:text-red-400 hover:bg-slate-800"
                                             }`}
                                     >
                                         <PlaneLanding className={`w-3.5 h-3.5 ${myVotes[item.id] === "down" ? "animate-bounce" : ""}`} />
@@ -150,19 +117,13 @@ export default function ConfessionsFeed() {
 
                                     <button
                                         onClick={() => {
-                                            if (activeTab === "approved") {
-                                                setSelectedConfession({ id: item.id, text: item.text });
-                                                setCommentModalOpen(true);
-                                            }
+                                            setSelectedConfession({ id: item.id, text: item.text });
+                                            setCommentModalOpen(true);
                                         }}
-                                        disabled={activeTab === "pending"}
-                                        className={`flex items-center gap-2 text-xs font-bold transition-colors ${activeTab === "pending"
-                                            ? "text-slate-600 cursor-not-allowed"
-                                            : "text-slate-400 hover:text-white cursor-pointer"
-                                            }`}
+                                        className="flex items-center gap-2 text-xs font-bold transition-colors text-slate-400 hover:text-white cursor-pointer"
                                     >
                                         <MessageSquare className="w-3.5 h-3.5" />
-                                        {activeTab === "pending" ? "Onay Bekliyor" : `Telsize Gir${getComments(item.id).length > 0 ? ` (${getComments(item.id).length})` : ""}`}
+                                        Telsize Gir{getComments(item.id).length > 0 ? ` (${getComments(item.id).length})` : ""}
                                     </button>
                                 </div>
                             </div>
