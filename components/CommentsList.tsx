@@ -1,8 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { MessageSquare, User, Heart, CornerDownRight } from 'lucide-react';
+import { MessageSquare, User, Heart, ChevronDown, CornerDownRight } from 'lucide-react';
 import { useStore, Comment } from '@/context/StoreContext';
+
+const PREVIEW_COUNT = 3;
 
 interface CommentsListProps {
     confessionId: number;
@@ -14,13 +16,14 @@ interface CommentsListProps {
 
 export default function CommentsList({ confessionId, confessionUser, activeReplyId, onReply, renderReplyForm }: CommentsListProps) {
     const { getComments, getReplies, toggleCommentLike, commentLikes } = useStore();
-    const comments = getComments(confessionId);
+    const allComments = getComments(confessionId);
+    const [showAll, setShowAll] = useState(false);
     const [expandedReplies, setExpandedReplies] = useState<Record<number, boolean>>({});
 
-    if (comments.length === 0) return null;
+    if (allComments.length === 0) return null;
 
-    const toggleReplies = (commentId: number) =>
-        setExpandedReplies(prev => ({ ...prev, [commentId]: !prev[commentId] }));
+    const visibleComments = showAll ? allComments : allComments.slice(0, PREVIEW_COUNT);
+    const hiddenCount = allComments.length - PREVIEW_COUNT;
 
     const formatTime = (timestamp: number) => {
         const diff = Date.now() - timestamp;
@@ -40,65 +43,60 @@ export default function CommentsList({ confessionId, confessionUser, activeReply
         const isActiveReply = activeReplyId === comment.id;
 
         return (
-            <div className={`${isReply ? 'ml-10' : ''}`}>
-                <div className="flex gap-3">
-                    {/* Avatar */}
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                        <User className="w-4 h-4 text-white" />
+            <div className={isReply ? 'ml-9' : ''}>
+                <div className="flex gap-2.5">
+                    {/* Small avatar */}
+                    <div className={`w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold ${isOP ? 'bg-gradient-to-br from-red-500 to-rose-600' : 'bg-gradient-to-br from-sky-500 to-blue-600'}`}>
+                        {comment.user.charAt(0).toUpperCase()}
                     </div>
 
-                    {/* Content */}
                     <div className="flex-1 min-w-0">
-                        <div className={`border rounded-2xl px-4 py-2.5 ${isOP ? 'bg-red-900/10 border-red-500/30' : 'bg-slate-800/40 border-slate-700/50'}`}>
-                            <div className="flex flex-wrap items-center gap-2 mb-1">
-                                <span className={`font-bold text-sm ${isOP ? 'text-red-400' : 'text-sky-400'}`}>
-                                    {comment.user}
-                                </span>
+                        {/* Bubble */}
+                        <div className={`inline-block max-w-full px-3.5 py-2 rounded-2xl rounded-tl-sm text-sm ${isOP ? 'bg-red-500/15 border border-red-500/20' : 'bg-slate-800/70 border border-slate-700/40'}`}>
+                            <div className="flex flex-wrap items-center gap-1.5 mb-0.5">
+                                <span className={`font-bold text-xs ${isOP ? 'text-red-400' : 'text-sky-400'}`}>{comment.user}</span>
                                 {isOP && (
-                                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
-                                        👑 İtiraf Sahibi
-                                    </span>
+                                    <span className="text-[9px] font-bold px-1 py-0.5 rounded bg-red-500/20 text-red-400">👑 OP</span>
                                 )}
-                                <span className="text-slate-600 text-xs">•</span>
-                                <span className="text-slate-500 text-xs font-mono">{formatTime(comment.timestamp)}</span>
+                                {isReply && (
+                                    <span className="text-[9px] text-slate-600"><CornerDownRight className="w-2.5 h-2.5 inline" /></span>
+                                )}
                             </div>
-                            <p className="text-slate-200 text-sm leading-relaxed break-words">{comment.text}</p>
+                            <p className="text-slate-200 leading-relaxed break-words">{comment.text}</p>
                         </div>
 
-                        {/* Actions */}
-                        <div className="flex items-center gap-4 mt-2 px-2">
+                        {/* Meta actions */}
+                        <div className="flex items-center gap-3 mt-1.5 px-1">
+                            <span className="text-slate-600 text-[11px] font-mono">{formatTime(comment.timestamp)}</span>
                             <button
                                 onClick={() => toggleCommentLike(comment.id)}
-                                className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${isLiked ? 'text-red-500' : 'text-slate-500 hover:text-red-400'}`}
+                                className={`flex items-center gap-1 text-[11px] font-bold transition-colors ${isLiked ? 'text-red-400' : 'text-slate-500 hover:text-red-400'}`}
                             >
-                                <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-current' : ''}`} />
-                                {comment.likes > 0 && <span>{comment.likes}</span>}
+                                <Heart className={`w-3 h-3 ${isLiked ? 'fill-current' : ''}`} />
+                                {comment.likes > 0 && comment.likes}
                             </button>
-
                             <button
                                 onClick={() => onReply?.(comment)}
-                                className={`text-xs font-bold transition-colors ${isActiveReply ? 'text-sky-400' : 'text-slate-500 hover:text-white'}`}
+                                className={`text-[11px] font-bold transition-colors ${isActiveReply ? 'text-sky-400' : 'text-slate-500 hover:text-sky-400'}`}
                             >
-                                {isActiveReply ? 'Kapat' : 'Cevapla'}
+                                {isActiveReply ? 'kapat' : 'cevapla'}
                             </button>
-
                             {replies.length > 0 && (
                                 <button
-                                    onClick={() => toggleReplies(comment.id)}
-                                    className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-sky-400 transition-colors"
+                                    onClick={() => setExpandedReplies(prev => ({ ...prev, [comment.id]: !prev[comment.id] }))}
+                                    className="text-[11px] font-bold text-slate-500 hover:text-white transition-colors"
                                 >
-                                    <CornerDownRight className="w-3 h-3" />
-                                    {expandedReplies[comment.id] ? 'Gizle' : `${replies.length} cevap`}
+                                    {expandedReplies[comment.id] ? '▲ gizle' : `▼ ${replies.length} cevap`}
                                 </button>
                             )}
                         </div>
 
-                        {/* Inline reply form rendered here */}
+                        {/* Inline reply form */}
                         {renderReplyForm?.(comment)}
 
-                        {/* Nested Replies */}
+                        {/* Nested replies */}
                         {expandedReplies[comment.id] && replies.length > 0 && (
-                            <div className="mt-3 space-y-3">
+                            <div className="mt-2 space-y-3">
                                 {replies.map(reply => (
                                     <CommentItem key={reply.id} comment={reply} isReply />
                                 ))}
@@ -111,16 +109,27 @@ export default function CommentsList({ confessionId, confessionUser, activeReply
     };
 
     return (
-        <div className="mt-6 space-y-4">
-            <div className="flex items-center gap-2 text-slate-400 text-sm font-bold">
-                <MessageSquare className="w-4 h-4" />
-                <span>{comments.length} Yorum</span>
-            </div>
-            <div className="space-y-4">
-                {comments.map(comment => (
-                    <CommentItem key={comment.id} comment={comment} />
-                ))}
-            </div>
+        <div className="mt-4 space-y-3 border-t border-slate-700/40 pt-4">
+            {visibleComments.map(comment => (
+                <CommentItem key={comment.id} comment={comment} />
+            ))}
+
+            {/* Instagram-style "view more" */}
+            {!showAll && hiddenCount > 0 && (
+                <button
+                    onClick={() => setShowAll(true)}
+                    className="flex items-center gap-1.5 text-slate-500 hover:text-sky-400 text-xs font-bold transition-colors pl-9"
+                >
+                    <ChevronDown className="w-3.5 h-3.5" />
+                    {hiddenCount} yorumu daha gör
+                </button>
+            )}
+
+            {showAll && allComments.length > PREVIEW_COUNT && (
+                <button onClick={() => setShowAll(false)} className="flex items-center gap-1.5 text-slate-600 hover:text-slate-400 text-xs transition-colors pl-9">
+                    ▲ daralt
+                </button>
+            )}
         </div>
     );
 }
