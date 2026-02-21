@@ -122,7 +122,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         { label: 'Genel Bakış', icon: LayoutDashboard, href: '/admin' },
         { label: 'Haberler', icon: Newspaper, href: '/admin/news' },
         { label: 'İtiraflar', icon: MessageSquare, href: '/admin/confessions' },
-        { label: 'Yorumlar', icon: MessageSquare, href: '/admin/comments' },
         { label: 'Kulüpler', icon: Users, href: '/admin/clubs' },
         { label: 'Kullanıcılar', icon: Users, href: '/admin/users' },
         { label: 'İçerik Yönetimi', icon: FileText, href: '/admin/content' },

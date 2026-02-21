@@ -6,38 +6,38 @@ import { useStore, Comment } from '@/context/StoreContext';
 
 interface CommentsListProps {
     confessionId: number;
+    confessionUser?: string;
+    activeReplyId?: number | null;
     onReply?: (comment: Comment) => void;
+    renderReplyForm?: (comment: Comment) => React.ReactNode;
 }
 
-export default function CommentsList({ confessionId, onReply }: CommentsListProps) {
+export default function CommentsList({ confessionId, confessionUser, activeReplyId, onReply, renderReplyForm }: CommentsListProps) {
     const { getComments, getReplies, toggleCommentLike, commentLikes } = useStore();
     const comments = getComments(confessionId);
     const [expandedReplies, setExpandedReplies] = useState<Record<number, boolean>>({});
 
-    if (comments.length === 0) {
-        return null;
-    }
+    if (comments.length === 0) return null;
 
-    const toggleReplies = (commentId: number) => {
+    const toggleReplies = (commentId: number) =>
         setExpandedReplies(prev => ({ ...prev, [commentId]: !prev[commentId] }));
-    };
 
     const formatTime = (timestamp: number) => {
-        const now = Date.now();
-        const diff = now - timestamp;
-        const minutes = Math.floor(diff / 60000);
-        const hours = Math.floor(diff / 3600000);
-        const days = Math.floor(diff / 86400000);
-
-        if (minutes < 1) return 'şimdi';
-        if (minutes < 60) return `${minutes}d`;
-        if (hours < 24) return `${hours}s`;
-        return `${days}g`;
+        const diff = Date.now() - timestamp;
+        const m = Math.floor(diff / 60000);
+        const h = Math.floor(diff / 3600000);
+        const d = Math.floor(diff / 86400000);
+        if (m < 1) return 'şimdi';
+        if (m < 60) return `${m}d`;
+        if (h < 24) return `${h}s`;
+        return `${d}g`;
     };
 
     const CommentItem = ({ comment, isReply = false }: { comment: Comment; isReply?: boolean }) => {
         const replies = getReplies(comment.id);
         const isLiked = commentLikes[comment.id];
+        const isOP = comment.isOP || (confessionUser && comment.user === confessionUser);
+        const isActiveReply = activeReplyId === comment.id;
 
         return (
             <div className={`${isReply ? 'ml-10' : ''}`}>
@@ -49,32 +49,27 @@ export default function CommentsList({ confessionId, onReply }: CommentsListProp
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                        <div className={`bg-slate-800/40 border ${comment.isOP ? 'border-red-500/30 bg-red-900/10' : 'border-slate-700/50'} rounded-2xl px-4 py-2.5`}>
-                            <div className="flex items-center gap-2 mb-1">
-                                <span className={`${comment.isOP ? 'text-red-400' : 'text-sky-400'} font-bold text-sm`}>
+                        <div className={`border rounded-2xl px-4 py-2.5 ${isOP ? 'bg-red-900/10 border-red-500/30' : 'bg-slate-800/40 border-slate-700/50'}`}>
+                            <div className="flex flex-wrap items-center gap-2 mb-1">
+                                <span className={`font-bold text-sm ${isOP ? 'text-red-400' : 'text-sky-400'}`}>
                                     {comment.user}
                                 </span>
-                                {comment.isOP && (
+                                {isOP && (
                                     <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
                                         👑 İtiraf Sahibi
                                     </span>
                                 )}
                                 <span className="text-slate-600 text-xs">•</span>
-                                <span className="text-slate-500 text-xs font-mono">
-                                    {formatTime(comment.timestamp)}
-                                </span>
+                                <span className="text-slate-500 text-xs font-mono">{formatTime(comment.timestamp)}</span>
                             </div>
-                            <p className="text-slate-200 text-sm leading-relaxed break-words">
-                                {comment.text}
-                            </p>
+                            <p className="text-slate-200 text-sm leading-relaxed break-words">{comment.text}</p>
                         </div>
 
                         {/* Actions */}
                         <div className="flex items-center gap-4 mt-2 px-2">
                             <button
                                 onClick={() => toggleCommentLike(comment.id)}
-                                className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${isLiked ? 'text-red-500' : 'text-slate-500 hover:text-red-400'
-                                    }`}
+                                className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${isLiked ? 'text-red-500' : 'text-slate-500 hover:text-red-400'}`}
                             >
                                 <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-current' : ''}`} />
                                 {comment.likes > 0 && <span>{comment.likes}</span>}
@@ -82,9 +77,9 @@ export default function CommentsList({ confessionId, onReply }: CommentsListProp
 
                             <button
                                 onClick={() => onReply?.(comment)}
-                                className="text-xs font-bold text-slate-500 hover:text-white transition-colors"
+                                className={`text-xs font-bold transition-colors ${isActiveReply ? 'text-sky-400' : 'text-slate-500 hover:text-white'}`}
                             >
-                                Cevapla
+                                {isActiveReply ? 'Kapat' : 'Cevapla'}
                             </button>
 
                             {replies.length > 0 && (
@@ -97,6 +92,9 @@ export default function CommentsList({ confessionId, onReply }: CommentsListProp
                                 </button>
                             )}
                         </div>
+
+                        {/* Inline reply form rendered here */}
+                        {renderReplyForm?.(comment)}
 
                         {/* Nested Replies */}
                         {expandedReplies[comment.id] && replies.length > 0 && (
@@ -118,7 +116,6 @@ export default function CommentsList({ confessionId, onReply }: CommentsListProp
                 <MessageSquare className="w-4 h-4" />
                 <span>{comments.length} Yorum</span>
             </div>
-
             <div className="space-y-4">
                 {comments.map(comment => (
                     <CommentItem key={comment.id} comment={comment} />
