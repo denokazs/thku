@@ -10,10 +10,11 @@ interface CommentModalProps {
     onClose: () => void;
     confessionId: number;
     confessionText: string;
+    confessionUser: string;
     replyToComment?: { id: number; user: string } | null;
 }
 
-export default function CommentModal({ isOpen, onClose, confessionId, confessionText, replyToComment }: CommentModalProps) {
+export default function CommentModal({ isOpen, onClose, confessionId, confessionText, confessionUser, replyToComment }: CommentModalProps) {
     const { addComment } = useStore();
     const [text, setText] = useState('');
     const [user, setUser] = useState('');
@@ -36,7 +37,9 @@ export default function CommentModal({ isOpen, onClose, confessionId, confession
         e.preventDefault();
         if (!text || !user) return;
 
-        addComment(confessionId, text, user, replyToComment?.id);
+        const isOP = user === confessionUser;
+        addComment(confessionId, text, user, replyToComment?.id, isOP);
+
         setSubmitted(true);
         setTimeout(() => {
             setSubmitted(false);

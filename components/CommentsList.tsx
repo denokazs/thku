@@ -49,9 +49,16 @@ export default function CommentsList({ confessionId, onReply }: CommentsListProp
 
                     {/* Content */}
                     <div className="flex-1 min-w-0">
-                        <div className="bg-slate-800/40 border border-slate-700/50 rounded-2xl px-4 py-2.5">
+                        <div className={`bg-slate-800/40 border ${comment.isOP ? 'border-red-500/30 bg-red-900/10' : 'border-slate-700/50'} rounded-2xl px-4 py-2.5`}>
                             <div className="flex items-center gap-2 mb-1">
-                                <span className="text-sky-400 font-bold text-sm">{comment.user}</span>
+                                <span className={`${comment.isOP ? 'text-red-400' : 'text-sky-400'} font-bold text-sm`}>
+                                    {comment.user}
+                                </span>
+                                {comment.isOP && (
+                                    <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-500/20 text-red-400 border border-red-500/30">
+                                        👑 İtiraf Sahibi
+                                    </span>
+                                )}
                                 <span className="text-slate-600 text-xs">•</span>
                                 <span className="text-slate-500 text-xs font-mono">
                                     {formatTime(comment.timestamp)}

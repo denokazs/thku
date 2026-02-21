@@ -34,6 +34,10 @@ export interface Confession {
     type: 'complaint' | 'romance' | 'panic' | 'question' | 'other';
     status: 'pending' | 'approved' | 'rejected';
     timestamp: number;
+    tags?: string[];
+    authorAvatar?: string;
+    authorCodeName?: string;
+    mediaUrl?: string;
 }
 
 export interface Comment {
@@ -45,6 +49,7 @@ export interface Comment {
     likes: number;
     status: 'pending' | 'approved' | 'rejected';
     timestamp: number;
+    isOP?: boolean;
 }
 
 export interface ShuttleStop {

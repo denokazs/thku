@@ -42,9 +42,19 @@ interface StoreContextType {
     isAdmin: boolean;
     loginAdmin: () => void;
     logoutAdmin: () => void;
-    addConfession: (text: string, user: string, type: Confession['type']) => void;
+    addConfession: (
+        text: string,
+        user: string,
+        type: Confession['type'],
+        options?: {
+            tags?: string[];
+            authorAvatar?: string;
+            authorCodeName?: string;
+            mediaUrl?: string;
+        }
+    ) => void;
     updateConfessionStatus: (id: number, status: Confession['status']) => void;
-    addComment: (confessionId: number, text: string, user: string, parentCommentId?: number) => void;
+    addComment: (confessionId: number, text: string, user: string, parentCommentId?: number, isOP?: boolean) => void;
     updateCommentStatus: (id: number, status: Comment['status']) => void;
     getComments: (confessionId: number) => Comment[];
     toggleCommentLike: (commentId: number) => void;
@@ -269,7 +279,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     const loginAdmin = useCallback(() => setIsAdmin(true), []);
     const logoutAdmin = useCallback(() => setIsAdmin(false), []);
 
-    const addConfession = useCallback(async (text: string, user: string, type: Confession['type']) => {
+    const addConfession = useCallback(async (
+        text: string,
+        user: string,
+        type: Confession['type'],
+        options?: {
+            tags?: string[];
+            authorAvatar?: string;
+            authorCodeName?: string;
+            mediaUrl?: string;
+        }
+    ) => {
         const tempId = Date.now();
         const optimisticConfession: Confession = {
             id: tempId,
@@ -280,13 +300,17 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
             dislikes: 0,
             status: 'pending',
             timestamp: Date.now(),
+            ...(options?.tags && { tags: options.tags }),
+            ...(options?.authorAvatar && { authorAvatar: options.authorAvatar }),
+            ...(options?.authorCodeName && { authorCodeName: options.authorCodeName }),
+            ...(options?.mediaUrl && { mediaUrl: options.mediaUrl })
         };
 
         try {
             // Optimistic update
             await mutateConfessions(
                 async () => {
-                    await addConfessionAction(text, user, type);
+                    await addConfessionAction(text, user, type, options);
                     // Let SWR revalidate automatically after this
                     return undefined;
                 },
@@ -307,7 +331,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         mutateConfessions(); // Revalidate to ensure consistency
     }, [mutateConfessions]);
 
-    const addComment = useCallback(async (confessionId: number, text: string, user: string, parentCommentId?: number) => {
+    const addComment = useCallback(async (confessionId: number, text: string, user: string, parentCommentId?: number, isOP?: boolean) => {
         const tempId = Date.now();
         const optimisticComment: Comment = {
             id: tempId,
@@ -317,13 +341,14 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
             user,
             likes: 0,
             status: 'pending',
+            isOP,
             timestamp: Date.now(),
         };
 
         try {
             await mutateComments(
                 async () => {
-                    await addCommentAction(confessionId, text, user, parentCommentId);
+                    await addCommentAction(confessionId, text, user, parentCommentId, isOP);
                     return undefined;
                 },
                 {

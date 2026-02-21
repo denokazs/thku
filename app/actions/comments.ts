@@ -21,7 +21,8 @@ export async function addCommentAction(
     confessionId: number,
     text: string,
     user: string,
-    parentCommentId?: number
+    parentCommentId?: number,
+    isOP?: boolean
 ): Promise<Comment> {
     const db: any = await readDb(['comments']);
     if (!db.comments) db.comments = [];
@@ -34,6 +35,7 @@ export async function addCommentAction(
         user,
         likes: 0,
         status: 'pending',
+        isOP,
         timestamp: Date.now(),
     };
 

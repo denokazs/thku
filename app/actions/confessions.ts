@@ -13,7 +13,17 @@ export async function getConfessionsAction(): Promise<Confession[]> {
     return await getConfessionsDB();
 }
 
-export async function addConfessionAction(text: string, user: string, type: Confession['type']): Promise<Confession> {
+export async function addConfessionAction(
+    text: string,
+    user: string,
+    type: Confession['type'],
+    options?: {
+        tags?: string[];
+        authorAvatar?: string;
+        authorCodeName?: string;
+        mediaUrl?: string;
+    }
+): Promise<Confession> {
     const db: any = await readDb(['confessions']);
     if (!db.confessions) db.confessions = [];
 
@@ -26,6 +36,10 @@ export async function addConfessionAction(text: string, user: string, type: Conf
         dislikes: 0,
         status: 'pending',
         timestamp: Date.now(),
+        ...(options?.tags && { tags: options.tags }),
+        ...(options?.authorAvatar && { authorAvatar: options.authorAvatar }),
+        ...(options?.authorCodeName && { authorCodeName: options.authorCodeName }),
+        ...(options?.mediaUrl && { mediaUrl: options.mediaUrl })
     };
 
     // Add to beginning
