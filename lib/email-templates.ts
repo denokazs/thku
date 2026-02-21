@@ -160,8 +160,8 @@ export function getNewEventEmailTemplate(event: any, club: any) {
 
                     <!-- CTA Button -->
                     <div class="action-wrapper">
-                        <!-- We assume events page URL structure -->
-                        <a href="https://thku.com.tr/events/${event.id}" class="btn" style="color: #ffffff !important;">Etkinliği İncele</a>
+                        <!-- Link directly to the specific event under the club's slug -->
+                        <a href="https://thku.com.tr/kulupler/${club.slug}/etkinlik/${event.id}" class="btn" style="color: #ffffff !important;">Etkinliği İncele</a>
                     </div>
                 </div>
 
