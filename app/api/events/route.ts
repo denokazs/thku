@@ -78,7 +78,7 @@ export async function POST(request: Request) {
             await requireClubAccess(sanitizedData.clubId);
         }
 
-        const db = await readDb(['events']);
+        const db = await readDb(['events', 'clubs', 'members']);
 
         const newEvent = {
             ...sanitizedData,
@@ -87,9 +87,44 @@ export async function POST(request: Request) {
             isFeatured: isSuperAdmin ? (body.isFeatured || false) : false
         };
 
+        if (!db.events) db.events = [];
         db.events.push(newEvent);
 
         await writeDb(db);
+
+        // --- EMAIL NOTIFICATION LOGIC ---
+        // Fire and forget email notification
+        (async () => {
+            try {
+                const club = db.clubs?.find((c: any) => c.id === newEvent.clubId);
+                if (!club) return; // No club found, skip emails
+
+                const clubMembers = db.members?.filter((m: any) => m.clubId === newEvent.clubId && m.status === 'approved') || [];
+                if (clubMembers.length === 0) return; // No approved members, skip
+
+                const { sendMail } = await import('@/lib/mail');
+                const { getNewEventEmailTemplate } = await import('@/lib/email-templates');
+
+                const emailHtml = getNewEventEmailTemplate(newEvent, club);
+                const subject = `Yeni Etkinlik: ${newEvent.title} - ${club.name}`;
+
+                // Send to all members individually (BCC approach or looping)
+                // Looping is safer for individualized tracking/unsubscribe links later if needed,
+                // but BCC is faster. Given potentially many students, BCC is often better for a simple setup.
+                // Let's use BCC for efficiency.
+                const emails = clubMembers.map((m: any) => m.email).filter(Boolean);
+
+                if (emails.length > 0) {
+                    // We send to the sender themselves or a no-reply address, and BCC everyone
+                    await sendMail(emails.join(','), subject, emailHtml);
+                    console.log(`Successfully queued event notification for ${emails.length} members of ${club.name}`);
+                }
+            } catch (emailError) {
+                console.error('Error sending event notifications:', emailError);
+            }
+        })();
+        // --- END EMAIL LOGIC ---
+
         return NextResponse.json(newEvent);
     } catch (error: any) {
         return handleAuthError(error);

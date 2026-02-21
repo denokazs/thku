@@ -151,23 +151,25 @@ export async function PUT(request: Request) {
         // --- FORTRESS CODE: MASS ASSIGNMENT PROTECTION ---
 
         // 1. Basic Fields (Allowed for Club Admin)
-        name: sanitizedData.name,
+        const safeUpdate: any = {
+            name: sanitizedData.name,
             description: sanitizedData.description,
-                longDescription: sanitizedData.longDescription,
-                    // START FIX: Stringify JSON fields for DB storage
-                    socialMedia: sanitizedData.socialMedia ? JSON.stringify(sanitizedData.socialMedia) : undefined,
-                        president: sanitizedData.president ? JSON.stringify(sanitizedData.president) : undefined,
-                            // END FIX
-                            email: sanitizedData.email,
-                                phone: sanitizedData.phone,
-                                    website: sanitizedData.website,
-                                        logo: sanitizedData.logo,
-                                            logoBackground: sanitizedData.logoBackground,
-                                                coverImage: sanitizedData.coverImage,
-                                                    headerImage: sanitizedData.headerImage,
-                                                        meetingDay: sanitizedData.meetingDay,
-                                                            meetingLocation: sanitizedData.meetingLocation,
-                                                                gallery: sanitizedData.gallery, // Gallery is usually an array, verify if needs stringify (POST does it)
+            longDescription: sanitizedData.longDescription,
+            // START FIX: Stringify JSON fields for DB storage
+            socialMedia: sanitizedData.socialMedia ? JSON.stringify(sanitizedData.socialMedia) : undefined,
+            president: sanitizedData.president ? JSON.stringify(sanitizedData.president) : undefined,
+            // END FIX
+            email: sanitizedData.email,
+            phone: sanitizedData.phone,
+            website: sanitizedData.website,
+            logo: sanitizedData.logo,
+            logoBackground: sanitizedData.logoBackground,
+            coverImage: sanitizedData.coverImage,
+            headerImage: sanitizedData.headerImage,
+            meetingDay: sanitizedData.meetingDay,
+            meetingLocation: sanitizedData.meetingLocation,
+            gallery: sanitizedData.gallery, // Gallery is usually an array, verify if needs stringify (POST does it)
+        };
 
         // 2. Sensitive Fields (Super Admin ONLY)
         if (isSuperAdmin) {
