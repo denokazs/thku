@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import { Plane, ShieldAlert, Fingerprint, MapPin, ScanLine, Crosshair } from 'lucide-react';
+import { Plane, ShieldAlert, Fingerprint, Globe, ScanLine, Crosshair } from 'lucide-react';
 
 interface StoryTemplateProps {
     confession: any;
@@ -139,8 +139,8 @@ const StoryTemplate = forwardRef<HTMLDivElement, StoryTemplateProps>(({ confessi
                 {/* HUGE URL DISPLAY */}
                 <div className="w-full text-center bg-sky-900/20 border-y-[3px] border-sky-500/30 py-8 backdrop-blur-md shadow-[0_0_50px_rgba(14,165,233,0.15)] mt-4 relative">
                     <div className="flex items-center justify-center gap-6">
-                        <MapPin className="w-12 h-12 text-sky-400" />
-                        <span className="text-[52px] text-sky-400 font-extrabold tracking-[0.3em] uppercase drop-shadow-md">
+                        <Globe className="w-12 h-12 text-sky-400" />
+                        <span className="text-[52px] text-sky-400 font-extrabold tracking-[0.3em] uppercase drop-shadow-md flex items-center pt-2">
                             THKU.COM.TR/KARA-KUTU
                         </span>
                     </div>
