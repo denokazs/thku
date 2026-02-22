@@ -25,12 +25,15 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
-                    <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer">
-                        <div className="w-8 h-8 bg-red-600 rounded-tl-lg rounded-br-lg flex items-center justify-center text-white">
-                            <Plane className="w-5 h-5 -rotate-45" />
-                        </div>
-                        <Link href="/" className="text-xl md:text-2xl font-bold tracking-tighter text-blue-950 uppercase">
-                            THK <span className="font-light">ÜNİVERSİTESİ</span>
+                    <div className="flex-shrink-0 flex items-center cursor-pointer">
+                        <Link href="/" className="flex items-center gap-3">
+                            <img src="/logo.jpeg" alt="THK Üniversitesi Logo" className="h-12 w-auto object-contain rounded-full shadow-sm" />
+                            <span className="text-lg md:text-xl font-bold tracking-tighter text-blue-950 uppercase hidden sm:block">
+                                THK ÜNİVERSİTESİ <span className="font-light text-red-600">- SKY PORTAL</span>
+                            </span>
+                            <span className="text-lg font-bold tracking-tighter text-blue-950 uppercase sm:hidden">
+                                SKY <span className="font-light text-red-600">PORTAL</span>
+                            </span>
                         </Link>
                     </div>
 

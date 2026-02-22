@@ -66,6 +66,10 @@ export const metadata: Metadata = {
   verification: {
     google: 'google-site-verification-code',
   },
+  icons: {
+    icon: '/logo.jpeg',
+    apple: '/logo.jpeg',
+  },
 };
 
 import { StoreProvider } from "@/context/StoreContext";
