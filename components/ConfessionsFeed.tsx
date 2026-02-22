@@ -71,12 +71,18 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
             setIsGenerating(true);
             setSharingId(item.id);
 
-            // Wait for render
-            await new Promise(resolve => setTimeout(resolve, 150));
+            // Wait a bit longer for complex layouts/images to fully parse
+            await new Promise(resolve => setTimeout(resolve, 300));
             const node = document.getElementById('story-template-container');
             if (!node) throw new Error('Template node missing');
 
-            const dataUrl = await toJpeg(node, { quality: 0.90, width: 1080, height: 1920 });
+            const dataUrl = await toJpeg(node, {
+                quality: 0.90,
+                width: 1080,
+                height: 1920,
+                cacheBust: true,
+                skipFonts: false
+            });
 
             const req = await fetch(dataUrl);
             const blob = await req.blob();

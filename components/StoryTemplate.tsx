@@ -48,7 +48,10 @@ const StoryTemplate = forwardRef<HTMLDivElement, StoryTemplateProps>(({ confessi
             {/* --- TOP HEADER: SLEEK BRANDING --- */}
             <div className="w-full pt-20 px-16 flex items-center justify-between relative z-20 mt-8">
                 <div className="flex items-center gap-6">
-                    <img src={LOGO_BASE64} alt="THK Logo" className="w-[120px] h-[120px] rounded-full ring-2 ring-white/20 object-contain bg-white pb-1 shadow-[0_0_40px_rgba(255,255,255,0.15)]" />
+                    <div
+                        className="w-[120px] h-[120px] rounded-full ring-2 ring-white/20 bg-white pb-1 shadow-[0_0_40px_rgba(255,255,255,0.15)] bg-center bg-no-repeat bg-contain"
+                        style={{ backgroundImage: `url(${LOGO_BASE64})` }}
+                    />
                     <div className="flex flex-col">
                         <span className="text-[44px] font-black text-white tracking-widest uppercase mb-1 drop-shadow-md">
                             THK ÜNİVERSİTESİ
