@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { PlaneTakeoff, PlaneLanding, Share2, Edit3, Flame, Trophy, Clock, Sparkles, MessageSquare } from 'lucide-react';
+import { PlaneTakeoff, PlaneLanding, Share2, Edit3, Flame, Trophy, Clock, Sparkles, MessageSquare, Instagram } from 'lucide-react';
 import { useStore } from '@/context/StoreContext';
 import CommentsList from './CommentsList';
 import InlineCommentForm from './InlineCommentForm';
+import { toJpeg } from 'html-to-image';
+import StoryTemplate from './StoryTemplate';
 
 const TYPE_CONFIG: Record<string, {
     emoji: string; label: string;
@@ -61,6 +63,46 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
     const [sortBy, setSortBy] = useState<'new' | 'hot' | 'top'>('new');
     const [activeCommentId, setActiveCommentId] = useState<number | null>(null);
     const [activeReply, setActiveReply] = useState<{ confessionId: number; parentCommentId: number; parentUser: string } | null>(null);
+    const [sharingId, setSharingId] = useState<number | null>(null);
+    const [isGenerating, setIsGenerating] = useState(false);
+
+    const handleShareStory = async (item: any, cfg: any) => {
+        try {
+            setIsGenerating(true);
+            setSharingId(item.id);
+
+            // Wait for render
+            await new Promise(resolve => setTimeout(resolve, 150));
+            const node = document.getElementById('story-template-container');
+            if (!node) throw new Error('Template node missing');
+
+            const dataUrl = await toJpeg(node, { quality: 0.90, width: 1080, height: 1920 });
+
+            const req = await fetch(dataUrl);
+            const blob = await req.blob();
+            const file = new File([blob], `kara-kutu-${item.id}.jpeg`, { type: 'image/jpeg' });
+
+            if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+                await navigator.share({
+                    files: [file],
+                    title: 'THKÜ Kara Kutu',
+                    text: 'Sky Portal üzerinden bir itiraf...'
+                });
+            } else {
+                // Fallback download if web share API isn't supported for images
+                const link = document.createElement('a');
+                link.download = `kara-kutu-${item.id}.jpeg`;
+                link.href = dataUrl;
+                link.click();
+            }
+        } catch (error) {
+            console.error('Error generating image', error);
+            alert('Görsel oluşturulurken bir hata oluştu!');
+        } finally {
+            setSharingId(null);
+            setIsGenerating(false);
+        }
+    };
 
     const items = [...confessions]
         .filter(c => c.status === 'approved')
@@ -79,6 +121,18 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
 
     return (
         <div>
+            {/* Hidden container for rendering the image template */}
+            {sharingId && (
+                <div className="fixed top-[-9999px] left-[-9999px] pointer-events-none z-[-1]">
+                    <div id="story-template-container">
+                        <StoryTemplate
+                            confession={items.find(i => i.id === sharingId)}
+                            typeConfig={TYPE_CONFIG[items.find(i => i.id === sharingId)?.type || 'other']}
+                        />
+                    </div>
+                </div>
+            )}
+
             {/* ─── Sort bar ─── */}
             <div className="flex gap-1.5 mb-6 p-1.5 bg-white/[0.04] border border-white/[0.08] rounded-2xl">
                 {SORT_CONFIG.map(({ key, label, icon: Icon, active }) => (
@@ -182,8 +236,8 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                             <button
                                                 onClick={() => voteConfession(item.id, 'up')}
                                                 className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${voted === 'up'
-                                                        ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/30'
-                                                        : 'text-slate-500 hover:bg-emerald-500/15 hover:text-emerald-400'
+                                                    ? 'bg-emerald-500 text-white shadow-md shadow-emerald-500/30'
+                                                    : 'text-slate-500 hover:bg-emerald-500/15 hover:text-emerald-400'
                                                     }`}
                                             >
                                                 <PlaneTakeoff className="w-3.5 h-3.5" /> {item.likes}
@@ -191,8 +245,8 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                             <button
                                                 onClick={() => voteConfession(item.id, 'down')}
                                                 className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${voted === 'down'
-                                                        ? 'bg-red-500 text-white shadow-md shadow-red-500/30'
-                                                        : 'text-slate-500 hover:bg-red-500/15 hover:text-red-400'
+                                                    ? 'bg-red-500 text-white shadow-md shadow-red-500/30'
+                                                    : 'text-slate-500 hover:bg-red-500/15 hover:text-red-400'
                                                     }`}
                                             >
                                                 <PlaneLanding className="w-3.5 h-3.5" /> {item.dislikes || 0}
@@ -207,8 +261,17 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                                     else navigator.clipboard.writeText(t);
                                                 }}
                                                 className="p-2 rounded-xl text-slate-600 hover:text-sky-400 hover:bg-sky-500/10 transition-all"
+                                                title="Bağlantıyı Paylaş"
                                             >
                                                 <Share2 className="w-3.5 h-3.5" />
+                                            </button>
+                                            <button
+                                                onClick={() => handleShareStory(item, cfg)}
+                                                disabled={isGenerating && sharingId === item.id}
+                                                className="p-2 rounded-xl text-slate-600 hover:text-pink-400 hover:bg-pink-500/10 transition-all disabled:opacity-50"
+                                                title="Story Olarak Paylaş (Görsel İndir)"
+                                            >
+                                                <Instagram className="w-3.5 h-3.5" />
                                             </button>
                                             <button
                                                 onClick={() => {
@@ -216,8 +279,8 @@ export default function ConfessionsFeed({ onOpenModal }: ConfessionsFeedProps) {
                                                     setActiveCommentId(prev => prev === item.id ? null : item.id);
                                                 }}
                                                 className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all ${isCommentOpen
-                                                        ? 'bg-sky-500 text-white shadow-md shadow-sky-500/30'
-                                                        : 'text-slate-500 hover:bg-sky-500/15 hover:text-sky-400'
+                                                    ? 'bg-sky-500 text-white shadow-md shadow-sky-500/30'
+                                                    : 'text-slate-500 hover:bg-sky-500/15 hover:text-sky-400'
                                                     }`}
                                             >
                                                 <Edit3 className="w-3.5 h-3.5" />
