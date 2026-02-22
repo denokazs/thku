@@ -1,7 +1,7 @@
 // API Request Logging Utility
 // Captures detailed request metadata including IP, geolocation, and user info
 
-import { readDb, writeDb } from './db';
+import { appendApiLog } from './db';
 import { NextRequest } from 'next/server';
 
 export interface ApiLogEntry {
@@ -159,16 +159,8 @@ export async function logApiRequest(params: {
                 gpsPostalCode: gpsData.postalCode,
             };
 
-            // Write to database
-            const db = await readDb(['apiLogs']);
-            if (!db.apiLogs) db.apiLogs = [];
-
-            db.apiLogs.push({
-                ...logEntry,
-                id: Date.now() + Math.random(), // Temporary ID, will be replaced by DB auto-increment
-            });
-
-            await writeDb(db);
+            // Write to database directly (O(1) append instead of O(N^2) rewrite)
+            await appendApiLog(logEntry);
         } catch (error) {
             // Silent fail - logging errors shouldn't break the API
             console.error('[API Logger] Failed to log request:', error);

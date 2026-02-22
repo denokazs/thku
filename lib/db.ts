@@ -119,6 +119,16 @@ export async function writeDb(data: any) {
     }
 }
 
+export async function appendApiLog(logEntry: any) {
+    const useMysql = process.env.NODE_ENV === 'production' || process.env.DB_TYPE === 'mysql';
+
+    if (useMysql) {
+        return appendApiLogMysql(logEntry);
+    } else {
+        return appendApiLogSqlite(logEntry);
+    }
+}
+
 // --- Implementation: SQLite ---
 
 async function readDbSqlite(tableNames?: string[]) {
@@ -205,6 +215,26 @@ async function writeDbSqlite(data: any) {
     transaction(data);
 }
 
+async function appendApiLogSqlite(logEntry: any) {
+    const db = getSqliteDb();
+    const config = MAPPINGS['apiLogs'];
+    if (!config) return;
+
+    try {
+        const columns = db.prepare(`PRAGMA table_info(${config.table})`).all().map((c: any) => c.name);
+        if (columns.length === 0) return; // Table not strictly migrated yet
+
+        const validKeys = Object.keys(logEntry).filter(k => columns.includes(k) && k !== 'id');
+        const placeholders = validKeys.map(() => '?').join(', ');
+        const escapedColumns = validKeys.join(', ');
+        const values = validKeys.map(k => logEntry[k] === undefined ? null : logEntry[k]);
+
+        const insertStmt = db.prepare(`INSERT INTO ${config.table} (${escapedColumns}) VALUES (${placeholders})`);
+        insertStmt.run(...values);
+    } catch (err) {
+        console.error('[API Logger SQLite]', err);
+    }
+}
 
 // --- Implementation: MySQL ---
 
@@ -305,5 +335,22 @@ async function writeDbMysql(data: any) {
         throw err;
     } finally {
         connection.release();
+    }
+}
+
+async function appendApiLogMysql(logEntry: any) {
+    const db = getMysqlPool();
+    const config = MAPPINGS['apiLogs'];
+    if (!config) return;
+
+    try {
+        // Strip out 'id' if auto increment
+        const { id, ...dataToInsert } = logEntry;
+
+        // Build direct SET statement
+        // For MySQL, SET ? automatically escapes and maps an object's keys to columns
+        await db.query(`INSERT INTO ${config.table} SET ?`, [dataToInsert]);
+    } catch (err) {
+        console.error('[API Logger MySQL]', err);
     }
 }
