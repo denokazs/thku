@@ -59,9 +59,9 @@ const StoryTemplate = forwardRef<HTMLDivElement, StoryTemplateProps>(({ confessi
                 </div>
 
                 <div className="flex flex-col items-end gap-3 text-right">
-                    <div className="flex items-center gap-3 bg-red-500/15 border border-red-500/40 px-6 py-3 rounded-xl shadow-[0_0_20px_rgba(239,68,68,0.2)]">
+                    <div className="flex items-center gap-4 bg-red-500/15 border border-red-500/40 px-8 py-4 rounded-2xl shadow-[0_0_20px_rgba(239,68,68,0.2)]">
                         <ShieldAlert className="w-8 h-8 text-red-500" />
-                        <span className="text-[22px] font-bold text-red-500 tracking-widest uppercase">KİMLİK GİZLİ</span>
+                        <span className="text-[24px] font-bold text-red-500 tracking-widest uppercase">KİMLİK GİZLİ</span>
                     </div>
                 </div>
             </div>
@@ -139,8 +139,8 @@ const StoryTemplate = forwardRef<HTMLDivElement, StoryTemplateProps>(({ confessi
                 {/* HUGE URL DISPLAY */}
                 <div className="w-full text-center bg-sky-900/20 border-y-[3px] border-sky-500/30 py-8 backdrop-blur-md shadow-[0_0_50px_rgba(14,165,233,0.15)] mt-4 relative">
                     <div className="flex items-center justify-center gap-6">
-                        <Globe className="w-12 h-12 text-sky-400" />
-                        <span className="text-[52px] text-sky-400 font-extrabold tracking-[0.3em] uppercase drop-shadow-md flex items-center pt-2">
+                        <Globe className="w-16 h-16 text-sky-400 -mt-1" />
+                        <span className="text-[52px] text-sky-400 font-extrabold tracking-[0.3em] uppercase drop-shadow-md flex items-center">
                             THKU.COM.TR/KARA-KUTU
                         </span>
                     </div>
