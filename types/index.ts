@@ -65,13 +65,26 @@ export interface MenuOption {
     color: string;
 }
 
-export interface DailyMenu {
-    date?: string;
-    soup: string;
-    main: string;
-    side: string;
+export interface MealItem {
+    name: string;
     calorie: number;
     protein: number;
     carbs: number;
     fat: number;
+}
+
+export interface DailyMenu {
+    date?: string;
+    day?: string;
+    // Legacy fields (optional)
+    soup?: string;
+    main?: string;
+    side?: string;
+    // New meals array
+    meals?: MealItem[];
+    calorie: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+    isVegetarian?: boolean;
 }
