@@ -122,9 +122,9 @@ export default function KaraKutuPage() {
                         <div className="bg-white/[0.04] border border-white/[0.08] rounded-2xl p-4">
                             <div className="flex items-center gap-2 mb-3">
                                 <Shield className="w-3.5 h-3.5 text-amber-400" />
-                                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Kural Seti</p>
+                                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">Kural Seti</p>
                             </div>
-                            <ul className="space-y-2 text-[12px] text-slate-500 leading-relaxed">
+                            <ul className="space-y-2 text-[12px] text-slate-300 leading-relaxed">
                                 {[
                                     'Gerçek isim yazma',
                                     'Hakaret etme',
@@ -132,7 +132,7 @@ export default function KaraKutuPage() {
                                     'Moderatör onayı şart',
                                 ].map((rule, i) => (
                                     <li key={i} className="flex items-start gap-2">
-                                        <span className="text-slate-700 font-mono text-[10px] mt-0.5">0{i + 1}</span>
+                                        <span className="text-slate-500 font-mono text-[10px] mt-0.5">0{i + 1}</span>
                                         {rule}
                                     </li>
                                 ))}
@@ -142,10 +142,10 @@ export default function KaraKutuPage() {
                         {/* Anonymity note */}
                         <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4">
                             <div className="flex items-center gap-2 mb-2">
-                                <Eye className="w-3.5 h-3.5 text-slate-600" />
-                                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Anonimlik</p>
+                                <Eye className="w-3.5 h-3.5 text-slate-400" />
+                                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">Anonimlik</p>
                             </div>
-                            <p className="text-[12px] text-slate-600 leading-relaxed">
+                            <p className="text-[12px] text-slate-300 leading-relaxed">
                                 IP adreslerin veya gerçek kimliğin hiçbir şekilde saklanmaz.
                             </p>
                         </div>
@@ -153,12 +153,12 @@ export default function KaraKutuPage() {
                         {/* Tags */}
                         <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4">
                             <div className="flex items-center gap-2 mb-3">
-                                <Hash className="w-3.5 h-3.5 text-slate-600" />
-                                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-600">Popüler</p>
+                                <Hash className="w-3.5 h-3.5 text-slate-400" />
+                                <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400">Popüler</p>
                             </div>
                             <div className="flex flex-wrap gap-1.5">
                                 {['aşk', 'hoca', 'sınav', 'yurt', 'kafeterya', 'burs', 'staj'].map(tag => (
-                                    <span key={tag} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 text-slate-500 border border-white/8">
+                                    <span key={tag} className="text-[11px] px-2 py-0.5 rounded-full bg-white/5 text-slate-300 border border-white/8 hover:text-white transition-colors cursor-pointer">
                                         #{tag}
                                     </span>
                                 ))}
