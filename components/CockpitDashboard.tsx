@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { Leaf, Bus, Bell, Clock, AlertCircle, UsersRound } from 'lucide-react';
 import { useStore } from '@/context/StoreContext';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import { MONTHLY_MENU } from '@/data/menu-data';
+import type { DailyMenu } from '@/types';
 
 // Data derived from EgoTracker for consistency
 const BUS_SCHEDULE = {
@@ -17,7 +19,22 @@ const BUS_SCHEDULE = {
 
 
 export default function CockpitDashboard() {
-    const { announcements, dailyMenu } = useStore();
+    const { announcements } = useStore();
+
+    // Bugünün menüsünü MONTHLY_MENU'dan bul
+    const todayMenu = useMemo((): DailyMenu | null => {
+        const today = new Date();
+        const pad = (n: number) => String(n).padStart(2, '0');
+        const monthKey = `${today.getFullYear()}-${pad(today.getMonth() + 1)}`;
+        const dateKey = `${monthKey}-${pad(today.getDate())}`;
+        const monthData = MONTHLY_MENU[monthKey] || [];
+        // Bugünkü tarihi bul, yoksa en yakın geçmiş günü döndür
+        const exact = monthData.find(m => m.date === dateKey);
+        if (exact) return exact;
+        // Hafta sonu veya veri yoksa en son eklenen günü göster
+        const sorted = [...monthData].sort((a, b) => b.date!.localeCompare(a.date!));
+        return sorted[0] || null;
+    }, []);
 
     const [toSchool, setToSchool] = useState<{ next: string | null, timeLeft: number | null }>({ next: null, timeLeft: null });
     const [fromSchool, setFromSchool] = useState<{ next: string | null, timeLeft: number | null }>({ next: null, timeLeft: null });
@@ -45,10 +62,6 @@ export default function CockpitDashboard() {
             };
 
             if (isWeekend) {
-                // For weekend, we simplify and show same for both or just generic
-                // But specifically for this request, we'll try to map if possible or just use the same list appropriately
-                // Given the user request is specific about "to/from", we might just use the same weekend list for both if direction isn't specified in data
-                // Or better, just show "Weekend" status. For now, let's map the weekend list to both to ensure UI doesn't break
                 const result = calcNext(BUS_SCHEDULE.weekend);
                 setToSchool(result);
                 setFromSchool(result);
@@ -77,32 +90,42 @@ export default function CockpitDashboard() {
                         <div className="bg-red-100 p-3 rounded-xl text-red-600">
                             <Leaf className="w-6 h-6" />
                         </div>
-                        <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded">BUGÜN</span>
+                        <span className="text-xs font-bold text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                            {todayMenu?.day?.toUpperCase() || 'BUGÜN'}
+                        </span>
                     </div>
-                    <h3 className="text-xl font-bold text-blue-950 mb-2">Yemekhane Menüsü</h3>
-                    <div className="space-y-2">
-                        <p className="text-gray-700 font-medium">🍲 {dailyMenu?.soup || '...'}</p>
-                        <p className="text-gray-700 font-medium">🍛 {dailyMenu?.main || '...'}</p>
-                        <p className="text-gray-700 font-medium">🥗 {dailyMenu?.side || '...'}</p>
-                    </div>
+                    <h3 className="text-xl font-bold text-blue-950 mb-3">Yemekhane Menüsü</h3>
+
+                    {todayMenu?.meals && todayMenu.meals.length > 0 ? (
+                        <div className="space-y-1.5">
+                            {todayMenu.meals.map((meal, i) => (
+                                <div key={i} className="flex items-center justify-between">
+                                    <p className="text-gray-700 font-medium text-sm truncate flex-1">{meal.name}</p>
+                                    <span className="text-xs text-gray-400 font-mono ml-2 whitespace-nowrap">{meal.calorie} kcal</span>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <p className="text-gray-400 text-sm italic">Bugün menü verisi yok</p>
+                    )}
+
                     <div className="mt-4 pt-4 border-t border-gray-200">
                         <div className="flex justify-between items-center text-sm font-semibold text-gray-600 mb-2">
-                            <span>Kalori: {dailyMenu?.calorie || '0'} kcal</span>
+                            <span>Toplam: {todayMenu?.calorie || '—'} kcal</span>
                         </div>
                         <div className="flex gap-2 text-xs">
-                            <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-md font-bold" title="Protein">
-                                🥩 {dailyMenu?.protein || 0}g Pro
+                            <span className="bg-orange-100 text-orange-700 px-2 py-1 rounded-md font-bold">
+                                🥩 {todayMenu?.protein || 0}g Pro
                             </span>
-                            <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md font-bold" title="Karbonhidrat">
-                                🍞 {dailyMenu?.carbs || 0}g Karb
+                            <span className="bg-yellow-100 text-yellow-700 px-2 py-1 rounded-md font-bold">
+                                🍞 {todayMenu?.carbs || 0}g Karb
                             </span>
-                            <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md font-bold" title="Yağ">
-                                💧 {dailyMenu?.fat || 0}g Yağ
+                            <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded-md font-bold">
+                                💧 {todayMenu?.fat || 0}g Yağ
                             </span>
                         </div>
                     </div>
 
-                    {/* Creative Navigation Button */}
                     <Link href="/yemekhane">
                         <div className="mt-4 pt-4 border-t border-gray-200 group/menu cursor-pointer">
                             <div className="flex items-center justify-between bg-gradient-to-r from-red-50 to-orange-50 hover:from-red-100 hover:to-orange-100 p-3 rounded-xl transition-all duration-300 group-hover/menu:scale-105">
@@ -114,6 +137,7 @@ export default function CockpitDashboard() {
                         </div>
                     </Link>
                 </motion.div>
+
 
                 {/* Card 2: Ring */}
                 <motion.div
