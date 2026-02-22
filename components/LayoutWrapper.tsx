@@ -3,7 +3,6 @@
 import { usePathname } from 'next/navigation';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { LocationPermissionPrompt } from './LocationPermissionPrompt';
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -26,8 +25,6 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             <footer role="contentinfo">
                 <Footer />
             </footer>
-            {/* GPS Location Tracking - Optional, dismissable */}
-            <LocationPermissionPrompt />
         </>
     );
 }
