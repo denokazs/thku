@@ -227,7 +227,15 @@ async function appendApiLogSqlite(logEntry: any) {
         const validKeys = Object.keys(logEntry).filter(k => columns.includes(k) && k !== 'id');
         const placeholders = validKeys.map(() => '?').join(', ');
         const escapedColumns = validKeys.join(', ');
-        const values = validKeys.map(k => logEntry[k] === undefined ? null : logEntry[k]);
+
+        // Ensure arrays/objects are stringified for JSON fields or text columns
+        const values = validKeys.map(k => {
+            let val = logEntry[k];
+            if (val === undefined) return null;
+            if (typeof val === 'object' && val !== null) return JSON.stringify(val);
+            if (typeof val === 'boolean') return val ? 1 : 0;
+            return val;
+        });
 
         const insertStmt = db.prepare(`INSERT INTO ${config.table} (${escapedColumns}) VALUES (${placeholders})`);
         insertStmt.run(...values);
