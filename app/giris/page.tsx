@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Lock, User, GraduationCap } from 'lucide-react';
 import Link from 'next/link';
 
-import { TurnstileWidget } from '@/components/TurnstileWidget';
+// import { TurnstileWidget } from '@/components/TurnstileWidget';
 
 export default function GirisYap() {
     const { login } = useAuth();
@@ -24,9 +24,7 @@ export default function GirisYap() {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleTurnstileVerify = (token: string) => {
-        setFormData(prev => ({ ...prev, turnstileToken: token }));
-    };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -103,9 +101,9 @@ export default function GirisYap() {
                         </a>
                     </div>
 
-                    <TurnstileWidget
+                    {/* <TurnstileWidget
                         onVerify={(token) => setFormData({ ...formData, turnstileToken: token })}
-                    />
+                    /> */}
 
                     <button
                         type="submit"
